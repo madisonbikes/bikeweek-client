@@ -4,6 +4,10 @@
   padding-bottom: 1rem;
 }
 
+.formItem {
+  padding-bottom: 0.5rem;
+}
+
 nav {
   border-bottom: "solid 1px";
   padding-bottom: "1rem";

@@ -1,4 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "@mui/material";
+import { Outlet, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "./authentication";
 import "./styles.css";
 
@@ -9,18 +10,29 @@ function App() {
     <>
       <h1>Bike Week</h1>
       <nav>
-        <Link to="/">Home</Link>&nbsp;|&nbsp;
+        <Link component={RouterLink} to="/">
+          Home
+        </Link>
+        &nbsp;|&nbsp;
         {!auth.state.jwt ? (
           <>
-            <Link to="/login">Login</Link>&nbsp;|&nbsp;
+            <Link component={RouterLink} to="/login">
+              Login
+            </Link>
+            &nbsp;|&nbsp;
           </>
         ) : null}
         {auth.state.jwt ? (
           <>
-            <Link to="/logout">Logout</Link>&nbsp;|&nbsp;
+            <Link component={RouterLink} to="/logout">
+              Logout
+            </Link>
+            &nbsp;|&nbsp;
           </>
         ) : null}
-        <Link to="/info">Info</Link>
+        <Link component={RouterLink} to="/info">
+          Info
+        </Link>
       </nav>
       <Outlet />
       <footer>

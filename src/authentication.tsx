@@ -3,12 +3,12 @@ import { useContext } from "react";
 
 type AuthState = { jwt: string | undefined };
 
-type ContextType = {
+type AuthContextType = {
   state: AuthState;
-  setState: React.Dispatch<React.SetStateAction<AuthState>>;
+  setState: (newState: AuthState) => void;
 };
 
-export const useAuth = (): ContextType => {
+export const useAuth = (): AuthContextType => {
   const retval = useContext(AuthContext);
   if (!retval) {
     throw new Error("useAuth outside of AuthProvider");
@@ -16,7 +16,7 @@ export const useAuth = (): ContextType => {
   return retval;
 };
 
-export const AuthContext = React.createContext<ContextType | undefined>(
+export const AuthContext = React.createContext<AuthContextType | undefined>(
   undefined
 );
 
@@ -26,8 +26,15 @@ type Props = {
 
 export function AuthProvider(props: Props) {
   const [state, setState] = React.useState<AuthState>({ jwt: undefined });
-  const value = { state, setState };
+
+  // temporary in case we want to track these changes
+  const setStateInterceptor = (newState: AuthState): void => {
+    setState(newState);
+  };
+
   return (
-    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ state, setState: setStateInterceptor }}>
+      {props.children}
+    </AuthContext.Provider>
   );
 }

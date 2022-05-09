@@ -1,24 +1,32 @@
+import { Button } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import superagent from "superagent";
 import { useAuth } from "../authentication";
+import FormTextField from "./FormTextField";
 
 type FormData = {
   username: string;
   password: string;
 };
 
+const defaultValues: FormData = {
+  username: "user1",
+  password: "password",
+};
+
 export default function login() {
   const auth = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [errorString, setErrorString] = useState<string | undefined>(undefined);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
+  const form = useForm<FormData>({
+    mode: "onSubmit",
+    defaultValues,
+  });
+  const { formState, handleSubmit, control } = form;
+  const { isSubmitting } = formState;
 
   const onSubmit = async (data: FormData) => {
     const result = await superagent
@@ -26,35 +34,46 @@ export default function login() {
       .ok((res) => res.status == 200 || res.status == 401)
       .send(data);
     if (result.status == 200) {
+      console.log("setting jwt");
       auth.setState({ jwt: result.text });
       navigate("/");
-      setError(undefined);
+      setErrorString(undefined);
     } else {
-      setError(result.text);
+      setErrorString(result.text);
     }
+    form.reset(data);
   };
 
   return (
     <main>
       <h2>Login</h2>
-      {error ? <div className="loginError">{error}</div> : null}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input
-            defaultValue="user1"
-            {...register("username", { required: true })}
+      {errorString ? <div className="loginError">{errorString}</div> : null}
+      <form>
+        <div className="formItem">
+          <FormTextField
+            name="username"
+            label="Username"
+            required
+            control={control}
           />
-          {errors.username && "Username is required"}
         </div>
-        <div>
-          <input
-            defaultValue="password"
+        <div className="formItem">
+          <FormTextField
+            control={control}
+            name="password"
+            label="Password"
+            required
             type="password"
-            {...register("password", { required: true })}
           />
-          {errors.password && "Password is required"}
         </div>
-        <input type="submit" />
+        <Button
+          disabled={isSubmitting}
+          type="submit"
+          onClick={handleSubmit(onSubmit)}
+          variant="contained"
+        >
+          Login
+        </Button>
       </form>
     </main>
   );
