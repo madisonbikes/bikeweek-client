@@ -5,7 +5,7 @@ import App from "./App";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import Info from "./components/info";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./authentication";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
