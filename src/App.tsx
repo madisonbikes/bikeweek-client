@@ -1,6 +1,5 @@
-import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./authentication";
 
 function App() {
   const authContext = useAuth();
@@ -13,8 +12,10 @@ function App() {
           paddingBottom: "1rem",
         }}
       >
-        <Link to="/">Home</Link> | <Link to="/login">Login</Link> |{" "}
-        <Link to="/logout">Logout</Link> | <Link to="/info">Info</Link>
+        <Link to="/">Home</Link>&nbsp;|&nbsp;
+        <Link to="/login">Login</Link>&nbsp;|&nbsp;
+        <Link to="/logout">Logout</Link>&nbsp;|&nbsp;
+        <Link to="/info">Info</Link>
       </nav>
       <Outlet />
       <footer>{JSON.stringify(authContext.state)}</footer>

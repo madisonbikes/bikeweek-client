@@ -1,7 +1,6 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import superagent from "superagent";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../authentication";
 
 type FormData = {
   username: string;
