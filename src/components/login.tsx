@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import superagent from "superagent";
 import { useAuth } from "../authentication";
 
@@ -8,7 +10,9 @@ type FormData = {
 };
 
 export default function login() {
-  const authContext = useAuth();
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const {
     register,
@@ -17,16 +21,23 @@ export default function login() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
     const result = await superagent
       .post("http://localhost:3001/api/v1/login")
+      .ok((res) => res.status == 200 || res.status == 401)
       .send(data);
-    authContext.setState({ jwt: result.text });
+    if (result.status == 200) {
+      auth.setState({ jwt: result.text });
+      navigate("/");
+      setError(undefined);
+    } else {
+      setError(result.text);
+    }
   };
 
   return (
     <main>
       <h2>Login</h2>
+      {error ? <div className="loginError">{error}</div> : null}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <input

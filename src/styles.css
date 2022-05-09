@@ -1,0 +1,10 @@
+.loginError {
+  color: red;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+nav {
+  border-bottom: "solid 1px";
+  padding-bottom: "1rem";
+}

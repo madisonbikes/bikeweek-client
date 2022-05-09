@@ -1,18 +1,20 @@
 import { useAuth } from "../authentication";
 
 export default function info() {
-  const authContext = useAuth();
+  const auth = useAuth();
 
   return (
     <main>
-      <h2>info</h2>
-      {authContext.state.jwt ? (
+      <h2>Session Info</h2>
+      {auth.state.jwt ? (
         <>
-          <h2>Authenticated</h2>
-          JWT: {authContext.state.jwt}
+          <ul>
+            <li>Authenticated</li>
+            <li>JWT: {auth.state.jwt}</li>
+          </ul>
         </>
       ) : (
-        <h2>Unauthenticated</h2>
+        <>Unauthenticated</>
       )}
     </main>
   );
