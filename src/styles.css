@@ -4,6 +4,10 @@
   padding-bottom: 1rem;
 }
 
+body {
+  padding: 1rem;
+}
+
 .formItem {
   padding-bottom: 0.5rem;
 }
