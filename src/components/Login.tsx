@@ -30,7 +30,7 @@ const login = () => {
 
   const onSubmit = async (data: FormData) => {
     const result = await superagent
-      .post("http://localhost:3001/api/v1/login")
+      .post("/api/v1/login")
       .ok((res) => res.status == 200 || res.status == 401)
       .send(data);
     if (result.status == 200) {
