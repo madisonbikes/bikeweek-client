@@ -1,6 +1,6 @@
-import { useAuth } from "../common/authentication";
+import { useAuth } from "../common";
 
-const info = () => {
+export const Info = () => {
   const auth = useAuth();
 
   return (
@@ -19,5 +19,3 @@ const info = () => {
     </main>
   );
 };
-
-export default info;

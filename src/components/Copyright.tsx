@@ -1,4 +1,4 @@
-const Copyright = () => {
+export const Copyright = () => {
   return (
     <p>
       Copyright &copy; <a href="https://madisonbikes.org">Madison Bikes</a>{" "}
@@ -6,5 +6,3 @@ const Copyright = () => {
     </p>
   );
 };
-
-export default Copyright;

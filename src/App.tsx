@@ -1,11 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import Info from "./components/Info";
+import { Main, Login, Logout, Info } from "./components";
 import "./styles.css";
 
-const App = () => {
+export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -18,5 +15,3 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
-export default App;

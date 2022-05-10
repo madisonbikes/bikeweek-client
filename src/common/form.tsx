@@ -8,7 +8,7 @@ type Props = Omit<TextFieldProps, "name"> & {
 };
 
 /** MUI + react-hook-form component */
-const FormTextField = ({ name, control, ...rest }: Props) => {
+export const FormTextField = ({ name, control, ...rest }: Props) => {
   return (
     <Controller
       name={name}
@@ -25,5 +25,3 @@ const FormTextField = ({ name, control, ...rest }: Props) => {
     />
   );
 };
-
-export default FormTextField;

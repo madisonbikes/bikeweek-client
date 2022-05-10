@@ -7,6 +7,8 @@ type AuthContextType = {
   setState: (newState: AuthState) => void;
 };
 
+const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
+
 export const useAuth = (): AuthContextType => {
   const retval = useContext(AuthContext);
   if (!retval) {
@@ -14,10 +16,6 @@ export const useAuth = (): AuthContextType => {
   }
   return retval;
 };
-
-export const AuthContext = React.createContext<AuthContextType | undefined>(
-  undefined
-);
 
 type Props = {
   children: JSX.Element;

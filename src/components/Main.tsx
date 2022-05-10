@@ -1,9 +1,9 @@
 import { Link } from "@mui/material";
 import { Outlet, Link as RouterLink } from "react-router-dom";
-import { useAuth } from "../common/authentication";
-import Copyright from "./Copyright";
+import { useAuth } from "../common";
+import { Copyright } from ".";
 
-const Main = () => {
+export const Main = () => {
   const auth = useAuth();
 
   return (
@@ -41,5 +41,3 @@ const Main = () => {
     </>
   );
 };
-
-export default Main;

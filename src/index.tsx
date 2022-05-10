@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { AuthProvider } from "./common/authentication";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./common/theme";
+import { theme, AuthProvider } from "./common";
 import { CssBaseline } from "@mui/material";
-import App from "./App";
+import { App } from "./App";
 
 const queryClient = new QueryClient();
 
