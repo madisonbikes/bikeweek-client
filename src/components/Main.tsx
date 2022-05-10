@@ -24,6 +24,14 @@ export const Main = () => {
         ) : null}
         {auth.state.jwt ? (
           <>
+            <Link component={RouterLink} to="/events">
+              Events
+            </Link>
+            &nbsp;|&nbsp;
+          </>
+        ) : null}
+        {auth.state.jwt ? (
+          <>
             <Link component={RouterLink} to="/logout">
               Logout
             </Link>
