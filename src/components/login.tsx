@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import superagent from "superagent";
-import { useAuth } from "../authentication";
-import FormTextField from "./FormTextField";
+import { useAuth } from "../common/authentication";
+import FormTextField from "../common/form";
 
 type FormData = {
   username: string;
@@ -16,7 +16,7 @@ const defaultValues: FormData = {
   password: "password",
 };
 
-export default function login() {
+const login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const [errorString, setErrorString] = useState<string | undefined>(undefined);
@@ -77,4 +77,6 @@ export default function login() {
       </form>
     </main>
   );
-}
+};
+
+export default login;

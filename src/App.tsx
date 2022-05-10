@@ -1,9 +1,9 @@
 import { Link } from "@mui/material";
 import { Outlet, Link as RouterLink } from "react-router-dom";
-import { useAuth } from "./authentication";
+import { useAuth } from "./common/authentication";
 import "./styles.css";
 
-function App() {
+const App = () => {
   const auth = useAuth();
 
   return (
@@ -43,6 +43,6 @@ function App() {
       </footer>
     </>
   );
-}
+};
 
 export default App;

@@ -7,6 +7,7 @@ type Props = Omit<TextFieldProps, "name"> & {
   control?: Control<any>;
 };
 
+/** MUI + react-hook-form component */
 const FormTextField = ({ name, control, ...rest }: Props) => {
   return (
     <Controller

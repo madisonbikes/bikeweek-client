@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 type AuthState = { jwt: string | undefined };
 
@@ -24,8 +23,8 @@ type Props = {
   children: JSX.Element;
 };
 
-export function AuthProvider(props: Props) {
-  const [state, setState] = React.useState<AuthState>({ jwt: undefined });
+export const AuthProvider = (props: Props) => {
+  const [state, setState] = useState<AuthState>({ jwt: undefined });
 
   // temporary in case we want to track these changes
   const setStateInterceptor = (newState: AuthState): void => {
@@ -37,4 +36,4 @@ export function AuthProvider(props: Props) {
       {props.children}
     </AuthContext.Provider>
   );
-}
+};
