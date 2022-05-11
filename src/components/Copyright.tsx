@@ -9,3 +9,5 @@ export const Copyright = () => {
     </p>
   );
 };
+
+export default Copyright;

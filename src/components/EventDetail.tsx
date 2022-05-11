@@ -8,10 +8,11 @@ export const EventDetail = () => {
   const { id } = useParams();
   const auth = useAuth();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent, Error>(
-    ["eventDetail", id],
+    ["events", id],
     async () => {
       const result = await superagent
         .get(`/api/v1/events/${id}`)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .auth(auth.state.jwt!, { type: "bearer" });
       return result.body;
     }
@@ -31,3 +32,5 @@ export const EventDetail = () => {
     </div>
   );
 };
+
+export default EventDetail;

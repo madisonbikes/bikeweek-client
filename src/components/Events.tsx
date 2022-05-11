@@ -12,6 +12,7 @@ export const Events = () => {
     async () => {
       const result = await superagent
         .get("/api/v1/events")
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .auth(auth.state.jwt!, { type: "bearer" });
       return result.body;
     }
@@ -28,7 +29,7 @@ export const Events = () => {
   return (
     <>
       <ul>
-        {data!.map((event) => (
+        {data?.map((event) => (
           <li key={event.id}>
             <Link component={RouterLink} to={`/events/${event.id}`}>
               {event.name}
@@ -39,3 +40,5 @@ export const Events = () => {
     </>
   );
 };
+
+export default Events;
