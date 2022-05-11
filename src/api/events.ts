@@ -26,3 +26,20 @@ export const getEvent = async (
     .auth(auth.state.jwt, { type: "bearer" });
   return result.body;
 };
+
+export type UpdateEventRequest = Partial<BikeWeekEvent>;
+
+export const updateEvent = async (
+  auth: AuthContextType,
+  id: string,
+  data: UpdateEventRequest
+): Promise<BikeWeekEvent> => {
+  if (!auth.state.jwt) {
+    throw new Error("unauthenticated");
+  }
+  const result = await superagent
+    .put(`/api/v1/events/${id}`)
+    .send(data)
+    .auth(auth.state.jwt, { type: "bearer" });
+  return result.body;
+};

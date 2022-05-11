@@ -1,14 +1,12 @@
 import { Button } from "@mui/material";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { login, LoginData, LoginResponse } from "../api/login";
+import { login, LoginRequest, LoginResponse } from "../api/login";
 import { useAuth, FormTextField } from "../common";
 
-type FormData = {
-  username: string;
-  password: string;
-};
+type FormData = LoginRequest;
 
 const defaultValues: FormData = {
   username: "user1",
@@ -26,7 +24,7 @@ export const Login = () => {
     error,
     mutate,
     data: loginResult,
-  } = useMutation<LoginResponse, Error, LoginData>(login);
+  } = useMutation<LoginResponse, Error, FormData>(login);
 
   const form = useForm<FormData>({
     mode: "onSubmit",
@@ -35,19 +33,20 @@ export const Login = () => {
   const { formState, handleSubmit, control } = form;
   const { isSubmitting } = formState;
 
+  useEffect(() => {
+    if (isSuccess && loginResult.success) {
+      console.log("setting jwt");
+      auth.setState({ jwt: loginResult.jwt });
+      navigate("/events");
+    }
+  }, [isSuccess]);
+
   if (isLoading) {
     return <div>Logging in...</div>;
   }
 
   if (isError) {
     return <div>Error: {error.message}</div>;
-  }
-
-  if (isSuccess && loginResult.success) {
-    console.log("setting jwt");
-    auth.setState({ jwt: loginResult.jwt });
-    navigate("/events");
-    return <></>;
   }
 
   return (
@@ -76,7 +75,6 @@ export const Login = () => {
         </div>
         <Button
           disabled={isSubmitting}
-          type="submit"
           onClick={handleSubmit((formData) => {
             mutate(formData);
             form.reset(formData);
