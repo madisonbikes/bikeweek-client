@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import superagent from "superagent";
+import { login, LoginData, LoginResponse } from "../api/login";
 import { useAuth, FormTextField } from "../common";
 
 type FormData = {
@@ -18,7 +18,15 @@ const defaultValues: FormData = {
 export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const [errorString, setErrorString] = useState<string | undefined>(undefined);
+
+  const {
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+    mutate,
+    data: loginResult,
+  } = useMutation<LoginResponse, Error, LoginData>(login);
 
   const form = useForm<FormData>({
     mode: "onSubmit",
@@ -27,26 +35,27 @@ export const Login = () => {
   const { formState, handleSubmit, control } = form;
   const { isSubmitting } = formState;
 
-  const onSubmit = async (data: FormData) => {
-    const result = await superagent
-      .post("/api/v1/login")
-      .ok((res) => res.status == 200 || res.status == 401)
-      .send(data);
-    if (result.status == 200) {
-      console.log("setting jwt");
-      auth.setState({ jwt: result.text });
-      navigate("/");
-      setErrorString(undefined);
-    } else {
-      setErrorString(result.text);
-    }
-    form.reset(data);
-  };
+  if (isLoading) {
+    return <div>Logging in...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (isSuccess && loginResult.success) {
+    console.log("setting jwt");
+    auth.setState({ jwt: loginResult.jwt });
+    navigate("/events");
+    return <></>;
+  }
 
   return (
     <main>
       <h2>Login</h2>
-      {errorString ? <div className="loginError">{errorString}</div> : null}
+      {loginResult?.failureString ? (
+        <div className="loginError">{loginResult?.failureString}</div>
+      ) : null}
       <form>
         <div className="formItem">
           <FormTextField
@@ -68,7 +77,10 @@ export const Login = () => {
         <Button
           disabled={isSubmitting}
           type="submit"
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((formData) => {
+            mutate(formData);
+            form.reset(formData);
+          })}
           variant="contained"
         >
           Login

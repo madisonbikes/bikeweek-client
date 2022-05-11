@@ -1,20 +1,16 @@
 import { Link } from "@mui/material";
 import { useQuery } from "react-query";
-import superagent from "superagent";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../common/event";
 import { Link as RouterLink } from "react-router-dom";
+import { getAllEvents } from "../api/events";
 
 export const Events = () => {
   const auth = useAuth();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
     "events",
-    async () => {
-      const result = await superagent
-        .get("/api/v1/events")
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .auth(auth.state.jwt!, { type: "bearer" });
-      return result.body;
+    () => {
+      return getAllEvents(auth);
     }
   );
 
@@ -28,6 +24,7 @@ export const Events = () => {
 
   return (
     <>
+      <h2>Events</h2>
       <ul>
         {data?.map((event) => (
           <li key={event.id}>

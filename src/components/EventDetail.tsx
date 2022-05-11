@@ -1,20 +1,20 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import superagent from "superagent";
+import { getEvent } from "../api/events";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../common/event";
 
 export const EventDetail = () => {
   const { id } = useParams();
+  if (!id) {
+    throw new Error("requires id param");
+  }
+
   const auth = useAuth();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent, Error>(
     ["events", id],
-    async () => {
-      const result = await superagent
-        .get(`/api/v1/events/${id}`)
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .auth(auth.state.jwt!, { type: "bearer" });
-      return result.body;
+    () => {
+      return getEvent(auth, id);
     }
   );
 

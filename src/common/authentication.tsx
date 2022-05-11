@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 
 type AuthState = { jwt: string | undefined };
 
-type AuthContextType = {
+export type AuthContextType = {
   state: AuthState;
   setState: (newState: AuthState) => void;
 };
