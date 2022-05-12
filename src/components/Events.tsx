@@ -1,7 +1,7 @@
 import { Link } from "@mui/material";
 import { useQuery } from "react-query";
 import { useAuth } from "../common";
-import { BikeWeekEvent } from "../common/event";
+import { BikeWeekEvent } from "../common";
 import { Link as RouterLink } from "react-router-dom";
 import { getAllEvents } from "../api/events";
 

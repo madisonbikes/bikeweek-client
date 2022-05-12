@@ -1,6 +1,6 @@
 import superagent from "superagent";
 import { AuthContextType } from "../common";
-import { BikeWeekEvent } from "../common/event";
+import { BikeWeekEvent } from "../common";
 
 export const getAllEvents = async (
   auth: AuthContextType
