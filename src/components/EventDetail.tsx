@@ -3,11 +3,17 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getEvent, updateEvent, UpdateEventRequest } from "../api/events";
+import { getEvent, updateEvent } from "../api/events";
 import { FormTextField, useAuth } from "../common";
 import { BikeWeekEvent } from "../common/event";
 
-type FormData = UpdateEventRequest;
+type FormData = {
+  name: string;
+};
+
+const buildDefaultValues = (event: BikeWeekEvent | undefined): FormData => {
+  return { name: event?.name ?? "" };
+};
 
 export const EventDetail = () => {
   const { id } = useParams();
@@ -18,12 +24,10 @@ export const EventDetail = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const queryClient = useQueryClient();
-  const { isLoading, isError, data, error } = useQuery<BikeWeekEvent, Error>(
-    ["events", id],
-    () => {
-      return getEvent(auth, id);
-    }
-  );
+  const eventQuery = useQuery<BikeWeekEvent, Error>(["events", id], () => {
+    return getEvent(auth, id);
+  });
+  const { data, isSuccess: querySuccess } = eventQuery;
 
   const eventMutation = useMutation<BikeWeekEvent, Error, FormData>(
     async (data) => {
@@ -35,35 +39,38 @@ export const EventDetail = () => {
       },
     }
   );
+  const { isSuccess: mutationSuccess } = eventMutation;
 
-  const defaultValues = {
-    name: data?.name ?? "",
-  };
-
-  const form = useForm<FormData>();
+  const form = useForm<FormData>({ defaultValues: buildDefaultValues(data) });
   const { formState, handleSubmit, control, reset } = form;
   const { isSubmitting } = formState;
 
   useEffect(() => {
-    reset(defaultValues);
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (eventMutation.isSuccess) {
+    if (mutationSuccess) {
       navigate("/events");
     }
-  }, [eventMutation.isSuccess]);
+  }, [mutationSuccess, navigate]);
 
-  if (isLoading) {
+  useEffect(() => {
+    if (querySuccess) {
+      reset(buildDefaultValues(data));
+    }
+  }, [querySuccess, reset, data]);
+
+  if (eventQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (eventQuery.isError) {
+    return <div>Error: {eventQuery.error.message}</div>;
   }
 
   if (isSubmitting || eventMutation.isLoading) {
     return <div>Updating event...</div>;
+  }
+
+  if (!data) {
+    throw new Error("data not loaded");
   }
 
   return (

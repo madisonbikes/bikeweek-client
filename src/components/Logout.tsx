@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../common";
 
 export const Logout = () => {
-  const authContext = useAuth();
+  const auth = useAuth();
   const navigate = useNavigate();
 
   const logout = () => {
     console.log("clearing jwt");
-    authContext.setState({ jwt: undefined });
+    auth.setState({ jwt: undefined });
     navigate("/");
   };
 

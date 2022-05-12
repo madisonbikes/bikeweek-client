@@ -7,12 +7,12 @@ import { getAllEvents } from "../api/events";
 
 export const Events = () => {
   const auth = useAuth();
-  const { isLoading, isError, data, error, isSuccess } = useQuery<
-    BikeWeekEvent[],
-    Error
-  >("events", () => {
-    return getAllEvents(auth);
-  });
+  const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
+    "events",
+    () => {
+      return getAllEvents(auth);
+    }
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,10 +20,6 @@ export const Events = () => {
 
   if (isError) {
     return <div>Error: {error.message}</div>;
-  }
-
-  if (!isSuccess) {
-    return <></>;
   }
 
   return (

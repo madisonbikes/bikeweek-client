@@ -27,7 +27,6 @@ export const Login = () => {
   } = useMutation<LoginResponse, Error, FormData>(login);
 
   const form = useForm<FormData>({
-    mode: "onSubmit",
     defaultValues,
   });
   const { formState, handleSubmit, control } = form;
@@ -39,7 +38,7 @@ export const Login = () => {
       auth.setState({ jwt: loginResult.jwt });
       navigate("/events");
     }
-  }, [isSuccess]);
+  }, [isSuccess, loginResult, auth, navigate]);
 
   if (isLoading) {
     return <div>Logging in...</div>;
