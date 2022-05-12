@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Main from "./components/Main";
 import Events from "./components/Events";
-import EventDetail from "./components/EventDetail";
-import Login from "./components/Login";
+import EventDetail from "./components/forms/EventDetail";
+import Login from "./components/forms/Login";
 import Logout from "./components/Logout";
 import Info from "./components/Info";
 import "./styles.css";

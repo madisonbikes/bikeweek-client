@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { login, LoginRequest, LoginResponse } from "../api/login";
-import { useAuth, FormTextField } from "../common";
+import { login, LoginRequest, LoginResponse } from "../../api/login";
+import { useAuth, FormTextField } from "../../common";
 
 type FormData = LoginRequest;
 
@@ -16,15 +16,8 @@ const defaultValues: FormData = {
 export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-
-  const {
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-    mutate,
-    data: loginResult,
-  } = useMutation<LoginResponse, Error, FormData>(login);
+  const loginMutation = useMutation<LoginResponse, Error, FormData>(login);
+  const { isSuccess: loginSuccess, data } = loginMutation;
 
   const form = useForm<FormData>({
     defaultValues,
@@ -33,26 +26,31 @@ export const Login = () => {
   const { isSubmitting } = formState;
 
   useEffect(() => {
-    if (isSuccess && loginResult.success) {
+    if (loginSuccess && data.success) {
       console.log("setting jwt");
-      auth.setState({ jwt: loginResult.jwt });
+      auth.setState({ jwt: data.jwt });
       navigate("/events");
     }
-  }, [isSuccess, loginResult, auth, navigate]);
+  }, [loginSuccess, data, auth, navigate]);
 
-  if (isLoading) {
+  const onSubmit = (formData: FormData) => {
+    loginMutation.mutate(formData);
+    form.reset(formData);
+  };
+
+  if (loginMutation.isLoading) {
     return <div>Logging in...</div>;
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (loginMutation.isError) {
+    return <div>Error: {loginMutation.error.message}</div>;
   }
 
   return (
     <main>
       <h2>Login</h2>
-      {loginResult?.failureString ? (
-        <div className="loginError">{loginResult?.failureString}</div>
+      {data?.failureString ? (
+        <div className="loginError">{data?.failureString}</div>
       ) : null}
       <form>
         <div className="formItem">
@@ -74,10 +72,7 @@ export const Login = () => {
         </div>
         <Button
           disabled={isSubmitting}
-          onClick={handleSubmit((formData) => {
-            mutate(formData);
-            form.reset(formData);
-          })}
+          onClick={handleSubmit(onSubmit)}
           variant="contained"
         >
           Login

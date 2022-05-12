@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getEvent, updateEvent } from "../api/events";
-import { FormTextField, useAuth } from "../common";
-import { BikeWeekEvent } from "../common/event";
+import { getEvent, updateEvent } from "../../api/events";
+import { FormTextField } from "../input/form";
+import { BikeWeekEvent, useAuth } from "../../common";
 
 type FormData = {
   name: string;

@@ -1,3 +1,3 @@
 export * from "./authentication";
-export * from "./form";
+export * from "../components/input/form";
 export * from "./theme";
