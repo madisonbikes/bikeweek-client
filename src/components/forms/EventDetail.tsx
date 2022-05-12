@@ -14,7 +14,6 @@ const buildDefaultValues = (
   event: BikeWeekEvent | undefined
 ): Partial<FormData> => {
   return {
-    id: event?.id ?? 0,
     name: event?.name ?? "",
     eventUrl: event?.eventUrl ?? "",
     description: event?.description ?? "",
