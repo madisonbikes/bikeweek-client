@@ -27,7 +27,7 @@ const Location = () => {
         name="location.sched_address"
         fullWidth
         margin="normal"
-        label="Sched vanue address override"
+        label="Sched venue address override"
         control={control}
       />
 
