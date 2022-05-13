@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { FormTextField } from "../../input/FormTextField";
+import FormTextField from "../../input/FormTextField";
 
 const Location = () => {
   const form = useFormContext<FormData>();

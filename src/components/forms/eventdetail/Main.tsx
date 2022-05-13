@@ -4,11 +4,20 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
-import { FormTextField } from "../../input/FormTextField";
-import { BikeWeekEvent, useAuth } from "../../../common";
+import FormTextField from "../../input/FormTextField";
+import {
+  BikeWeekEvent,
+  EventDay,
+  EventLocation,
+  EventSponsor,
+  EventStatus,
+  EventTime,
+  useAuth,
+} from "../../../common";
 import { Box } from "@mui/system";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
+import Types from "./Types";
 
 type FormData = BikeWeekEvent;
 
@@ -22,6 +31,7 @@ const buildDefaultValues = (
     eventGraphicUrl: event?.eventGraphicUrl ?? "",
     sponsors: event?.sponsors ?? [],
     location: event?.location ?? { name: "" },
+    eventTypes: event?.eventTypes ?? [],
   };
 };
 
@@ -82,7 +92,7 @@ export const MainForm = () => {
   if (!data) {
     throw new Error("data not loaded");
   }
-  console.log(`Loaded ${JSON.stringify(data, null, "  ")}`);
+  //console.log(`Loaded ${JSON.stringify(data, null, "  ")}`);
 
   return (
     <FormProvider {...form}>
@@ -126,6 +136,7 @@ export const MainForm = () => {
           <Sponsors />
           <Divider />
           <Location />
+          <Types />
           <Box sx={{ marginTop: 1 }}>
             <Button
               disabled={isSubmitting}
