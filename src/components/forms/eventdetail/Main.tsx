@@ -1,4 +1,4 @@
-import { Button, Divider, Stack } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -12,6 +12,7 @@ import Location from "./Location";
 import Types from "./Types";
 import Days from "./Days";
 import Times from "./Times";
+import Status from "./Status";
 
 type FormData = BikeWeekEvent;
 
@@ -28,6 +29,8 @@ const buildDefaultValues = (
     eventTypes: event?.eventTypes ?? [],
     eventDays: event?.eventDays ?? [],
     eventTimes: event?.eventTimes ?? [],
+    status: event?.status ?? EventStatus.SUBMITTED,
+    comments: event?.comments ?? "",
   };
 };
 
@@ -93,6 +96,17 @@ export const MainForm = () => {
   return (
     <FormProvider {...form}>
       <form>
+        <h3>Event Status and Comments</h3>
+        <Status />
+        <FormTextField
+          name="comments"
+          fullWidth
+          multiline
+          minRows={1}
+          margin="normal"
+          label="Admin Comments"
+          control={control}
+        />
         <h3>Event Info</h3>
         <FormTextField
           name="name"
