@@ -5,17 +5,13 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
-import {
-  BikeWeekEvent,
-  EventStatus,
-  EventTime,
-  useAuth,
-} from "../../../common";
+import { BikeWeekEvent, EventStatus, useAuth } from "../../../common";
 import { Box } from "@mui/system";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./Types";
 import Days from "./Days";
+import Times from "./Times";
 
 type FormData = BikeWeekEvent;
 
@@ -31,6 +27,7 @@ const buildDefaultValues = (
     location: event?.location ?? { name: "" },
     eventTypes: event?.eventTypes ?? [],
     eventDays: event?.eventDays ?? [],
+    eventTimes: event?.eventTimes ?? [],
   };
 };
 
@@ -96,71 +93,70 @@ export const MainForm = () => {
   return (
     <FormProvider {...form}>
       <form>
-        <Stack>
-          <h3>Event Info</h3>
-          <FormTextField
-            name="name"
-            fullWidth
-            margin="normal"
-            label="Name"
-            required
-            control={control}
-          />
-          <FormTextField
-            name="eventUrl"
-            fullWidth
-            margin="normal"
-            label="URL"
-            control={control}
-          />
-          <FormTextField
-            name="description"
-            fullWidth
-            multiline
-            required
-            minRows={2}
-            maxRows={10}
-            margin="normal"
-            label="Description"
-            control={control}
-          />
-          <FormTextField
-            name="eventGraphicUrl"
-            fullWidth
-            multiline
-            margin="normal"
-            label="Event Graphic URL"
-            control={control}
-          />
-          <Sponsors />
-          <Divider />
-          <Location />
-          <Types />
-          <Days />
-          <Box sx={{ marginTop: 1 }}>
-            <Button
-              disabled={isSubmitting}
-              onClick={handleSubmit((formData) => {
-                eventMutation.mutate(formData);
-                form.reset(formData);
-              })}
-              variant="contained"
-            >
-              Save
-            </Button>
+        <h3>Event Info</h3>
+        <FormTextField
+          name="name"
+          fullWidth
+          margin="normal"
+          label="Name"
+          required
+          control={control}
+        />
+        <FormTextField
+          name="eventUrl"
+          fullWidth
+          margin="normal"
+          label="URL"
+          control={control}
+        />
+        <FormTextField
+          name="description"
+          fullWidth
+          multiline
+          required
+          minRows={2}
+          maxRows={10}
+          margin="normal"
+          label="Description"
+          control={control}
+        />
+        <FormTextField
+          name="eventGraphicUrl"
+          fullWidth
+          multiline
+          margin="normal"
+          label="Event Graphic URL"
+          control={control}
+        />
+        <Sponsors />
+        <Divider />
+        <Location />
+        <Types />
+        <Days />
+        <Times />
+        <Box sx={{ marginTop: 1 }}>
+          <Button
+            disabled={isSubmitting}
+            onClick={handleSubmit((formData) => {
+              eventMutation.mutate(formData);
+              form.reset(formData);
+            })}
+            variant="contained"
+          >
+            Save
+          </Button>
 
-            <Button
-              style={{ marginLeft: "1em" }}
-              disabled={isSubmitting}
-              onClick={() => {
-                navigate("/events");
-              }}
-              variant="contained"
-            >
-              Close
-            </Button>
-          </Box>
-        </Stack>
+          <Button
+            style={{ marginLeft: "1em" }}
+            disabled={isSubmitting}
+            onClick={() => {
+              navigate("/events");
+            }}
+            variant="contained"
+          >
+            Close
+          </Button>
+        </Box>
       </form>
     </FormProvider>
   );

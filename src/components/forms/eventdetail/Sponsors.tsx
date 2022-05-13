@@ -18,31 +18,29 @@ const Sponsors = () => {
       <h3>Event Sponsors</h3>
       {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : ""}
       {fields.map((_item, index) => (
-        <>
-          <Box key={`${index}`} display="flex" alignItems="center">
-            <FormTextField
-              sx={{ flex: 1 }}
-              name={`sponsors.${index}.name`}
-              margin="normal"
-              label="Sponsor Name"
-              control={control}
-            />
-            <FormTextField
-              sx={{ marginLeft: 1, flex: 3 }}
-              name={`sponsors.${index}.url`}
-              margin="normal"
-              label="Sponsor URL"
-              control={control}
-            />
-            <IconButton
-              aria-label="delete"
-              sx={{ marginLeft: 0.5 }}
-              onClick={() => remove(index)}
-            >
-              <Delete />
-            </IconButton>
-          </Box>
-        </>
+        <Box key={`${index}`} display="flex" alignItems="center">
+          <FormTextField
+            sx={{ flex: 1 }}
+            name={`sponsors.${index}.name`}
+            margin="normal"
+            label="Sponsor Name"
+            control={control}
+          />
+          <FormTextField
+            sx={{ marginLeft: 1, flex: 3 }}
+            name={`sponsors.${index}.url`}
+            margin="normal"
+            label="Sponsor URL"
+            control={control}
+          />
+          <IconButton
+            aria-label="delete"
+            sx={{ marginLeft: 0.5 }}
+            onClick={() => remove(index)}
+          >
+            <Delete />
+          </IconButton>
+        </Box>
       ))}
       <Button type="button" onClick={() => append({ name: "", url: "" })}>
         Add Sponsor

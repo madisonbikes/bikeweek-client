@@ -55,6 +55,9 @@ const Location = () => {
       <FormTextField
         name="location.detailed_location_description"
         fullWidth
+        multiline
+        minRows={1}
+        maxRows={5}
         margin="normal"
         label="Organizer-supplied extra location description info (for internal/advisory use only)"
         control={control}
