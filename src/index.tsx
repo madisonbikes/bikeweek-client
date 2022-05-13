@@ -7,6 +7,10 @@ import { theme, AuthProvider } from "./common";
 import { CssBaseline } from "@mui/material";
 import { App } from "./App";
 
+// for date pickers
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
@@ -18,7 +22,9 @@ root.render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <App />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <App />
+          </LocalizationProvider>
         </AuthProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

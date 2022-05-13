@@ -7,9 +7,6 @@ import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
 import {
   BikeWeekEvent,
-  EventDay,
-  EventLocation,
-  EventSponsor,
   EventStatus,
   EventTime,
   useAuth,
@@ -18,6 +15,7 @@ import { Box } from "@mui/system";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./Types";
+import Days from "./Days";
 
 type FormData = BikeWeekEvent;
 
@@ -32,6 +30,7 @@ const buildDefaultValues = (
     sponsors: event?.sponsors ?? [],
     location: event?.location ?? { name: "" },
     eventTypes: event?.eventTypes ?? [],
+    eventDays: event?.eventDays ?? [],
   };
 };
 
@@ -137,6 +136,7 @@ export const MainForm = () => {
           <Divider />
           <Location />
           <Types />
+          <Days />
           <Box sx={{ marginTop: 1 }}>
             <Button
               disabled={isSubmitting}

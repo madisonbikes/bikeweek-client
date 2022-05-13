@@ -7,21 +7,17 @@ const Sponsors = () => {
   const form = useFormContext<FormData>();
   const { control } = form;
 
-  const {
-    fields: sponsorFields,
-    append: sponsorFieldAppend,
-    remove: sponsorFieldRemove,
-  } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: "sponsors",
   });
 
-  const emptySponsors = sponsorFields.length == 0;
+  const emptySponsors = fields.length == 0;
 
   return (
     <>
       <h3>Event Sponsors</h3>
       {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : ""}
-      {sponsorFields.map((_item, index) => (
+      {fields.map((_item, index) => (
         <>
           <Box key={`${index}`} display="flex" alignItems="center">
             <FormTextField
@@ -41,17 +37,14 @@ const Sponsors = () => {
             <IconButton
               aria-label="delete"
               sx={{ marginLeft: 0.5 }}
-              onClick={() => sponsorFieldRemove(index)}
+              onClick={() => remove(index)}
             >
               <Delete />
             </IconButton>
           </Box>
         </>
       ))}
-      <Button
-        type="button"
-        onClick={() => sponsorFieldAppend({ name: "", url: "" })}
-      >
+      <Button type="button" onClick={() => append({ name: "", url: "" })}>
         Add Sponsor
       </Button>
     </>
