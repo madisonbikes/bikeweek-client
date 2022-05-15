@@ -1,3 +1,4 @@
+import { parseISO } from "date-fns";
 import superagent from "superagent";
 import { AuthContextType } from "../common";
 import { BikeWeekEvent } from "../common";
@@ -11,7 +12,10 @@ export const getAllEvents = async (
   const result = await superagent
     .get("/api/v1/events")
     .auth(auth.state.jwt, { type: "bearer" });
-  return result.body;
+  const events: BikeWeekEvent[] = result.body;
+  return events.map((event) => {
+    return normalizeEvent(event);
+  });
 };
 
 export const getEvent = async (
@@ -24,7 +28,8 @@ export const getEvent = async (
   const result = await superagent
     .get(`/api/v1/events/${id}`)
     .auth(auth.state.jwt, { type: "bearer" });
-  return result.body;
+  const event = normalizeEvent(result.body);
+  return event;
 };
 
 export type UpdateEventRequest = Partial<BikeWeekEvent>;
@@ -42,4 +47,16 @@ export const updateEvent = async (
     .send(data)
     .auth(auth.state.jwt, { type: "bearer" });
   return result.body;
+};
+
+const normalizeEvent = (event: BikeWeekEvent): BikeWeekEvent => {
+  const parsedCreateDate = parseISO(event.createDate as unknown as string);
+  const parsedModifyDate = parseISO(event.modifyDate as unknown as string);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { createDate, modifyDate, ...rest } = event;
+  return {
+    createDate: parsedCreateDate,
+    modifyDate: parsedModifyDate,
+    ...rest,
+  };
 };
