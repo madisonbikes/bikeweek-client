@@ -52,11 +52,17 @@ export const updateEvent = async (
 const normalizeEvent = (event: BikeWeekEvent): BikeWeekEvent => {
   const parsedCreateDate = parseISO(event.createDate as unknown as string);
   const parsedModifyDate = parseISO(event.modifyDate as unknown as string);
+
+  // days come as array of strings, we want array of dates
+  const days: string[] = event.eventDays as unknown as string[];
+  const parsedDays = days.map((v) => parseISO(v));
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { createDate, modifyDate, ...rest } = event;
+  const { createDate, modifyDate, eventDays, ...rest } = event;
   return {
     createDate: parsedCreateDate,
     modifyDate: parsedModifyDate,
+    eventDays: parsedDays,
     ...rest,
   };
 };
