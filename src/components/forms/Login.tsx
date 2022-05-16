@@ -9,10 +9,7 @@ import FormTextField from "../input/FormTextField";
 
 type FormData = LoginRequest;
 
-const defaultValues: FormData = {
-  username: "user1",
-  password: "password",
-};
+const defaultValues: FormData = {};
 
 export const Login = () => {
   const auth = useAuth();
