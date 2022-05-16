@@ -1,5 +1,5 @@
 import { Button, Divider } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -48,6 +48,8 @@ export const MainForm = () => {
   });
   const { data, isSuccess: querySuccess } = eventQuery;
 
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
+
   const eventMutation = useMutation<BikeWeekEvent, Error, FormData>(
     async (data) => {
       return updateEvent(auth, id, data);
@@ -71,10 +73,12 @@ export const MainForm = () => {
   }, [mutationSuccess, navigate]);
 
   useEffect(() => {
-    if (querySuccess) {
+    if (querySuccess && !initialLoadComplete) {
+      console.log("resetting on querysuccess for initial load");
       reset(buildDefaultValues(data));
+      setInitialLoadComplete(true);
     }
-  }, [querySuccess, reset, data]);
+  }, [data, reset, querySuccess, initialLoadComplete]);
 
   if (eventQuery.isLoading) {
     return <div>Loading...</div>;
