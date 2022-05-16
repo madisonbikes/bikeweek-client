@@ -49,6 +49,19 @@ export const updateEvent = async (
   return result.body;
 };
 
+export const deleteEvent = async (
+  auth: AuthContextType,
+  id: string
+): Promise<void> => {
+  if (!auth.state.jwt) {
+    throw new Error("unauthenticated");
+  }
+  const result = await superagent
+    .delete(`/api/v1/events/${id}`)
+    .auth(auth.state.jwt, { type: "bearer" });
+  return result.body;
+};
+
 const normalizeEvent = (event: BikeWeekEvent): BikeWeekEvent => {
   const parsedCreateDate = parseISO(event.createDate as unknown as string);
   const parsedModifyDate = parseISO(event.modifyDate as unknown as string);

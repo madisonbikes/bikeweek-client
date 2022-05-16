@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useQuery } from "react-query";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../common";
@@ -11,9 +11,13 @@ import {
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
 import { format } from "date-fns";
+import { DeleteForever, Edit } from "@mui/icons-material";
+import { useState } from "react";
+import EventDelete from "./EventDelete";
 
 export const Events = () => {
   const auth = useAuth();
+  const [showDelete, setShowDelete] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
     "events",
@@ -30,7 +34,7 @@ export const Events = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const onEventButtonClicked = (id: number) => {
+  const onModifyClicked = (id: number) => {
     navigate(`/events/${id}`);
   };
 
@@ -47,12 +51,17 @@ export const Events = () => {
       },
     },
     {
-      field: "modifyButton",
-      headerName: "",
+      field: "buttons",
+      headerName: "Ops",
       renderCell: (params: GridRenderCellParams<BikeWeekEvent>) => (
-        <Button onClick={() => onEventButtonClicked(params.row.id)}>
-          Modify
-        </Button>
+        <>
+          <IconButton onClick={() => onModifyClicked(params.row.id)}>
+            <Edit />
+          </IconButton>
+          <IconButton onClick={() => setShowDelete(params.row.id)}>
+            <DeleteForever />
+          </IconButton>
+        </>
       ),
     },
   ];
@@ -71,6 +80,7 @@ export const Events = () => {
       >
         <DataGrid rows={data} columns={columns} />
       </div>
+      <EventDelete id={showDelete} onClose={() => setShowDelete(undefined)} />
     </>
   );
 };
