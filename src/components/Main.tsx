@@ -1,7 +1,8 @@
-import { Link } from "@mui/material";
+import { Link, SvgIcon } from "@mui/material";
 import { Outlet, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../common";
 import Copyright from "./Copyright";
+import { ArrowCircleUp } from "@mui/icons-material";
 
 export const Main = () => {
   const auth = useAuth();
@@ -40,6 +41,28 @@ export const Main = () => {
         ) : null}
         <Link component={RouterLink} to="/info">
           Info
+        </Link>
+        &nbsp;|&nbsp;
+        <Link
+          rel="noreferrer noopener"
+          href="https://www.madisonbikes.org/wp-admin/admin.php?page=gf_entries&id=5"
+          target="_blank"
+        >
+          Gravity Forms
+          <SvgIcon fontSize="inherit">
+            <ArrowCircleUp />
+          </SvgIcon>
+        </Link>
+        &nbsp;|&nbsp;
+        <Link
+          rel="noreferrer noopener"
+          href="https://madisonbikeweek2022.sched.com/editor/schedule"
+          target="_blank"
+        >
+          Sched
+          <SvgIcon fontSize="inherit">
+            <ArrowCircleUp />
+          </SvgIcon>
         </Link>
       </nav>
       <Outlet />
