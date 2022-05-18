@@ -81,9 +81,15 @@ const normalizeEvent = (event: BikeWeekEvent): BikeWeekEvent => {
   const parsedCreateDate = parseISO(event.createDate as unknown as string);
   const parsedModifyDate = parseISO(event.modifyDate as unknown as string);
 
-  // days come as array of strings, we want array of dates
+  // days come as array of strings of utc dates, we want array of dates
   const days: string[] = event.eventDays as unknown as string[];
-  const parsedDays = days.map((v) => parseISO(v));
+  const parsedDays = days.map((value) => {
+    const utcDate = parseISO(value);
+    const localDate = new Date(
+      utcDate.getTime() + utcDate.getTimezoneOffset() * 60 * 1000
+    );
+    return localDate;
+  });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { createDate, modifyDate, eventDays, ...rest } = event;
