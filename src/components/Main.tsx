@@ -64,6 +64,17 @@ export const Main = () => {
             <ArrowCircleUp />
           </SvgIcon>
         </Link>
+        &nbsp;|&nbsp;
+        <Link
+          rel="noreferrer noopener"
+          href="https://madisonbikes.org/events/bikeweek"
+          target="_blank"
+        >
+          Bike Week
+          <SvgIcon fontSize="inherit">
+            <ArrowCircleUp />
+          </SvgIcon>
+        </Link>
       </nav>
       <Outlet />
       <footer>
