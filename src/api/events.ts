@@ -1,4 +1,4 @@
-import { parseISO } from "date-fns";
+import { parseISO, formatISO } from "date-fns";
 import superagent from "superagent";
 import { AuthContextType } from "../common";
 import { BikeWeekEvent } from "../common";
@@ -42,9 +42,24 @@ export const updateEvent = async (
   if (!auth.state.jwt) {
     throw new Error("unauthenticated");
   }
+
+  // for event days, only send the date (not time) to avoid timezone issues on backend
+  // FIXME could move this to backend too but need to make sure stringified version sent always includes correct date on client
+  const modifiedData: Record<string, unknown> = { ...data };
+  if (data.eventDays) {
+    modifiedData.eventDays = data.eventDays.map((day: Date) => {
+      return formatISO(day, {
+        representation: "date",
+      });
+    });
+    console.log(
+      `adjusted event days to ${JSON.stringify(modifiedData.eventDays)}`
+    );
+  }
+
   const result = await superagent
     .put(`/api/v1/events/${id}`)
-    .send(data)
+    .send(modifiedData)
     .auth(auth.state.jwt, { type: "bearer" });
   return result.body;
 };

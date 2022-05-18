@@ -28,7 +28,10 @@ const Days = () => {
                     {...fieldProps}
                     inputRef={ref}
                     value={value}
-                    onChange={(e) => onChange(e)}
+                    onChange={(value) => {
+                      console.log(`new date ${value}`);
+                      onChange(value);
+                    }}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 )}
