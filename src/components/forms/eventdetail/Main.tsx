@@ -143,7 +143,7 @@ export const MainForm = () => {
             }}
             variant="contained"
           >
-            Cancel
+            Discard
           </Button>
         </Toolbar>
       </AppBar>
