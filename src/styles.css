@@ -12,6 +12,18 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.event-row-submitted {
+  background-color: darkred;
+}
+
+.event-row-pending {
+  background-color: darkblue;
+}
+
+.event-row-cancelled {
+  background-color: darkslategrey;
+}
+
 nav {
   border-bottom: "solid 1px";
   padding-bottom: "1rem";

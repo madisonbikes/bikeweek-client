@@ -43,6 +43,20 @@ export const Events = () => {
     { field: "name", headerName: "Name", width: 300 },
     { field: "status", headerName: "Status" },
     {
+      field: "eventDays",
+      headerName: "Event Dates",
+      valueFormatter: (params: GridValueFormatterParams<Date[]>) => {
+        let retval = "";
+        for (const d of params.value) {
+          if (retval.length > 0) {
+            retval += "\n";
+          }
+          retval += format(d, "MM/dd/yyyy");
+        }
+        return retval;
+      },
+    },
+    {
       field: "createDate",
       headerName: "Date Submitted",
       width: 150,
@@ -78,7 +92,14 @@ export const Events = () => {
           height: 800,
         }}
       >
-        <DataGrid rows={data} columns={columns} />
+        <DataGrid
+          rows={data}
+          columns={columns}
+          initialState={{
+            sorting: { sortModel: [{ field: "createDate", sort: "desc" }] },
+          }}
+          getRowClassName={(params) => `event-row-${params.row.status}`}
+        />
       </div>
       <EventDelete id={showDelete} onClose={() => setShowDelete(undefined)} />
     </>

@@ -1,4 +1,4 @@
-import { Button, Divider } from "@mui/material";
+import { AppBar, Button, Divider, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -6,13 +6,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
 import { BikeWeekEvent, EventStatus, useAuth } from "../../../common";
-import { Box } from "@mui/system";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./Types";
 import Days from "./Days";
 import Times from "./Times";
 import Status from "./Status";
+import ConfirmLoseChanges from "./ConfirmLoseChanges";
 
 type FormData = BikeWeekEvent;
 
@@ -64,7 +64,9 @@ export const MainForm = () => {
 
   const form = useForm<FormData>({ defaultValues: buildDefaultValues(data) });
   const { formState, handleSubmit, control, reset } = form;
-  const { isSubmitting } = formState;
+  const { isSubmitting, isDirty } = formState;
+
+  const [showConfirmCancel, setShowConfirmCancel] = useState(false);
 
   useEffect(() => {
     if (mutationSuccess) {
@@ -99,6 +101,52 @@ export const MainForm = () => {
 
   return (
     <FormProvider {...form}>
+      {showConfirmCancel ? (
+        <ConfirmLoseChanges
+          onCancel={() => {
+            setShowConfirmCancel(false);
+          }}
+          onConfirm={() => {
+            navigate("/events");
+          }}
+        />
+      ) : (
+        <></>
+      )}
+      <AppBar>
+        <Toolbar variant="dense">
+          <Typography variant="h6" color="inherit" component="div">
+            Edit Event ID: {id}
+          </Typography>
+
+          <Button
+            style={{ marginLeft: "5em" }}
+            disabled={isSubmitting}
+            onClick={handleSubmit((formData) => {
+              eventMutation.mutate(formData);
+              form.reset(formData);
+            })}
+            variant="contained"
+          >
+            Save
+          </Button>
+
+          <Button
+            style={{ marginLeft: "1em" }}
+            disabled={isSubmitting}
+            onClick={() => {
+              if (!isDirty) {
+                navigate("/events");
+              } else {
+                setShowConfirmCancel(true);
+              }
+            }}
+            variant="contained"
+          >
+            Cancel
+          </Button>
+        </Toolbar>
+      </AppBar>
       <form>
         <h3>Event Status and Comments</h3>
         <Status />
@@ -152,29 +200,6 @@ export const MainForm = () => {
         <Types />
         <Days />
         <Times />
-        <Box sx={{ marginTop: 1 }}>
-          <Button
-            disabled={isSubmitting}
-            onClick={handleSubmit((formData) => {
-              eventMutation.mutate(formData);
-              form.reset(formData);
-            })}
-            variant="contained"
-          >
-            Save
-          </Button>
-
-          <Button
-            style={{ marginLeft: "1em" }}
-            disabled={isSubmitting}
-            onClick={() => {
-              navigate("/events");
-            }}
-            variant="contained"
-          >
-            Close
-          </Button>
-        </Box>
       </form>
     </FormProvider>
   );
