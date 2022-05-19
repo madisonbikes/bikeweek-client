@@ -1,9 +1,9 @@
 import { IconButton } from "@mui/material";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../common";
 import { useNavigate } from "react-router-dom";
-import { getAllEvents } from "../api/events";
+import { deleteEvent, getAllEvents } from "../api/events";
 import {
   DataGrid,
   GridColDef,
@@ -13,16 +13,30 @@ import {
 import { format } from "date-fns";
 import { DeleteForever, Edit } from "@mui/icons-material";
 import { useState } from "react";
-import EventDelete from "./EventDelete";
+import EventDeleteConfirmation from "./EventDeleteConfirmation";
 
 export const Events = () => {
   const auth = useAuth();
-  const [showDelete, setShowDelete] = useState<string | undefined>(undefined);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [activeRowId, setActiveRowId] = useState("");
+
   const navigate = useNavigate();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
     "events",
     () => {
       return getAllEvents(auth);
+    }
+  );
+
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation<void, Error, string>(
+    async (data) => {
+      await deleteEvent(auth, data);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("events");
+      },
     }
   );
 
@@ -72,7 +86,12 @@ export const Events = () => {
           <IconButton onClick={() => onModifyClicked(params.row.id)}>
             <Edit />
           </IconButton>
-          <IconButton onClick={() => setShowDelete(params.row.id)}>
+          <IconButton
+            onClick={() => {
+              setShowDeleteConfirmation(true);
+              setActiveRowId(params.row.id);
+            }}
+          >
             <DeleteForever />
           </IconButton>
         </>
@@ -101,7 +120,11 @@ export const Events = () => {
           getRowClassName={(params) => `event-row-${params.row.status}`}
         />
       </div>
-      <EventDelete id={showDelete} onClose={() => setShowDelete(undefined)} />
+      <EventDeleteConfirmation
+        open={showDeleteConfirmation}
+        onClose={() => setShowDeleteConfirmation(false)}
+        onConfirm={() => deleteMutation.mutate(activeRowId)}
+      />
     </>
   );
 };

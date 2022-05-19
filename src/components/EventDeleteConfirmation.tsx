@@ -9,11 +9,11 @@ import {
 
 export type Props = {
   open: boolean;
-  onConfirm: () => void;
   onClose: () => void;
+  onConfirm: () => void;
 };
 
-const ConfirmLoseChanges = (props: Props) => {
+const EventDeleteConfirmation = (props: Props) => {
   return (
     <Dialog
       open={props.open}
@@ -21,28 +21,28 @@ const ConfirmLoseChanges = (props: Props) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{"Please confirm"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Are you sure that you want to cancel? You have made changes that will
-          be discarded.
+          Are you sure you want to delete this event? If it still exists in the
+          remote forms, it will be resynced within an hour with the
+          &quot;submitted&quot; state.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClose} autoFocus>
-          Cancel
-        </Button>
+        <Button onClick={props.onClose}>Cancel</Button>
         <Button
           onClick={() => {
             props.onConfirm();
             props.onClose();
           }}
+          autoFocus
         >
-          Discard Changes
+          Delete Event
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default ConfirmLoseChanges;
+export default EventDeleteConfirmation;

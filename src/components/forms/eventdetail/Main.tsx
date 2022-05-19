@@ -101,18 +101,15 @@ export const MainForm = () => {
 
   return (
     <FormProvider {...form}>
-      {showConfirmCancel ? (
-        <ConfirmLoseChanges
-          onCancel={() => {
-            setShowConfirmCancel(false);
-          }}
-          onConfirm={() => {
-            navigate("/events");
-          }}
-        />
-      ) : (
-        <></>
-      )}
+      <ConfirmLoseChanges
+        open={showConfirmCancel}
+        onClose={() => {
+          setShowConfirmCancel(false);
+        }}
+        onConfirm={() => {
+          navigate("/events");
+        }}
+      />
       <AppBar>
         <Toolbar variant="dense">
           <Typography variant="h6" color="inherit" component="div">
