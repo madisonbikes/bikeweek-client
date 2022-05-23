@@ -18,7 +18,7 @@ const Sponsors = () => {
       <h3>Event Sponsors</h3>
       {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : ""}
       {fields.map((_item, index) => (
-        <Box key={`${index}`} display="flex" alignItems="center">
+        <Box key={_item.id} display="flex" alignItems="center">
           <FormTextField
             sx={{ flex: 1 }}
             name={`sponsors.${index}.name`}
