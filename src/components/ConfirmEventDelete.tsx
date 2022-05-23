@@ -7,17 +7,17 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-export type Props = {
+type Props = {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
 };
 
-const EventDeleteConfirmation = (props: Props) => {
+const ConfirmEventDelete = ({ open, onClose, onConfirm }: Props) => {
   return (
     <Dialog
-      open={props.open}
-      onClose={props.onClose}
+      open={open}
+      onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -30,11 +30,11 @@ const EventDeleteConfirmation = (props: Props) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClose}>Cancel</Button>
+        <Button onClick={onClose}>Cancel</Button>
         <Button
           onClick={() => {
-            props.onConfirm();
-            props.onClose();
+            onConfirm();
+            onClose();
           }}
           autoFocus
         >
@@ -45,4 +45,4 @@ const EventDeleteConfirmation = (props: Props) => {
   );
 };
 
-export default EventDeleteConfirmation;
+export default ConfirmEventDelete;
