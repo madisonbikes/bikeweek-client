@@ -7,17 +7,17 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-export type Props = {
+type Props = {
   open: boolean;
   onConfirm: () => void;
   onClose: () => void;
 };
 
-const ConfirmLoseChanges = (props: Props) => {
+const ConfirmLoseChanges = ({ open, onClose, onConfirm }: Props) => {
   return (
     <Dialog
-      open={props.open}
-      onClose={props.onClose}
+      open={open}
+      onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -29,13 +29,13 @@ const ConfirmLoseChanges = (props: Props) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onClose} autoFocus>
+        <Button onClick={onClose} autoFocus>
           Cancel
         </Button>
         <Button
           onClick={() => {
-            props.onConfirm();
-            props.onClose();
+            onConfirm();
+            onClose();
           }}
         >
           Discard Changes

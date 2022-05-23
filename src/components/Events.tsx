@@ -13,7 +13,7 @@ import {
 import { format } from "date-fns";
 import { DeleteForever, Edit } from "@mui/icons-material";
 import { useState } from "react";
-import EventDeleteConfirmation from "./EventDeleteConfirmation";
+import ConfirmEventDelete from "./ConfirmEventDelete";
 
 export const Events = () => {
   const auth = useAuth();
@@ -120,7 +120,7 @@ export const Events = () => {
           getRowClassName={(params) => `event-row-${params.row.status}`}
         />
       </div>
-      <EventDeleteConfirmation
+      <ConfirmEventDelete
         open={showDeleteConfirmation}
         onClose={() => setShowDeleteConfirmation(false)}
         onConfirm={() => deleteMutation.mutate(activeRowId)}

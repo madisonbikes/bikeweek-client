@@ -13,7 +13,7 @@ const Days = () => {
       <h3>Event Days</h3>
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {fields.map((_item, index) => (
-          <li key={`${index}`}>
+          <li key={_item.id}>
             <Box
               display="flex"
               alignItems="center"
