@@ -50,7 +50,13 @@ export const Login = () => {
       {data?.failureString ? (
         <div className="loginError">{data?.failureString}</div>
       ) : null}
-      <form>
+      <form
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            handleSubmit(onSubmit)();
+          }
+        }}
+      >
         <Grid
           direction="column"
           container
