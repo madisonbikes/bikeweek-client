@@ -1,12 +1,9 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import FormTextField from "../../input/FormTextField";
 
 const Times = () => {
-  const form = useFormContext<FormData>();
-  const { control } = form;
-
   const { fields, append, remove } = useFieldArray({
     name: "eventTimes",
   });
@@ -32,7 +29,6 @@ const Times = () => {
                 name={`eventTimes.${index}.start`}
                 margin="normal"
                 label="Start Time"
-                control={control}
               />
               <FormTextField
                 variant="standard"
@@ -40,7 +36,6 @@ const Times = () => {
                 name={`eventTimes.${index}.end`}
                 margin="normal"
                 label="End Time"
-                control={control}
               />
               <IconButton
                 aria-label="delete"

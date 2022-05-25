@@ -2,9 +2,10 @@ import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import FormTextField from "../../input/FormTextField";
+import { EventFormData } from "./Main";
 
 const Types = () => {
-  const form = useFormContext<FormData>();
+  const form = useFormContext<EventFormData>();
   const { control } = form;
 
   const { fields, append, remove } = useFieldArray({

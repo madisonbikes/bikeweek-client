@@ -7,17 +7,17 @@ import { login, LoginRequest, LoginResponse } from "../../api/login";
 import { useAuth } from "../../common";
 import FormTextField from "../input/FormTextField";
 
-type FormData = LoginRequest;
+type LoginFormData = LoginRequest;
 
-const defaultValues: FormData = { username: "", password: "" };
+const defaultValues: LoginFormData = { username: "", password: "" };
 
 export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const loginMutation = useMutation<LoginResponse, Error, FormData>(login);
+  const loginMutation = useMutation<LoginResponse, Error, LoginFormData>(login);
   const { isSuccess: loginSuccess, data } = loginMutation;
 
-  const form = useForm<FormData>({
+  const form = useForm<LoginFormData>({
     defaultValues,
   });
   const { formState, handleSubmit, control } = form;
@@ -31,7 +31,7 @@ export const Login = () => {
     }
   }, [loginSuccess, data, auth, navigate]);
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = (formData: LoginFormData) => {
     loginMutation.mutate(formData);
     form.reset(formData);
   };

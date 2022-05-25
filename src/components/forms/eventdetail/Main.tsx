@@ -5,7 +5,12 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
-import { BikeWeekEvent, EventStatus, useAuth } from "../../../common";
+import {
+  BikeWeekEvent,
+  EventLocation,
+  EventStatus,
+  useAuth,
+} from "../../../common";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./Types";
@@ -13,24 +18,46 @@ import Days from "./Days";
 import Times from "./Times";
 import Status from "./Status";
 import ConfirmLoseChanges from "./ConfirmLoseChanges";
+import Description from "./Description";
 
-type FormData = BikeWeekEvent;
+type LocationFormData = Required<
+  Omit<EventLocation, "sched_venue" | "maps_description">
+>;
+
+export type EventFormData = Required<
+  Omit<BikeWeekEvent, "id" | "modifyDate" | "createDate" | "location"> & {
+    location: LocationFormData;
+  }
+>;
 
 const buildDefaultValues = (
   event: BikeWeekEvent | undefined
-): Partial<FormData> => {
+): EventFormData => {
   return {
     name: event?.name ?? "",
     eventUrl: event?.eventUrl ?? "",
     description: event?.description ?? "",
     eventGraphicUrl: event?.eventGraphicUrl ?? "",
     sponsors: event?.sponsors ?? [],
-    location: event?.location ?? { name: "" },
+    location: buildDefaultLocationValues(event?.location),
     eventTypes: event?.eventTypes ?? [],
     eventDays: event?.eventDays ?? [],
     eventTimes: event?.eventTimes ?? [],
     status: event?.status ?? EventStatus.SUBMITTED,
     comments: event?.comments ?? "",
+  };
+};
+
+const buildDefaultLocationValues = (
+  location: EventLocation | undefined
+): LocationFormData => {
+  return {
+    name: location?.name ?? "",
+    sched_address: location?.sched_address ?? "",
+    maps_query: location?.maps_query ?? "",
+    detailed_location_description:
+      location?.detailed_location_description ?? "",
+    maps_placeid: location?.maps_placeid ?? "",
   };
 };
 
@@ -50,7 +77,7 @@ export const MainForm = () => {
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
-  const eventMutation = useMutation<BikeWeekEvent, Error, FormData>(
+  const eventMutation = useMutation<BikeWeekEvent, Error, EventFormData>(
     async (data) => {
       return updateEvent(auth, id, data);
     },
@@ -62,7 +89,9 @@ export const MainForm = () => {
   );
   const { isSuccess: mutationSuccess } = eventMutation;
 
-  const form = useForm<FormData>({ defaultValues: buildDefaultValues(data) });
+  const form = useForm<EventFormData>({
+    defaultValues: buildDefaultValues(data),
+  });
   const { formState, handleSubmit, control, reset } = form;
   const { isSubmitting, isDirty } = formState;
 
@@ -172,17 +201,7 @@ export const MainForm = () => {
           label="URL"
           control={control}
         />
-        <FormTextField
-          name="description"
-          fullWidth
-          multiline
-          required
-          minRows={2}
-          maxRows={10}
-          margin="normal"
-          label="Description"
-          control={control}
-        />
+        <Description />
         <FormTextField
           name="eventGraphicUrl"
           fullWidth
