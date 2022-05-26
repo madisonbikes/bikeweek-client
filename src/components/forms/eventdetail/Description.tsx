@@ -1,20 +1,11 @@
-import { Ref, SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, forwardRef, ForwardedRef } from "react";
 import { Controller } from "react-hook-form";
-import { Editor, EditorState, RichUtils } from "draft-js";
-import { stateToHTML } from "draft-js-export-html";
-import { stateFromHTML } from "draft-js-import-html";
-import "draft-js/dist/Draft.css";
-import { Button } from "@mui/material";
+import { Editor } from "@tinymce/tinymce-react";
 
 const Description = () => {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        minHeight: "5rem",
-        padding: 10,
-      }}
-    >
+    <div>
+      <h4>Description</h4>
       <Controller
         name="description"
         render={({ field: { onChange, value, onBlur, ref } }) => {
@@ -36,48 +27,33 @@ type FormEditorProps = {
   onChange: (newValue: string) => void;
   onBlur: (e: SyntheticEvent) => void;
   value: string;
-  ref: Ref<Editor> | undefined;
 };
 
-const FormEditor = ({
-  value: htmlText,
-  onChange,
-  ref,
-  onBlur,
-}: FormEditorProps) => {
-  const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty()
-  );
-
-  useEffect(() => {
-    const state = EditorState.createWithContent(stateFromHTML(htmlText));
-    setEditorState(state);
-  }, [htmlText]);
-
-  const localOnChange = (state: EditorState): void => {
-    setEditorState(state);
-    const html = stateToHTML(state.getCurrentContent());
-    onChange(html);
-  };
-
-  return (
-    <div>
-      <Button
-        onMouseDown={(e) => {
-          e.preventDefault();
-          localOnChange(RichUtils.toggleBlockType(editorState, "BOLD"));
-        }}
-      >
-        B
-      </Button>
+const FormEditor = forwardRef(
+  ({ value, onChange }: FormEditorProps, ref: ForwardedRef<Editor>) => {
+    return (
       <Editor
-        editorState={editorState}
-        onChange={localOnChange}
-        onBlur={onBlur}
+        onEditorChange={(newValue) => {
+          onChange(newValue);
+        }}
         ref={ref}
+        apiKey={process.env.REACT_APP_TINYMCE_KEY}
+        value={value}
+        init={{
+          content_css: "dark",
+          height: "25rem",
+          menubar: false,
+          plugins: "advlist autolink lists link anchor searchreplace help",
+          toolbar:
+            "undo redo | formatselect | " +
+            "bold italic backcolor | alignleft aligncenter " +
+            "alignright alignjustify | bullist numlist outdent indent | " +
+            "removeformat | help",
+        }}
       />
-    </div>
-  );
-};
+    );
+  }
+);
+FormEditor.displayName = "CustomFormEditor";
 
 export default Description;
