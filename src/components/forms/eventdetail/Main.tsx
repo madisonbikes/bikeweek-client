@@ -20,6 +20,9 @@ import Status from "./Status";
 import ConfirmLoseChanges from "./ConfirmLoseChanges";
 import Description from "./Description";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 type LocationFormData = Required<
   Omit<EventLocation, "sched_venue" | "maps_description">
 >;
@@ -30,36 +33,38 @@ export type EventFormData = Required<
   }
 >;
 
-const buildDefaultValues = (
-  event: BikeWeekEvent | undefined
-): EventFormData => {
-  return {
-    name: event?.name ?? "",
-    eventUrl: event?.eventUrl ?? "",
-    description: event?.description ?? "",
-    eventGraphicUrl: event?.eventGraphicUrl ?? "",
-    sponsors: event?.sponsors ?? [],
-    location: buildDefaultLocationValues(event?.location),
-    eventTypes: event?.eventTypes ?? [],
-    eventDays: event?.eventDays ?? [],
-    eventTimes: event?.eventTimes ?? [],
-    status: event?.status ?? EventStatus.SUBMITTED,
-    comments: event?.comments ?? "",
-  };
-};
-
-const buildDefaultLocationValues = (
-  location: EventLocation | undefined
-): LocationFormData => {
-  return {
-    name: location?.name ?? "",
-    sched_address: location?.sched_address ?? "",
-    maps_query: location?.maps_query ?? "",
-    detailed_location_description:
-      location?.detailed_location_description ?? "",
-    maps_placeid: location?.maps_placeid ?? "",
-  };
-};
+const formSchema = yup
+  .object({
+    name: yup.string().min(10).required().default(""),
+    status: yup
+      .mixed<EventStatus>()
+      .oneOf(Object.values(EventStatus))
+      .default(EventStatus.SUBMITTED)
+      .required(),
+    eventUrl: yup.string().ensure().url(),
+    eventGraphicUrl: yup.string().ensure().url(),
+    eventDays: yup.array().required().of(yup.date()).default([]),
+    location: yup.object({
+      name: yup.string().min(10).ensure().required(),
+      sched_address: yup.string().ensure(),
+      maps_query: yup.string().ensure(),
+    }),
+    eventTimes: yup
+      .array(
+        yup.object({
+          start: yup.string().default(""),
+          end: yup.string().default(""),
+        })
+      )
+      .required()
+      .default([]),
+    eventTypes: yup
+      .array()
+      .of(yup.string().lowercase().required())
+      .required()
+      .default([]),
+  })
+  .required();
 
 export const MainForm = () => {
   const { id } = useParams();
@@ -90,10 +95,11 @@ export const MainForm = () => {
   const { isSuccess: mutationSuccess } = eventMutation;
 
   const form = useForm<EventFormData>({
-    defaultValues: buildDefaultValues(data),
+    defaultValues: formSchema.validateSync(data),
+    resolver: yupResolver(formSchema),
   });
   const { formState, handleSubmit, control, reset } = form;
-  const { isSubmitting, isDirty } = formState;
+  const { isSubmitting, isDirty, errors } = formState;
 
   const [showConfirmCancel, setShowConfirmCancel] = useState(false);
 
@@ -106,7 +112,7 @@ export const MainForm = () => {
   useEffect(() => {
     if (querySuccess && !initialLoadComplete) {
       console.log("resetting on querysuccess for initial load");
-      reset(buildDefaultValues(data));
+      reset(formSchema.validateSync(data, { stripUnknown: true }));
       setInitialLoadComplete(true);
     }
   }, [data, reset, querySuccess, initialLoadComplete]);
@@ -126,7 +132,6 @@ export const MainForm = () => {
   if (!data) {
     throw new Error("data not loaded");
   }
-  //console.log(`Loaded ${JSON.stringify(data, null, "  ")}`);
 
   return (
     <FormProvider {...form}>
@@ -187,6 +192,8 @@ export const MainForm = () => {
         />
         <h3>Event Info</h3>
         <FormTextField
+          error={errors.name !== undefined}
+          helperText={errors.name?.message}
           name="name"
           fullWidth
           margin="normal"
@@ -195,6 +202,8 @@ export const MainForm = () => {
           control={control}
         />
         <FormTextField
+          error={errors.eventUrl !== undefined}
+          helperText={errors.eventUrl?.message}
           name="eventUrl"
           fullWidth
           margin="normal"
@@ -203,6 +212,8 @@ export const MainForm = () => {
         />
         <Description />
         <FormTextField
+          error={errors.eventGraphicUrl !== undefined}
+          helperText={errors.eventGraphicUrl?.message}
           name="eventGraphicUrl"
           fullWidth
           multiline
