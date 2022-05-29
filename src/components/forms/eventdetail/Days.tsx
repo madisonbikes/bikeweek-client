@@ -1,6 +1,7 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
+import { parse } from "date-fns";
 import { Controller, useFieldArray } from "react-hook-form";
 
 const Days = () => {
@@ -47,7 +48,10 @@ const Days = () => {
           </li>
         ))}
       </ul>
-      <Button type="button" onClick={() => append(new Date("06/05/2022"))}>
+      <Button
+        type="button"
+        onClick={() => append(parse("06/05/2022", "MM/dd/yyyy", new Date()))}
+      >
         Add Day
       </Button>
     </>

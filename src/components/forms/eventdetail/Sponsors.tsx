@@ -13,7 +13,7 @@ const Sponsors = () => {
   return (
     <>
       <h3>Event Sponsors</h3>
-      {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : ""}
+      {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : undefined}
       {fields.map((_item, index) => (
         <Box key={_item.id} display="flex" alignItems="center">
           <FormTextField
