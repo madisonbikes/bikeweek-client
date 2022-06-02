@@ -1,6 +1,7 @@
 import { SyntheticEvent, forwardRef, ForwardedRef } from "react";
 import { Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
+import { TextField } from "@mui/material";
 
 const Description = () => {
   return (
@@ -10,10 +11,13 @@ const Description = () => {
         name="description"
         render={({ field: { onChange, value, onBlur, ref } }) => {
           return (
-            <FormEditor
-              onChange={onChange}
-              value={value}
+            <TextField
+              fullWidth={true}
+              multiline={true}
+              minRows={5}
               ref={ref}
+              value={value}
+              onChange={onChange}
               onBlur={onBlur}
             />
           );
