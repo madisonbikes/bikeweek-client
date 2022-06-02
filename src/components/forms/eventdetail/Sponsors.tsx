@@ -1,12 +1,9 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import FormTextField from "../../input/FormTextField";
 
 const Sponsors = () => {
-  const form = useFormContext<FormData>();
-  const { control } = form;
-
   const { fields, append, remove } = useFieldArray({
     name: "sponsors",
   });
@@ -16,7 +13,7 @@ const Sponsors = () => {
   return (
     <>
       <h3>Event Sponsors</h3>
-      {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : ""}
+      {emptySponsors ? <Box sx={{ padding: 1 }}>No sponsors</Box> : undefined}
       {fields.map((_item, index) => (
         <Box key={_item.id} display="flex" alignItems="center">
           <FormTextField
@@ -24,14 +21,12 @@ const Sponsors = () => {
             name={`sponsors.${index}.name`}
             margin="normal"
             label="Sponsor Name"
-            control={control}
           />
           <FormTextField
             sx={{ marginLeft: 1, flex: 3 }}
             name={`sponsors.${index}.url`}
             margin="normal"
             label="Sponsor URL"
-            control={control}
           />
           <IconButton
             aria-label="delete"

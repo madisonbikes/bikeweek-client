@@ -1,10 +1,6 @@
-import { useFormContext } from "react-hook-form";
 import FormTextField from "../../input/FormTextField";
 
 const Location = () => {
-  const form = useFormContext<FormData>();
-  const { control } = form;
-
   return (
     <>
       <h3>Event Location</h3>
@@ -14,7 +10,6 @@ const Location = () => {
         required
         margin="normal"
         label="Name"
-        control={control}
       />
       {/*
       Unused in 2022
@@ -23,7 +18,6 @@ const Location = () => {
         fullWidth
         margin="normal"
         label="Sched venue name override"
-        control={control}
       />
       */}
       <div style={{ marginTop: "1rem" }}>
@@ -34,7 +28,6 @@ const Location = () => {
           fullWidth
           margin="normal"
           label="Sched venue address override"
-          control={control}
         />
       </div>
       {/*
@@ -44,7 +37,6 @@ const Location = () => {
         fullWidth
         margin="normal"
         label="Short location description override for inclusion in event"
-        control={control}
       />
       */}
       <div style={{ marginTop: "1rem" }}>
@@ -56,7 +48,6 @@ const Location = () => {
           fullWidth
           margin="normal"
           label="Google Maps query name"
-          control={control}
         />
       </div>
       <div style={{ marginTop: "1rem" }}>
@@ -67,7 +58,6 @@ const Location = () => {
           fullWidth
           margin="normal"
           label="Google Maps placeid"
-          control={control}
         />
       </div>
       <FormTextField
@@ -78,7 +68,6 @@ const Location = () => {
         maxRows={5}
         margin="normal"
         label="Organizer-supplied extra location description info (for internal/advisory use only)"
-        control={control}
       />
     </>
   );

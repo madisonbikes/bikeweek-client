@@ -5,34 +5,18 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
-import { BikeWeekEvent, EventStatus, useAuth } from "../../../common";
+import { useAuth } from "../../../common";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
-import Types from "./Types";
+import Types from "./EventTypes";
 import Days from "./Days";
 import Times from "./Times";
 import Status from "./Status";
 import ConfirmLoseChanges from "./ConfirmLoseChanges";
+import Description from "./Description";
 
-type FormData = BikeWeekEvent;
-
-const buildDefaultValues = (
-  event: BikeWeekEvent | undefined
-): Partial<FormData> => {
-  return {
-    name: event?.name ?? "",
-    eventUrl: event?.eventUrl ?? "",
-    description: event?.description ?? "",
-    eventGraphicUrl: event?.eventGraphicUrl ?? "",
-    sponsors: event?.sponsors ?? [],
-    location: event?.location ?? { name: "" },
-    eventTypes: event?.eventTypes ?? [],
-    eventDays: event?.eventDays ?? [],
-    eventTimes: event?.eventTimes ?? [],
-    status: event?.status ?? EventStatus.SUBMITTED,
-    comments: event?.comments ?? "",
-  };
-};
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EventFormData, formSchema } from "./schema";
 
 export const MainForm = () => {
   const { id } = useParams();
@@ -43,16 +27,19 @@ export const MainForm = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const queryClient = useQueryClient();
-  const eventQuery = useQuery<BikeWeekEvent, Error>(["events", id], () => {
-    return getEvent(auth, id);
-  });
+  const eventQuery = useQuery<EventFormData, Error>(
+    ["events", id],
+    async () => {
+      return formSchema.cast(await getEvent(auth, id));
+    }
+  );
   const { data, isSuccess: querySuccess } = eventQuery;
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
-  const eventMutation = useMutation<BikeWeekEvent, Error, FormData>(
+  const eventMutation = useMutation<void, Error, EventFormData>(
     async (data) => {
-      return updateEvent(auth, id, data);
+      updateEvent(auth, id, data);
     },
     {
       onSuccess: () => {
@@ -62,9 +49,12 @@ export const MainForm = () => {
   );
   const { isSuccess: mutationSuccess } = eventMutation;
 
-  const form = useForm<FormData>({ defaultValues: buildDefaultValues(data) });
+  const form = useForm<EventFormData>({
+    defaultValues: formSchema.cast({}),
+    resolver: yupResolver(formSchema),
+  });
   const { formState, handleSubmit, control, reset } = form;
-  const { isSubmitting, isDirty } = formState;
+  const { isSubmitting, isDirty, errors } = formState;
 
   const [showConfirmCancel, setShowConfirmCancel] = useState(false);
 
@@ -76,8 +66,7 @@ export const MainForm = () => {
 
   useEffect(() => {
     if (querySuccess && !initialLoadComplete) {
-      console.log("resetting on querysuccess for initial load");
-      reset(buildDefaultValues(data));
+      reset(formSchema.cast(data, { stripUnknown: true }));
       setInitialLoadComplete(true);
     }
   }, [data, reset, querySuccess, initialLoadComplete]);
@@ -94,10 +83,13 @@ export const MainForm = () => {
     return <div>Updating event...</div>;
   }
 
+  if (eventMutation.isError) {
+    return <div>Error: {eventMutation.error.message}</div>;
+  }
+
   if (!data) {
     throw new Error("data not loaded");
   }
-  //console.log(`Loaded ${JSON.stringify(data, null, "  ")}`);
 
   return (
     <FormProvider {...form}>
@@ -158,6 +150,8 @@ export const MainForm = () => {
         />
         <h3>Event Info</h3>
         <FormTextField
+          error={errors.name !== undefined}
+          helperText={errors.name?.message}
           name="name"
           fullWidth
           margin="normal"
@@ -166,24 +160,18 @@ export const MainForm = () => {
           control={control}
         />
         <FormTextField
+          error={errors.eventUrl !== undefined}
+          helperText={errors.eventUrl?.message}
           name="eventUrl"
           fullWidth
           margin="normal"
           label="URL"
           control={control}
         />
+        <Description />
         <FormTextField
-          name="description"
-          fullWidth
-          multiline
-          required
-          minRows={2}
-          maxRows={10}
-          margin="normal"
-          label="Description"
-          control={control}
-        />
-        <FormTextField
+          error={errors.eventGraphicUrl !== undefined}
+          helperText={errors.eventGraphicUrl?.message}
           name="eventGraphicUrl"
           fullWidth
           multiline

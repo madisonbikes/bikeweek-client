@@ -1,14 +1,10 @@
 import { MenuItem } from "@mui/material";
-import { useFormContext } from "react-hook-form";
 import { EventStatus } from "../../../common";
 import FormSelect from "../../input/FormSelect";
 
 const Status = () => {
-  const form = useFormContext<FormData>();
-  const { control } = form;
-
   return (
-    <FormSelect name="status" control={control}>
+    <FormSelect name="status">
       <MenuItem key={EventStatus.SUBMITTED} value={EventStatus.SUBMITTED}>
         Submitted
       </MenuItem>

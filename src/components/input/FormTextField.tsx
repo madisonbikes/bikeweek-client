@@ -13,11 +13,16 @@ const FormTextField = ({ name, control, ...rest }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      render={({
+        field: { onChange, onBlur, value, ref },
+        fieldState: { error },
+      }) => (
         <TextField
           {...rest}
+          ref={ref}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           error={!!error}
           helperText={error ? error.message : null}
         />
