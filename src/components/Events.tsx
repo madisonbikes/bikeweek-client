@@ -69,6 +69,15 @@ export const Events = () => {
         }
         return retval;
       },
+      sortComparator: (v1: Date[], v2: Date[]) => {
+        if (v1.length == 0) {
+          return -1;
+        }
+        if (v2.length == 0) {
+          return 1;
+        }
+        return v1[0].getTime() - v2[0].getTime();
+      },
     },
     {
       field: "createDate",
