@@ -8,7 +8,7 @@ const Times = () => {
     name: "eventTimes",
   });
 
-  const emptyTimes = fields.length == 0;
+  const emptyTimes = fields.length === 0;
 
   return (
     <>
