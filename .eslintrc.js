@@ -26,6 +26,7 @@ module.exports = {
       version: "detect",
     },
   },
+  reportUnusedDisableDirectives: true,
   rules: {
     eqeqeq: ["warn", "smart"],
   },
