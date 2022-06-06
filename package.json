@@ -17,7 +17,7 @@
     "@tinymce/tinymce-react": "^4.1.0",
     "@types/jest": "^28.1.0",
     "@types/node": "^16.11.33",
-    "@types/react": "^18.0.10",
+    "@types/react": "^18.0.12",
     "@types/react-router-dom": "^5.3.3",
     "@types/superagent": "^4.1.15",
     "date-fns": "^2.28.0",
