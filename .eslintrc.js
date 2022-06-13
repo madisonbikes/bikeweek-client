@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     commonjs: true,
     es6: true,
@@ -19,6 +20,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    project: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint"],
   settings: {
@@ -30,5 +32,7 @@ module.exports = {
   rules: {
     eqeqeq: ["warn", "smart"],
     "func-style": ["warn"],
+    "require-await": ["error"],
+    "@typescript-eslint/no-floating-promises": "error",
   },
 };
