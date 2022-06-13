@@ -39,11 +39,11 @@ export const MainForm = () => {
 
   const eventMutation = useMutation<void, Error, EventFormData>(
     async (data) => {
-      updateEvent(auth, id, data);
+      await updateEvent(auth, id, data);
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("events");
+        return queryClient.invalidateQueries("events");
       },
     }
   );

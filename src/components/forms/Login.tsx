@@ -51,9 +51,9 @@ export const Login = () => {
         <div className="loginError">{data?.failureString}</div>
       ) : null}
       <form
-        onKeyDown={(e) => {
+        onKeyDown={async (e) => {
           if (e.code === "Enter") {
-            handleSubmit(onSubmit)();
+            await handleSubmit(onSubmit)();
           }
         }}
       >

@@ -35,7 +35,7 @@ export const Events = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("events");
+        return queryClient.invalidateQueries("events");
       },
     }
   );
