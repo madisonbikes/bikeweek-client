@@ -16,7 +16,7 @@
     "@testing-library/user-event": "^14.2.0",
     "@tinymce/tinymce-react": "^4.1.0",
     "@types/jest": "^28.1.1",
-    "@types/node": "^16.11.38",
+    "@types/node": "^16.11.39",
     "@types/react": "^18.0.12",
     "@types/react-router-dom": "^5.3.3",
     "@types/superagent": "^4.1.15",
