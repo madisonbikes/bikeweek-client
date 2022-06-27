@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.9.3",
     "@hookform/resolvers": "^2.9.1",
     "@mui/icons-material": "^5.8.3",
-    "@mui/material": "^5.8.3",
+    "@mui/material": "^5.8.5",
     "@mui/x-data-grid": "^5.12.1",
     "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "@tinymce/tinymce-react": "^4.1.0",
