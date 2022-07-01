@@ -50,7 +50,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "@types/jest": "^28.1.4",
-    "@types/node": "^16.11.41",
+    "@types/node": "^16.11.42",
     "@types/react": "^18.0.14",
     "@types/react-router-dom": "^5.3.3",
     "@types/superagent": "^4.1.15",
