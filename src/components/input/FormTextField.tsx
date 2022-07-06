@@ -1,14 +1,18 @@
 import { TextField, TextFieldProps } from "@mui/material";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-type Props = Omit<TextFieldProps, "name"> & {
-  name: string;
+type Props<T extends FieldValues> = Omit<TextFieldProps, "name"> & {
+  name: Path<T>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control?: Control<any>;
+  control?: Control<T, any>;
 };
 
 /** MUI + react-hook-form component */
-const FormTextField = ({ name, control, ...rest }: Props) => {
+const FormTextField = <T extends FieldValues>({
+  name,
+  control,
+  ...rest
+}: Props<T>) => {
   return (
     <Controller
       name={name}
