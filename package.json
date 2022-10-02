@@ -54,7 +54,7 @@
     "@types/react": "^18.0.15",
     "@types/react-router-dom": "^5.3.3",
     "@types/superagent": "^4.1.15",
-    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@commitlint/cli": "^17.1.2",
