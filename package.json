@@ -46,7 +46,7 @@
     "react-scripts": "5.0.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "@types/jest": "^29.1.1",
