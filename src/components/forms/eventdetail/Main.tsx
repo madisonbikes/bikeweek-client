@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
-import { BikeWeekEvent, useAuth } from "../../../common";
+import { useAuth } from "../../../common";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./EventTypes";
@@ -17,6 +17,7 @@ import Description from "./Description";
 import { formatISO } from "date-fns";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EventFormData, FormSchema } from "./schema";
+import { BikeWeekEvent } from "../../../api/event";
 
 export const MainForm = () => {
   const { id } = useParams();
