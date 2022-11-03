@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import FormTextField from "../../input/FormTextField";
-import { useAuth } from "../../../common";
+import { BikeWeekEvent, useAuth } from "../../../common";
 import Sponsors from "./Sponsors";
 import Location from "./Location";
 import Types from "./EventTypes";
@@ -14,9 +14,9 @@ import Times from "./Times";
 import Status from "./Status";
 import ConfirmLoseChanges from "./ConfirmLoseChanges";
 import Description from "./Description";
-
+import { formatISO } from "date-fns";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EventFormData, formSchema } from "./schema";
+import { EventFormData, FormSchema } from "./schema";
 
 export const MainForm = () => {
   const { id } = useParams();
@@ -30,7 +30,7 @@ export const MainForm = () => {
   const eventQuery = useQuery<EventFormData, Error>(
     ["events", id],
     async () => {
-      return formSchema.cast(await getEvent(auth, id));
+      return FormSchema.cast(await getEvent(auth, id));
     }
   );
   const { data, isSuccess: querySuccess } = eventQuery;
@@ -39,7 +39,7 @@ export const MainForm = () => {
 
   const eventMutation = useMutation<void, Error, EventFormData>(
     async (data) => {
-      await updateEvent(auth, id, data);
+      await updateEvent(auth, id, fixmeAdaptData(data));
     },
     {
       onSuccess: () => {
@@ -50,8 +50,8 @@ export const MainForm = () => {
   const { isSuccess: mutationSuccess } = eventMutation;
 
   const form = useForm<EventFormData>({
-    defaultValues: formSchema.cast({}),
-    resolver: yupResolver(formSchema),
+    defaultValues: FormSchema.cast({}),
+    resolver: yupResolver(FormSchema),
   });
   const { formState, handleSubmit, control, reset } = form;
   const { isSubmitting, isDirty, errors } = formState;
@@ -66,7 +66,7 @@ export const MainForm = () => {
 
   useEffect(() => {
     if (querySuccess && !initialLoadComplete) {
-      reset(formSchema.cast(data, { stripUnknown: true }));
+      reset(FormSchema.cast(data, { stripUnknown: true }));
       setInitialLoadComplete(true);
     }
   }, [data, reset, querySuccess, initialLoadComplete]);
@@ -188,6 +188,18 @@ export const MainForm = () => {
       </form>
     </FormProvider>
   );
+};
+
+/** temporary adapter to map EventFormData to BikeWeekEvent */
+const fixmeAdaptData = (input: EventFormData): Partial<BikeWeekEvent> => {
+  const { eventDays, ...rest } = input;
+  const retval: Partial<BikeWeekEvent> = rest;
+
+  // map date with full time to simple date string is ISO format
+  retval.eventDays = eventDays.map((key) =>
+    formatISO(key, { representation: "date" })
+  );
+  return rest;
 };
 
 export default MainForm;
