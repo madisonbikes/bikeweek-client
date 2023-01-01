@@ -9,7 +9,7 @@
     "@hookform/resolvers": "^2.9.10",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.16",
-    "@mui/x-data-grid": "^5.17.9",
+    "@mui/x-data-grid": "^5.17.17",
     "@mui/x-date-pickers": "^5.0.6",
     "@tinymce/tinymce-react": "^4.2.0",
     "date-fns": "^2.29.3",
