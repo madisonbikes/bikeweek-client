@@ -14,10 +14,10 @@ export type LoginResponse = {
 export const login = async (request: LoginRequest): Promise<LoginResponse> => {
   const result = await superagent
     .post("/api/v1/login")
-    .ok((res) => res.status == 200 || res.status == 401)
+    .ok((res) => res.status === 200 || res.status === 401)
     .send(request);
 
-  if (result.status == 200) {
+  if (result.status === 200) {
     return { success: true, jwt: result.text };
   } else {
     return { success: false, failureString: result.text };

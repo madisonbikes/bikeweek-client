@@ -1,14 +1,18 @@
 import { Checkbox, CheckboxProps } from "@mui/material";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-type Props = Omit<CheckboxProps, "name"> & {
-  name: string;
+type Props<T extends FieldValues> = Omit<CheckboxProps, "name"> & {
+  name: Path<T>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control?: Control<any>;
+  control?: Control<T, any>;
 };
 
 /** MUI + react-hook-form component */
-const FormCheckbox = ({ name, control, ...rest }: Props) => {
+const FormCheckbox = <T extends FieldValues>({
+  name,
+  control,
+  ...rest
+}: Props<T>) => {
   return (
     <Controller
       name={name}

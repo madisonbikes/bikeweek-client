@@ -1,7 +1,7 @@
-import { parseISO, formatISO } from "date-fns";
 import superagent from "superagent";
+import { BikeWeekEventSchema, EventDaysArraySchema } from "../api/event";
+import { BikeWeekEvent } from "../api/event";
 import { AuthContextType } from "../common";
-import { BikeWeekEvent } from "../common";
 
 export const getAllEvents = async (
   auth: AuthContextType
@@ -12,10 +12,7 @@ export const getAllEvents = async (
   const result = await superagent
     .get("/api/v1/events")
     .auth(auth.state.jwt, { type: "bearer" });
-  const events: BikeWeekEvent[] = result.body;
-  return events.map((event) => {
-    return normalizeEvent(event);
-  });
+  return BikeWeekEventSchema.array().parseAsync(result.body);
 };
 
 export const getEvent = async (
@@ -28,8 +25,7 @@ export const getEvent = async (
   const result = await superagent
     .get(`/api/v1/events/${id}`)
     .auth(auth.state.jwt, { type: "bearer" });
-  const event = normalizeEvent(result.body);
-  return event;
+  return BikeWeekEventSchema.parseAsync(result.body);
 };
 
 export type UpdateEventRequest = Partial<BikeWeekEvent>;
@@ -43,15 +39,10 @@ export const updateEvent = async (
     throw new Error("unauthenticated");
   }
 
-  // for event days, only send the date (not time) to avoid timezone issues on backend
-  // FIXME could move this to backend too but need to make sure stringified version sent always includes correct date on client
   const modifiedData: Record<string, unknown> = { ...data };
   if (data.eventDays) {
-    modifiedData.eventDays = data.eventDays.map((day: Date) => {
-      return formatISO(day, {
-        representation: "date",
-      });
-    });
+    // API expects date strings in specific format
+    modifiedData.eventDays = EventDaysArraySchema.parse(data.eventDays);
     console.log(
       `adjusted event days to ${JSON.stringify(modifiedData.eventDays)}`
     );
@@ -61,7 +52,7 @@ export const updateEvent = async (
     .put(`/api/v1/events/${id}`)
     .send(modifiedData)
     .auth(auth.state.jwt, { type: "bearer" });
-  return result.body;
+  return BikeWeekEventSchema.parseAsync(result.body);
 };
 
 export const deleteEvent = async (
@@ -75,28 +66,4 @@ export const deleteEvent = async (
     .delete(`/api/v1/events/${id}`)
     .auth(auth.state.jwt, { type: "bearer" });
   return result.body;
-};
-
-const normalizeEvent = (event: BikeWeekEvent): BikeWeekEvent => {
-  const parsedCreateDate = parseISO(event.createDate as unknown as string);
-  const parsedModifyDate = parseISO(event.modifyDate as unknown as string);
-
-  // days come as array of strings of utc dates, we want array of dates
-  const days: string[] = event.eventDays as unknown as string[];
-  const parsedDays = days.map((value) => {
-    const utcDate = parseISO(value);
-    const localDate = new Date(
-      utcDate.getTime() + utcDate.getTimezoneOffset() * 60 * 1000
-    );
-    return localDate;
-  });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { createDate, modifyDate, eventDays, ...rest } = event;
-  return {
-    createDate: parsedCreateDate,
-    modifyDate: parsedModifyDate,
-    eventDays: parsedDays,
-    ...rest,
-  };
 };

@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useAuth } from "../common";
-import { BikeWeekEvent } from "../common";
+import { BikeWeekEvent } from "../api/event";
 import { useNavigate } from "react-router-dom";
 import { deleteEvent, getAllEvents } from "../api/events";
 import {
@@ -35,7 +35,7 @@ export const Events = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("events");
+        return queryClient.invalidateQueries("events");
       },
     }
   );
@@ -68,6 +68,15 @@ export const Events = () => {
           retval += format(d, "MM/dd/yyyy");
         }
         return retval;
+      },
+      sortComparator: (v1: Date[], v2: Date[]) => {
+        if (v1.length === 0) {
+          return -1;
+        }
+        if (v2.length === 0) {
+          return 1;
+        }
+        return v1[0].getTime() - v2[0].getTime();
       },
     },
     {

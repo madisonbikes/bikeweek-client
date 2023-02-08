@@ -1,4 +1,9 @@
-import { BikeWeekEvent, EventLocation, EventStatus } from "../../../common";
+import {
+  BikeWeekEvent,
+  EventLocation,
+  EventStatusSchema,
+  EventStatus,
+} from "../../../api/event";
 import * as yup from "yup";
 
 export type LocationFormData = Omit<
@@ -10,16 +15,17 @@ export type LocationFormData = Omit<
 export type EventFormData = Required<
   Omit<
     BikeWeekEvent,
-    "id" | "modifyDate" | "createDate" | "location" | "status"
+    "id" | "modifyDate" | "createDate" | "location" | "status" | "eventDays"
   >
 > & {
   // for some reason this has to be optional to satisify yup.mixed() behavior
   status?: EventStatus;
   location: LocationFormData;
+  eventDays: Date[];
 };
 
 /** schema that validates EventFormData */
-export const formSchema = yup.object({
+export const FormSchema = yup.object({
   name: yup.string().min(10).required().ensure(),
   description: yup.string().ensure(),
   sponsors: yup
@@ -34,9 +40,9 @@ export const formSchema = yup.object({
   comments: yup.string().ensure(),
   status: yup
     .mixed<EventStatus>()
-    .oneOf(Object.values(EventStatus))
+    .oneOf(Object.values(EventStatusSchema.Values))
     .required()
-    .default(EventStatus.SUBMITTED),
+    .default(EventStatusSchema.Enum.submitted),
   eventUrl: yup.string().ensure().url(),
   eventGraphicUrl: yup.string().ensure().url(),
   eventDays: yup.array().required().of(yup.date().required()).default([]),

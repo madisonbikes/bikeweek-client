@@ -8,7 +8,7 @@ const Types = () => {
     name: "eventTypes",
   });
 
-  const emptyTypes = fields.length == 0;
+  const emptyTypes = fields.length === 0;
 
   return (
     <>

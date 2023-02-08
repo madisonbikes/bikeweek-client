@@ -8,7 +8,7 @@ const Sponsors = () => {
     name: "sponsors",
   });
 
-  const emptySponsors = fields.length == 0;
+  const emptySponsors = fields.length === 0;
 
   return (
     <>
