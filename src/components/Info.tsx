@@ -19,5 +19,3 @@ export const Info = () => {
     </main>
   );
 };
-
-export default Info;

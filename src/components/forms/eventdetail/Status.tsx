@@ -1,38 +1,36 @@
 import { MenuItem } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import FormSelect from "../../input/FormSelect";
-import { EventStatusSchema } from "../../../api/event";
+import { eventStatusSchema } from "../../../api/types";
+import { FormSelect } from "../../input/FormSelect";
 
-const Status = () => {
+export const Status = () => {
   const { control } = useFormContext();
   return (
     <FormSelect name="status" control={control}>
       <MenuItem
-        key={EventStatusSchema.Values.submitted}
-        value={EventStatusSchema.Values.submitted}
+        key={eventStatusSchema.Values.submitted}
+        value={eventStatusSchema.Values.submitted}
       >
         Submitted
       </MenuItem>
       <MenuItem
-        key={EventStatusSchema.Values.pending}
-        value={EventStatusSchema.Values.pending}
+        key={eventStatusSchema.Values.pending}
+        value={eventStatusSchema.Values.pending}
       >
         Pending
       </MenuItem>
       <MenuItem
-        key={EventStatusSchema.Values.cancelled}
-        value={EventStatusSchema.Values.cancelled}
+        key={eventStatusSchema.Values.cancelled}
+        value={eventStatusSchema.Values.cancelled}
       >
         Cancelled
       </MenuItem>
       <MenuItem
-        key={EventStatusSchema.Values.approved}
-        value={EventStatusSchema.Values.approved}
+        key={eventStatusSchema.Values.approved}
+        value={eventStatusSchema.Values.approved}
       >
         Approved
       </MenuItem>
     </FormSelect>
   );
 };
-
-export default Status;

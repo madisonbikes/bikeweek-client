@@ -1,9 +1,9 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
-import FormTextField from "../../input/FormTextField";
+import { FormTextField } from "../../input/FormTextField";
 
-const Sponsors = () => {
+export const Sponsors = () => {
   const { fields, append, remove } = useFieldArray({
     name: "sponsors",
   });
@@ -43,5 +43,3 @@ const Sponsors = () => {
     </>
   );
 };
-
-export default Sponsors;

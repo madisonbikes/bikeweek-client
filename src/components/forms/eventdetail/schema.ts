@@ -1,9 +1,9 @@
 import {
   BikeWeekEvent,
   EventLocation,
-  EventStatusSchema,
+  eventStatusSchema,
   EventStatus,
-} from "../../../api/event";
+} from "../../../api/types";
 import * as yup from "yup";
 
 export type LocationFormData = Omit<
@@ -40,9 +40,9 @@ export const FormSchema = yup.object({
   comments: yup.string().ensure(),
   status: yup
     .mixed<EventStatus>()
-    .oneOf(Object.values(EventStatusSchema.Values))
+    .oneOf(Object.values(eventStatusSchema.Values))
     .required()
-    .default(EventStatusSchema.Enum.submitted),
+    .default(eventStatusSchema.Enum.submitted),
   eventUrl: yup.string().ensure().url(),
   eventGraphicUrl: yup.string().ensure().url(),
   eventDays: yup.array().required().of(yup.date().required()).default([]),

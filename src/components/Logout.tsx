@@ -21,5 +21,3 @@ export const Logout = () => {
     </main>
   );
 };
-
-export default Logout;

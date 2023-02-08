@@ -1,9 +1,9 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
-import FormTextField from "../../input/FormTextField";
+import { FormTextField } from "../../input/FormTextField";
 
-const Times = () => {
+export const Times = () => {
   const { fields, append, remove } = useFieldArray({
     name: "eventTimes",
   });
@@ -54,5 +54,3 @@ const Times = () => {
     </>
   );
 };
-
-export default Times;

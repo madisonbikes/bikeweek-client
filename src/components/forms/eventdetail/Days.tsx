@@ -4,7 +4,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { parse } from "date-fns";
 import { Controller, useFieldArray } from "react-hook-form";
 
-const Days = () => {
+export const Days = () => {
   const { fields, append, remove } = useFieldArray({
     name: "eventDays",
   });
@@ -57,5 +57,3 @@ const Days = () => {
     </>
   );
 };
-
-export default Days;

@@ -13,7 +13,7 @@ type Props = {
   onClose: () => void;
 };
 
-const ConfirmLoseChanges = ({ open, onClose, onConfirm }: Props) => {
+export const ConfirmLoseChanges = ({ open, onClose, onConfirm }: Props) => {
   return (
     <Dialog
       open={open}
@@ -44,5 +44,3 @@ const ConfirmLoseChanges = ({ open, onClose, onConfirm }: Props) => {
     </Dialog>
   );
 };
-
-export default ConfirmLoseChanges;

@@ -3,7 +3,7 @@ import { Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { TextField } from "@mui/material";
 
-const Description = () => {
+export const Description = () => {
   return (
     <div>
       <h4>Description</h4>
@@ -59,5 +59,3 @@ const FormEditor = forwardRef(
   }
 );
 FormEditor.displayName = "CustomFormEditor";
-
-export default Description;

@@ -1,7 +1,7 @@
 import { Link, SvgIcon } from "@mui/material";
 import { Outlet, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../common";
-import Copyright from "./Copyright";
+import { Copyright } from "./Copyright";
 import { ArrowCircleUp } from "@mui/icons-material";
 
 export const Main = () => {
@@ -83,5 +83,3 @@ export const Main = () => {
     </>
   );
 };
-
-export default Main;

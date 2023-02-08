@@ -1,6 +1,6 @@
-import FormTextField from "../../input/FormTextField";
+import { FormTextField } from "../../input/FormTextField";
 
-const Location = () => {
+export const Location = () => {
   return (
     <>
       <h3>Event Location</h3>
@@ -72,5 +72,3 @@ const Location = () => {
     </>
   );
 };
-
-export default Location;

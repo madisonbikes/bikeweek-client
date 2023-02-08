@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { login, LoginRequest, LoginResponse } from "../../api/login";
+import { login } from "../../api/login";
+import { LoginRequest } from "../../api/types";
 import { useAuth } from "../../common";
-import FormTextField from "../input/FormTextField";
+import { FormTextField } from "../input/FormTextField";
 
 type LoginFormData = LoginRequest;
 
@@ -14,10 +15,10 @@ const defaultValues: LoginFormData = { username: "", password: "" };
 export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const loginMutation = useMutation<LoginResponse, Error, LoginFormData>(login);
+  const loginMutation = useMutation({ mutationFn: login });
   const { isSuccess: loginSuccess, data } = loginMutation;
 
-  const form = useForm<LoginFormData>({
+  const form = useForm({
     defaultValues,
   });
   const { formState, handleSubmit, control } = form;
@@ -38,10 +39,6 @@ export const Login = () => {
 
   if (loginMutation.isLoading) {
     return <div>Logging in...</div>;
-  }
-
-  if (loginMutation.isError) {
-    return <div>Error: {loginMutation.error.message}</div>;
   }
 
   return (
@@ -94,5 +91,3 @@ export const Login = () => {
     </main>
   );
 };
-
-export default Login;

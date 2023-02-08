@@ -9,7 +9,7 @@ type Props<T extends FieldValues> = Omit<TextFieldProps, "name"> & {
 };
 
 /** MUI + react-hook-form component */
-const FormSelect = <T extends FieldValues>({
+export const FormSelect = <T extends FieldValues>({
   name,
   control,
   children,
@@ -39,5 +39,3 @@ const FormSelect = <T extends FieldValues>({
     />
   );
 };
-
-export default FormSelect;

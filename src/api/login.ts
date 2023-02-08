@@ -1,9 +1,5 @@
 import superagent from "superagent";
-
-export type LoginRequest = {
-  username: string;
-  password: string;
-};
+import { LoginRequest, loginResponseSchema } from "./types";
 
 export type LoginResponse = {
   success: boolean;
@@ -18,7 +14,8 @@ export const login = async (request: LoginRequest): Promise<LoginResponse> => {
     .send(request);
 
   if (result.status === 200) {
-    return { success: true, jwt: result.text };
+    const response = loginResponseSchema.parse(result.body);
+    return { success: true, jwt: response.jwtToken };
   } else {
     return { success: false, failureString: result.text };
   }

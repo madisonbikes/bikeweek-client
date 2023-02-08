@@ -1,9 +1,9 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
 import { useFieldArray } from "react-hook-form";
-import FormTextField from "../../input/FormTextField";
+import { FormTextField } from "../../input/FormTextField";
 
-const Types = () => {
+export const Types = () => {
   const { fields, append, remove } = useFieldArray({
     name: "eventTypes",
   });
@@ -40,5 +40,3 @@ const Types = () => {
     </>
   );
 };
-
-export default Types;

@@ -8,7 +8,7 @@ type Props<T extends FieldValues> = Omit<CheckboxProps, "name"> & {
 };
 
 /** MUI + react-hook-form component */
-const FormCheckbox = <T extends FieldValues>({
+export const FormCheckbox = <T extends FieldValues>({
   name,
   control,
   ...rest
@@ -30,5 +30,3 @@ const FormCheckbox = <T extends FieldValues>({
     />
   );
 };
-
-export default FormCheckbox;

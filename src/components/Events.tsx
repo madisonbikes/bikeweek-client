@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useAuth } from "../common";
-import { BikeWeekEvent } from "../api/event";
+import { BikeWeekEvent } from "../api/types";
 import { useNavigate } from "react-router-dom";
 import { deleteEvent, getAllEvents } from "../api/events";
 import {
@@ -13,7 +13,7 @@ import {
 import { format } from "date-fns";
 import { DeleteForever, Edit } from "@mui/icons-material";
 import { useState } from "react";
-import ConfirmEventDelete from "./ConfirmEventDelete";
+import { ConfirmEventDelete } from "./ConfirmEventDelete";
 
 export const Events = () => {
   const auth = useAuth();
@@ -137,5 +137,3 @@ export const Events = () => {
     </>
   );
 };
-
-export default Events;

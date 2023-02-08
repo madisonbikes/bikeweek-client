@@ -13,7 +13,7 @@ type Props = {
   onConfirm: () => void;
 };
 
-const ConfirmEventDelete = ({ open, onClose, onConfirm }: Props) => {
+export const ConfirmEventDelete = ({ open, onClose, onConfirm }: Props) => {
   return (
     <Dialog
       open={open}
@@ -44,5 +44,3 @@ const ConfirmEventDelete = ({ open, onClose, onConfirm }: Props) => {
     </Dialog>
   );
 };
-
-export default ConfirmEventDelete;

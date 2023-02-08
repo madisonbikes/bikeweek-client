@@ -4,22 +4,20 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
-import FormTextField from "../../input/FormTextField";
+import { FormTextField } from "../../input/FormTextField";
 import { useAuth } from "../../../common";
-import Sponsors from "./Sponsors";
-import Location from "./Location";
-import Types from "./EventTypes";
-import Days from "./Days";
-import Times from "./Times";
-import Status from "./Status";
-import ConfirmLoseChanges from "./ConfirmLoseChanges";
-import Description from "./Description";
-import { formatISO } from "date-fns";
+import { Sponsors } from "./Sponsors";
+import { Location } from "./Location";
+import { Types } from "./EventTypes";
+import { Days } from "./Days";
+import { Times } from "./Times";
+import { Status } from "./Status";
+import { ConfirmLoseChanges } from "./ConfirmLoseChanges";
+import { Description } from "./Description";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EventFormData, FormSchema } from "./schema";
-import { BikeWeekEvent } from "../../../api/event";
 
-export const MainForm = () => {
+export const Form = () => {
   const { id } = useParams();
   if (!id) {
     throw new Error("requires id param");
@@ -28,19 +26,16 @@ export const MainForm = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const queryClient = useQueryClient();
-  const eventQuery = useQuery<EventFormData, Error>(
-    ["events", id],
-    async () => {
-      return FormSchema.cast(await getEvent(auth, id));
-    }
-  );
+  const eventQuery = useQuery(["events", id], async () => {
+    return FormSchema.cast(await getEvent(auth, id));
+  });
   const { data, isSuccess: querySuccess } = eventQuery;
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
-  const eventMutation = useMutation<void, Error, EventFormData>(
-    async (data) => {
-      await updateEvent(auth, id, fixmeAdaptData(data));
+  const eventMutation = useMutation(
+    async (data: EventFormData) => {
+      await updateEvent(auth, id, data);
     },
     {
       onSuccess: () => {
@@ -50,7 +45,7 @@ export const MainForm = () => {
   );
   const { isSuccess: mutationSuccess } = eventMutation;
 
-  const form = useForm<EventFormData>({
+  const form = useForm({
     defaultValues: FormSchema.cast({}),
     resolver: yupResolver(FormSchema),
   });
@@ -76,16 +71,8 @@ export const MainForm = () => {
     return <div>Loading...</div>;
   }
 
-  if (eventQuery.isError) {
-    return <div>Error: {eventQuery.error.message}</div>;
-  }
-
   if (isSubmitting || eventMutation.isLoading) {
     return <div>Updating event...</div>;
-  }
-
-  if (eventMutation.isError) {
-    return <div>Error: {eventMutation.error.message}</div>;
   }
 
   if (!data) {
@@ -190,17 +177,3 @@ export const MainForm = () => {
     </FormProvider>
   );
 };
-
-/** temporary adapter to map EventFormData to BikeWeekEvent */
-const fixmeAdaptData = (input: EventFormData): Partial<BikeWeekEvent> => {
-  const { eventDays, ...rest } = input;
-  const retval: Partial<BikeWeekEvent> = rest;
-
-  // map date with full time to simple date string is ISO format
-  retval.eventDays = eventDays.map((key) =>
-    formatISO(key, { representation: "date" })
-  );
-  return rest;
-};
-
-export default MainForm;
