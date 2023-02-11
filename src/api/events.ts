@@ -1,9 +1,5 @@
 import superagent from "superagent";
-import {
-  bikeWeekEventSchema,
-  eventDaysArraySchema,
-  BikeWeekEvent,
-} from "./types";
+import { bikeWeekEventSchema, MutableBikeWeekEvent } from "./types";
 import { AuthContextType } from "../common";
 
 export const getAllEvents = async (auth: AuthContextType) => {
@@ -26,7 +22,7 @@ export const getEvent = async (auth: AuthContextType, id: string) => {
   return bikeWeekEventSchema.parse(result.body);
 };
 
-export type UpdateEventRequest = Partial<Omit<BikeWeekEvent, "id">>;
+export type UpdateEventRequest = Partial<MutableBikeWeekEvent>;
 
 export const updateEvent = async (
   auth: AuthContextType,
@@ -37,18 +33,9 @@ export const updateEvent = async (
     throw new Error("unauthenticated");
   }
 
-  const modifiedData: Record<string, unknown> = { ...data };
-  if (data.eventDays) {
-    // API expects date strings in specific format
-    modifiedData.eventDays = eventDaysArraySchema.parse(data.eventDays);
-    console.log(
-      `adjusted event days to ${JSON.stringify(modifiedData.eventDays)}`
-    );
-  }
-
   const result = await superagent
     .put(`/api/v1/events/${id}`)
-    .send(modifiedData)
+    .send(data)
     .auth(auth.state.jwt, { type: "bearer" });
   return bikeWeekEventSchema.parse(result.body);
 };

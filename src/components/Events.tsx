@@ -22,7 +22,7 @@ export const Events = () => {
 
   const navigate = useNavigate();
   const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
-    "events",
+    ["events"],
     () => {
       return getAllEvents(auth);
     }
@@ -35,7 +35,7 @@ export const Events = () => {
     },
     {
       onSuccess: () => {
-        return queryClient.invalidateQueries("events");
+        return queryClient.invalidateQueries(["events"]);
       },
     }
   );

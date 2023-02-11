@@ -15,6 +15,7 @@ export const Description = () => {
               fullWidth={true}
               multiline={true}
               minRows={5}
+              maxRows={10}
               ref={ref}
               value={value}
               onChange={onChange}

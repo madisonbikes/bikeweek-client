@@ -39,7 +39,7 @@ export const Form = () => {
     },
     {
       onSuccess: () => {
-        return queryClient.invalidateQueries("events");
+        return queryClient.invalidateQueries(["events"]);
       },
     }
   );
@@ -132,6 +132,7 @@ export const Form = () => {
           fullWidth
           multiline
           minRows={1}
+          maxRows={5}
           margin="normal"
           label="Admin Comments"
           control={control}
@@ -162,7 +163,6 @@ export const Form = () => {
           helperText={errors.eventGraphicUrl?.message}
           name="eventGraphicUrl"
           fullWidth
-          multiline
           margin="normal"
           label="Event Graphic URL"
           control={control}

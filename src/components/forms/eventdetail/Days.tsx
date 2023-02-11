@@ -3,6 +3,7 @@ import { Box, Button, IconButton, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { parse } from "date-fns";
 import { Controller, useFieldArray } from "react-hook-form";
+import { FIRST_DAY } from "../../../common/config";
 
 export const Days = () => {
   const { fields, append, remove } = useFieldArray({
@@ -50,7 +51,7 @@ export const Days = () => {
       </ul>
       <Button
         type="button"
-        onClick={() => append(parse("06/05/2022", "MM/dd/yyyy", new Date()))}
+        onClick={() => append(parse(FIRST_DAY, "MM/dd/yyyy", new Date()))}
       >
         Add Day
       </Button>
