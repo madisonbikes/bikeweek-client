@@ -44,7 +44,7 @@ export const Login = () => {
   return (
     <main>
       <h2>Login</h2>
-      {data?.failureString ? (
+      {data?.failureString !== null ? (
         <div className="loginError">{data?.failureString}</div>
       ) : null}
       <form

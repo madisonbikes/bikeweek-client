@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-type AuthState = { jwt: string | undefined };
+type AuthState = { jwt: string };
 
 export type AuthContextType = {
   state: AuthState;
@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const AuthProvider = (props: Props) => {
-  const [state, setState] = useState<AuthState>({ jwt: undefined });
+  const [state, setState] = useState<AuthState>({ jwt: "" });
 
   // temporary in case we want to track these changes
   const setStateInterceptor = (newState: AuthState): void => {

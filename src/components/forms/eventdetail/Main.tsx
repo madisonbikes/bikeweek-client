@@ -19,7 +19,7 @@ import { EventFormData, FormSchema } from "./schema";
 
 export const Form = () => {
   const { id } = useParams();
-  if (!id) {
+  if (id === undefined) {
     throw new Error("requires id param");
   }
 
