@@ -8,7 +8,7 @@ export const Logout = () => {
 
   const logout = () => {
     console.log("clearing jwt");
-    auth.setState({ jwt: undefined });
+    auth.setState({ jwt: "" });
     navigate("/");
   };
 
