@@ -1,6 +1,6 @@
 import { MenuItem } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { eventStatusSchema } from "../../../api/types";
+import { eventStatusSchema } from "../../../api/contract/types";
 import { FormSelect } from "../../input/FormSelect";
 
 export const Status = () => {

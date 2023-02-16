@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useAuth } from "../common";
-import { BikeWeekEvent } from "../api/types";
+import { BikeWeekEvent } from "../api/contract/types";
 import { useNavigate } from "react-router-dom";
 import { deleteEvent, getAllEvents } from "../api/events";
 import {

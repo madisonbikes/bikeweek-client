@@ -51,6 +51,7 @@ export const bikeWeekEventSchema = z.object({
 });
 export type BikeWeekEvent = z.infer<typeof bikeWeekEventSchema>;
 
+/** mutable removes several fields */
 export const mutableBikeWeekEventSchema = bikeWeekEventSchema.omit({
   modifyDate: true,
   createDate: true,
@@ -58,25 +59,27 @@ export const mutableBikeWeekEventSchema = bikeWeekEventSchema.omit({
 });
 export type MutableBikeWeekEvent = z.infer<typeof mutableBikeWeekEventSchema>;
 
-export const loginRequestSchema = z
+export const loginBodySchema = z
   .object({
     username: z.string(),
     password: z.string(),
   })
   .strict();
 
-export type LoginRequest = z.infer<typeof loginRequestSchema>;
-
-export const loginResponseSchema = z.object({
-  jwtToken: z.string(),
-});
-export type LoginResponse = z.infer<typeof loginResponseSchema>;
+export type LoginBody = z.infer<typeof loginBodySchema>;
 
 export const userSchema = z.object({
   username: z.string(),
-  admin: z.boolean().default(false),
+  roles: z.string().array().optional(),
 });
 
 export const userWithPasswordSchema = userSchema.extend({
   password: z.string(),
 });
+export type UserWithPassword = z.infer<typeof userWithPasswordSchema>;
+
+export const authenticatedUserSchema = z.object({
+  username: z.string(),
+  roles: z.string().array().default([]),
+});
+export type AuthenticatedUser = z.infer<typeof authenticatedUserSchema>;

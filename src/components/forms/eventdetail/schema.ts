@@ -3,7 +3,7 @@ import {
   EventLocation,
   eventStatusSchema,
   EventStatus,
-} from "../../../api/types";
+} from "../../../api/contract/types";
 import * as yup from "yup";
 
 export type LocationFormData = Omit<

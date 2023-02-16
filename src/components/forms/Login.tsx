@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api/login";
-import { LoginRequest } from "../../api/types";
+import { login } from "../../api/session";
+import { LoginBody } from "../../api/contract/types";
 import { useAuth } from "../../common";
 import { FormTextField } from "../input/FormTextField";
 
-type LoginFormData = LoginRequest;
+type LoginFormData = LoginBody;
 
 const defaultValues: LoginFormData = { username: "", password: "" };
 
@@ -16,7 +16,7 @@ export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const loginMutation = useMutation({ mutationFn: login });
-  const { isSuccess: loginSuccess, data } = loginMutation;
+  const { isSuccess: loginSuccess, data: loginData } = loginMutation;
 
   const form = useForm({
     defaultValues,
@@ -25,12 +25,12 @@ export const Login = () => {
   const { isSubmitting } = formState;
 
   useEffect(() => {
-    if (loginSuccess && data.success) {
-      console.log("setting jwt");
-      auth.setState({ jwt: data.jwt });
+    if (loginSuccess && loginData.authenticated) {
+      console.log("set auth");
+      auth.setState(loginData);
       navigate("/events");
     }
-  }, [loginSuccess, data, auth, navigate]);
+  }, [loginSuccess, loginData, auth, navigate]);
 
   const onSubmit = (formData: LoginFormData) => {
     loginMutation.mutate(formData);
@@ -44,8 +44,8 @@ export const Login = () => {
   return (
     <main>
       <h2>Login</h2>
-      {data?.failureString !== null ? (
-        <div className="loginError">{data?.failureString}</div>
+      {loginData?.failureString !== null ? (
+        <div className="loginError">{loginData?.failureString}</div>
       ) : null}
       <form
         onKeyDown={async (e) => {

@@ -18,7 +18,7 @@ export const Main = () => {
           Home
         </Link>
         &nbsp;|&nbsp;
-        {!auth.state.jwt ? (
+        {!auth.state.authenticated ? (
           <>
             <Link component={RouterLink} to="/login">
               Login
@@ -26,7 +26,7 @@ export const Main = () => {
             &nbsp;|&nbsp;
           </>
         ) : null}
-        {auth.state.jwt ? (
+        {auth.state.authenticated ? (
           <>
             <Link component={RouterLink} to="/events">
               Events
@@ -34,7 +34,7 @@ export const Main = () => {
             &nbsp;|&nbsp;
           </>
         ) : null}
-        {auth.state.jwt ? (
+        {auth.state.authenticated ? (
           <>
             <Link component={RouterLink} to="/logout">
               Logout
