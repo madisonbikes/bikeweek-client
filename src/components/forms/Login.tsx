@@ -7,6 +7,7 @@ import { login } from "../../api/session";
 import { LoginBody } from "../../api/contract/types";
 import { useAuth } from "../../common";
 import { FormTextField } from "../input/FormTextField";
+import { GoogleLogin } from "../GoogleLogin";
 
 type LoginFormData = LoginBody;
 
@@ -85,6 +86,7 @@ export const Login = () => {
             >
               Login
             </Button>
+            <GoogleLogin />
           </Grid>
         </Grid>
       </form>
