@@ -8,6 +8,7 @@ import {
   federatedGoogleAuthBodySchema,
 } from "./contract";
 import { z } from "zod";
+import { StatusCodes } from "http-status-codes";
 
 const authenticationResultSchema = z.object({
   authenticated: z.boolean(),
@@ -24,10 +25,13 @@ export type LogoutResponse = {
 
 export const sessionInfo = async (): Promise<SessionInfoResponse> => {
   const response = await Session.info()
-    .ok((res) => res.status === 200 || res.status === 401)
+    .ok(
+      (res) =>
+        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+    )
     .send();
 
-  if (response.status === 200) {
+  if (response.status === StatusCodes.OK) {
     const result = authenticatedUserSchema.parse(response.body);
     return { authenticated: true, ...result };
   } else {
@@ -40,9 +44,12 @@ export const login = async (request: LoginBody): Promise<LoginResponse> => {
   const parsed = loginBodySchema.parse(request);
   const response = await Session.login()
     .send(parsed)
-    .ok((res) => res.status === 200 || res.status === 401);
+    .ok(
+      (res) =>
+        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+    );
 
-  if (response.status === 200) {
+  if (response.status === StatusCodes.OK) {
     const result = authenticatedUserSchema.parse(response.body);
     return { authenticated: true, ...result };
   } else {
@@ -60,9 +67,12 @@ export const federatedGoogleLogin = async (
   const parsed = federatedGoogleAuthBodySchema.parse(request);
   const response = await Session.federated_google_login()
     .send(parsed)
-    .ok((res) => res.status === 200 || res.status === 401);
+    .ok(
+      (res) =>
+        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+    );
 
-  if (response.status === 200) {
+  if (response.status === StatusCodes.OK) {
     const result = authenticatedUserSchema.parse(response.body);
     return { authenticated: true, ...result };
   } else {
@@ -75,10 +85,13 @@ export const federatedGoogleLogin = async (
 
 export const logout = async (): Promise<LogoutResponse> => {
   const response = await Session.logout()
-    .ok((res) => res.status === 200 || res.status === 400)
+    .ok(
+      (res) =>
+        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+    )
     .send();
 
-  if (response.status === 200) {
+  if (response.status === StatusCodes.OK) {
     console.log(`logout response: ${response.text}`);
     return { success: true };
   } else {

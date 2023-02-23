@@ -1,9 +1,10 @@
 import { useAuth } from "../common";
+import { ChangePassword } from "./forms/ChangePassword";
 
 export const Info = () => {
   const auth = useAuth();
   return (
-    <main>
+    <div>
       <h2>Session Info</h2>
       {auth.state.authenticated ? (
         <>
@@ -15,6 +16,8 @@ export const Info = () => {
       ) : (
         <>Unauthenticated</>
       )}
-    </main>
+
+      <ChangePassword />
+    </div>
   );
 };

@@ -8,6 +8,7 @@ import { LoginBody } from "../../api/contract/types";
 import { useAuth } from "../../common";
 import { FormTextField } from "../input/FormTextField";
 import { GoogleLogin } from "../GoogleLogin";
+import { googleLoginEnabled } from "../../common/config";
 
 type LoginFormData = LoginBody;
 
@@ -43,7 +44,7 @@ export const Login = () => {
   }
 
   return (
-    <main>
+    <div>
       <h2>Login</h2>
       {loginData?.failureString !== null ? (
         <div className="loginError">{loginData?.failureString}</div>
@@ -63,10 +64,11 @@ export const Login = () => {
         >
           <Grid item>
             <FormTextField
+              control={control}
               name="username"
               label="Username"
               required
-              control={control}
+              autoComplete="username"
             />
           </Grid>
           <Grid item>
@@ -76,6 +78,7 @@ export const Login = () => {
               label="Password"
               required
               type="password"
+              autoComplete="current-password"
             />
           </Grid>
           <Grid item>
@@ -86,10 +89,10 @@ export const Login = () => {
             >
               Login
             </Button>
-            <GoogleLogin />
+            {googleLoginEnabled ? <GoogleLogin /> : null}
           </Grid>
         </Grid>
       </form>
-    </main>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import superagent from "superagent";
-import { bikeWeekEventSchema, MutableBikeWeekEvent } from "./contract/types";
+import { bikeWeekEventSchema, MutateBikeWeekEvent } from "./contract/types";
 import { AuthContextType } from "../common";
 
 export const getAllEvents = async (auth: AuthContextType) => {
@@ -18,7 +18,7 @@ export const getEvent = async (auth: AuthContextType, id: string) => {
   return bikeWeekEventSchema.parse(result.body);
 };
 
-export type UpdateEventRequest = Partial<MutableBikeWeekEvent>;
+export type UpdateEventRequest = Partial<MutateBikeWeekEvent>;
 
 export const updateEvent = async (
   auth: AuthContextType,
