@@ -3,8 +3,7 @@ import { Main } from "./components/Main";
 import { Events } from "./components/Events";
 import { Form as EventDetail } from "./components/forms/eventdetail";
 import { Login } from "./components/forms/Login";
-import { Logout } from "./components/Logout";
-import { Info } from "./components/Info";
+import { Profile } from "./components/Profile";
 import "./styles.css";
 import { ErrorFallback } from "./common/error";
 import { ErrorBoundary } from "react-error-boundary";
@@ -20,8 +19,7 @@ export const App = () => {
               <Route path=":id" element={<EventDetail />} />
             </Route>
             <Route path="login" element={<Login />} />
-            <Route path="logout" element={<Logout />} />
-            <Route path="info" element={<Info />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>
       </ErrorBoundary>

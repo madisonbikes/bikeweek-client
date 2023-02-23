@@ -34,16 +34,8 @@ export const Main = () => {
             &nbsp;|&nbsp;
           </>
         ) : null}
-        {auth.state.authenticated ? (
-          <>
-            <Link component={RouterLink} to="/logout">
-              Logout
-            </Link>
-            &nbsp;|&nbsp;
-          </>
-        ) : null}
-        <Link component={RouterLink} to="/info">
-          Info
+        <Link component={RouterLink} to="/profile">
+          Profile
         </Link>
         &nbsp;|&nbsp;
         <Link rel="noreferrer noopener" href={gfFormUri} target="_blank">
@@ -71,7 +63,9 @@ export const Main = () => {
           </SvgIcon>
         </Link>
       </nav>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <footer>
         <Copyright />
       </footer>

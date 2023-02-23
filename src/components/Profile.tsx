@@ -1,7 +1,8 @@
 import { useAuth } from "../common";
 import { ChangePassword } from "./forms/ChangePassword";
+import { Logout } from "./Logout";
 
-export const Info = () => {
+export const Profile = () => {
   const auth = useAuth();
   return (
     <div>
@@ -10,13 +11,20 @@ export const Info = () => {
         <>
           <ul>
             <li>Username: {auth.state.username}</li>
-            <li>Roles: {auth.state.roles + ""}</li>
+            {auth.state.roles ? (
+              <li>Roles: {JSON.stringify(auth.state.roles)}</li>
+            ) : null}
+            {auth.state.federated ? (
+              <li>
+                Federated Identities: {JSON.stringify(auth.state.federated)}
+              </li>
+            ) : null}
           </ul>
         </>
       ) : (
         <>Unauthenticated</>
       )}
-
+      <Logout />
       <ChangePassword />
     </div>
   );

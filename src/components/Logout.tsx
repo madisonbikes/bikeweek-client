@@ -23,19 +23,22 @@ export const Logout = () => {
     }
   }, [navigate, isSuccess]);
 
+  if (!auth.state.authenticated) {
+    return null;
+  }
+
   if (isLoading) {
     return <div>Logging out...</div>;
   }
 
   return (
-    <main>
-      <h2>Logout</h2>
+    <>
       <Button
         variant="contained"
         onClick={() => logoutMutation.mutate(undefined)}
       >
         Logout
       </Button>
-    </main>
+    </>
   );
 };

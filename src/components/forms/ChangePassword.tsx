@@ -52,7 +52,7 @@ export const ChangePassword = () => {
     return <div>Changing password...</div>;
   }
   return (
-    <div>
+    <>
       <h2>Change Password</h2>
       <form
         onKeyDown={async (e) => {
@@ -131,6 +131,6 @@ export const ChangePassword = () => {
           </Grid>
         </Grid>
       </form>
-    </div>
+    </>
   );
 };
