@@ -26,8 +26,8 @@ export const ChangePassword = () => {
   const form = useForm({
     defaultValues,
   });
-  const { formState, handleSubmit, control, getValues } = form;
-  const { isSubmitting } = formState;
+  const { formState, handleSubmit, control, setError, clearErrors } = form;
+  const { isSubmitting, errors } = formState;
 
   useEffect(() => {
     if (mutationSuccess) {
@@ -35,14 +35,28 @@ export const ChangePassword = () => {
         setPasswordNotification("Successfully changed password.");
         form.reset(defaultValues);
       } else {
-        setPasswordNotification("Current password doesn't match.");
+        setError(
+          "old_password",
+          {
+            type: "custom",
+            message: "Current password invalid.",
+          },
+          { shouldFocus: true }
+        );
       }
     }
-  }, [mutationSuccess, changePasswordSuccess, form]);
+  }, [mutationSuccess, changePasswordSuccess, form, setError]);
 
   const onSubmit = (formData: ChangePasswordFormData) => {
+    setPasswordNotification("");
     if (formData.new_password !== formData.new_password_duplicate) {
+      setError("root.password_error", {
+        type: "custom",
+        message: "New passwords don't match",
+      });
       return;
+    } else {
+      clearErrors("root.password_error");
     }
     changePasswordMutation.mutate(formData);
     form.reset(formData);
@@ -61,7 +75,9 @@ export const ChangePassword = () => {
           }
         }}
       >
-        {passwordNotification ? <h3>{passwordNotification}</h3> : null}
+        {passwordNotification ? (
+          <div className="passwordChangeOk">{passwordNotification}</div>
+        ) : null}
         <Grid
           direction="column"
           container
@@ -86,17 +102,6 @@ export const ChangePassword = () => {
               required
               autoComplete="new-password"
               type="password"
-              validate={() => {
-                const newPassword = getValues("new_password");
-                const newPasswordDuplicate = getValues(
-                  "new_password_duplicate"
-                );
-                if (newPasswordDuplicate !== newPassword) {
-                  return "Password Mismatch";
-                } else {
-                  return true;
-                }
-              }}
             />
           </Grid>
           <Grid item>
@@ -107,18 +112,13 @@ export const ChangePassword = () => {
               required
               autoComplete="new-password"
               type="password"
-              validate={() => {
-                const newPassword = getValues("new_password");
-                const newPasswordDuplicate = getValues(
-                  "new_password_duplicate"
-                );
-                if (newPasswordDuplicate !== newPassword) {
-                  return "Password Mismatch";
-                } else {
-                  return true;
-                }
-              }}
             />
+          </Grid>
+          <Grid item className="passwordError">
+            {errors.root?.password_error?.type !== undefined ? (
+              <>{errors.root?.password_error?.message}</>
+            ) : null}
+            {errors.old_password ? <>{errors.old_password.message}</> : null}
           </Grid>
           <Grid item>
             <Button

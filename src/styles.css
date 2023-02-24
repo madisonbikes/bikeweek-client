@@ -4,6 +4,16 @@
   padding-bottom: 1rem;
 }
 
+.passwordError {
+  color: red;
+  font-weight: bold;
+}
+
+.passwordChangeOk {
+  color: green;
+  font-weight: bold;
+}
+
 body {
   padding: 1rem;
 }
