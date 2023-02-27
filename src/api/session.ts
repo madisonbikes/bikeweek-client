@@ -4,8 +4,8 @@ import {
   AuthenticatedUser,
   LoginBody,
   loginBodySchema,
-  FederatedGoogleAuthBody,
-  federatedGoogleAuthBodySchema,
+  FederatedLoginBody,
+  federatedLoginBodySchema,
 } from "./contract";
 import { z } from "zod";
 import { StatusCodes } from "http-status-codes";
@@ -60,12 +60,12 @@ export const login = async (request: LoginBody): Promise<LoginResponse> => {
   }
 };
 
-export const federatedGoogleLogin = async (
-  request: FederatedGoogleAuthBody
+export const federatedLogin = async (
+  request: FederatedLoginBody
 ): Promise<LoginResponse> => {
   // don't leak any extra data
-  const parsed = federatedGoogleAuthBodySchema.parse(request);
-  const response = await Session.federated_google_login()
+  const parsed = federatedLoginBodySchema.parse(request);
+  const response = await Session.federated_login()
     .send(parsed)
     .ok(
       (res) =>
