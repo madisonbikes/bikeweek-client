@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
+import { userSchema } from "./contract";
 import { Users } from "./contract/Users";
 
 const changePasswordSchema = z.object({
@@ -9,7 +10,7 @@ const changePasswordSchema = z.object({
 type ChangePassword = z.infer<typeof changePasswordSchema>;
 
 export const changePassword = async (data: ChangePassword) => {
-  const response = await Users.put_self_Password()
+  const response = await Users.put_self_password()
     .send(data)
     .ok(
       (res) =>
@@ -20,4 +21,9 @@ export const changePassword = async (data: ChangePassword) => {
   } else {
     return true;
   }
+};
+
+export const getSelf = async () => {
+  const response = await Users.get_self();
+  return userSchema.parse(response.body);
 };

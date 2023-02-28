@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { LoginResponse, sessionInfo } from "../api/session";
+import { getSelf } from "../api/users";
 
-type AuthState = LoginResponse;
+export type AuthState = LoginResponse;
 
 export type AuthContextType = {
   state: AuthState;
@@ -26,8 +27,18 @@ type Props = {
 export const AuthProvider = (props: Props) => {
   const [state, setState] = useState<AuthState>({ authenticated: false });
   const { data } = useQuery({
-    queryKey: "sessionInfo",
-    queryFn: () => sessionInfo(),
+    queryKey: ["session"],
+    queryFn: async () => {
+      const [si, self] = await Promise.all([sessionInfo(), getSelf()]);
+      const retval: AuthState = {
+        authenticated: si.authenticated,
+        id: si.id,
+        username: si.username,
+        roles: self.roles,
+        federated: self.federated,
+      };
+      return retval;
+    },
   });
 
   useEffect(() => {
