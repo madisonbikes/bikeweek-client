@@ -1,6 +1,6 @@
 import { GoogleLogin as GL } from "@react-oauth/google";
 import { useMutation, useQueryClient } from "react-query";
-import { getGoogleFederatedId, linkFederatedIdentity } from "../api/federated";
+import { getGoogleFederatedId, linkFederatedId } from "../api/federated";
 import { useAuth } from "../common";
 
 export const GoogleLink = () => {
@@ -8,7 +8,7 @@ export const GoogleLink = () => {
 
   const queryClient = useQueryClient();
   const linkMutation = useMutation({
-    mutationFn: linkFederatedIdentity,
+    mutationFn: linkFederatedId,
     onSuccess: () => {
       return queryClient.invalidateQueries(["session"]);
     },

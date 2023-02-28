@@ -1,16 +1,13 @@
 import { Button } from "@mui/material";
 import { useMutation, useQueryClient } from "react-query";
-import {
-  getGoogleFederatedId,
-  unlinkFederatedIdentity,
-} from "../api/federated";
+import { getGoogleFederatedId, unlinkFederatedId } from "../api/federated";
 import { useAuth } from "../common";
 
 export const GoogleUnlink = () => {
   const auth = useAuth();
   const queryClient = useQueryClient();
   const unlinkMutation = useMutation({
-    mutationFn: unlinkFederatedIdentity,
+    mutationFn: unlinkFederatedId,
     onSuccess: () => {
       return queryClient.invalidateQueries(["session"]);
     },

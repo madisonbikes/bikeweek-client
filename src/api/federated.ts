@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { AuthState } from "../common";
-import { AddFederatedIdentity, FederatedProvider } from "./contract";
+import { AddFederatedId, FederatedProvider } from "./contract";
 import { Federated } from "./contract/Federated";
 
 export const getGoogleFederatedId = (state: AuthState) => {
@@ -9,7 +9,7 @@ export const getGoogleFederatedId = (state: AuthState) => {
   );
 };
 
-export const linkFederatedIdentity = async (data: AddFederatedIdentity) => {
+export const linkFederatedId = async (data: AddFederatedId) => {
   const response = await Federated.put_self_federated()
     .send(data)
     .ok(
@@ -23,7 +23,7 @@ export const linkFederatedIdentity = async (data: AddFederatedIdentity) => {
   }
 };
 
-export const unlinkFederatedIdentity = async (provider: FederatedProvider) => {
+export const unlinkFederatedId = async (provider: FederatedProvider) => {
   const response = await Federated.delete_self_federated(provider).ok(
     (res) =>
       res.status === StatusCodes.OK || res.status === StatusCodes.FORBIDDEN
