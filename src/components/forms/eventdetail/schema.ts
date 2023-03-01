@@ -24,6 +24,12 @@ export type EventFormData = Required<
   eventDays: Date[];
 };
 
+const amPmTimeRegex = /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
+const timeRegexOptions = {
+  excludeEmptyString: true,
+  message: "Times should be supplied in US AM/PM format",
+};
+
 /** schema that validates EventFormData */
 export const FormSchema = yup.object({
   name: yup.string().min(10).required().ensure(),
@@ -32,7 +38,7 @@ export const FormSchema = yup.object({
     .array(
       yup.object({
         name: yup.string().required().ensure().label("Sponsor Name"),
-        url: yup.string().ensure(),
+        url: yup.string().ensure().url(),
       })
     )
     .required()
@@ -56,8 +62,13 @@ export const FormSchema = yup.object({
   eventTimes: yup
     .array(
       yup.object({
-        start: yup.string().required().default("").label("Start Time"),
-        end: yup.string().default(""),
+        start: yup
+          .string()
+          .matches(amPmTimeRegex, timeRegexOptions)
+          .required()
+          .default("")
+          .label("Start Time"),
+        end: yup.string().matches(amPmTimeRegex, timeRegexOptions).default(""),
       })
     )
     .required()
