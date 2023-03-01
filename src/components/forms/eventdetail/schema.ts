@@ -24,7 +24,7 @@ export type EventFormData = Required<
   eventDays: Date[];
 };
 
-const amPmTimeRegex = /((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
+const amPmTimeRegex = /^\s*((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm])\s*$)/;
 const timeRegexOptions = {
   excludeEmptyString: true,
   message: "Times should be supplied in US AM/PM format",
@@ -32,13 +32,13 @@ const timeRegexOptions = {
 
 /** schema that validates EventFormData */
 export const FormSchema = yup.object({
-  name: yup.string().min(10).required().ensure(),
+  name: yup.string().min(10).required().ensure().trim(),
   description: yup.string().ensure(),
   sponsors: yup
     .array(
       yup.object({
-        name: yup.string().required().ensure().label("Sponsor Name"),
-        url: yup.string().ensure().url(),
+        name: yup.string().required().ensure().label("Sponsor Name").trim(),
+        url: yup.string().ensure().url().trim(),
       })
     )
     .required()
@@ -49,11 +49,11 @@ export const FormSchema = yup.object({
     .oneOf(Object.values(eventStatusSchema.Values))
     .required()
     .default(eventStatusSchema.Enum.submitted),
-  eventUrl: yup.string().ensure().url(),
-  eventGraphicUrl: yup.string().ensure().url(),
+  eventUrl: yup.string().ensure().url().trim(),
+  eventGraphicUrl: yup.string().ensure().url().trim(),
   eventDays: yup.array().required().of(yup.date().required()).default([]),
   location: yup.object({
-    name: yup.string().min(5).ensure().required(),
+    name: yup.string().min(5).ensure().required().trim(),
     sched_address: yup.string().ensure(),
     maps_query: yup.string().ensure(),
     maps_placeid: yup.string().ensure(),
@@ -66,15 +66,22 @@ export const FormSchema = yup.object({
           .string()
           .matches(amPmTimeRegex, timeRegexOptions)
           .required()
+          .trim()
           .default("")
           .label("Start Time"),
-        end: yup.string().matches(amPmTimeRegex, timeRegexOptions).default(""),
+        end: yup
+          .string()
+          .matches(amPmTimeRegex, timeRegexOptions)
+          .default("")
+          .trim(),
       })
     )
     .required()
     .default([]),
   eventTypes: yup
-    .array(yup.string().lowercase().min(1).required().label("Event Type Name"))
+    .array(
+      yup.string().lowercase().min(1).required().trim().label("Event Type Name")
+    )
     .required()
     .default([]),
 });
