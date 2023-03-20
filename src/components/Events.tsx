@@ -18,20 +18,17 @@ import { ConfirmEventDelete } from "./ConfirmEventDelete";
 export const Events = () => {
   const auth = useAuth();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [activeRowId, setActiveRowId] = useState("");
+  const [activeRowId, setActiveRowId] = useState(0);
 
   const navigate = useNavigate();
-  const { isLoading, isError, data, error } = useQuery<BikeWeekEvent[], Error>(
-    ["events"],
-    () => {
-      return getAllEvents(auth);
-    }
-  );
+  const { isLoading, data } = useQuery(["events"], () => {
+    return getAllEvents(auth);
+  });
 
   const queryClient = useQueryClient();
-  const deleteMutation = useMutation<void, Error, string>(
-    async (data) => {
-      await deleteEvent(auth, data);
+  const deleteMutation = useMutation(
+    async (id: number) => {
+      await deleteEvent(auth, id.toString());
     },
     {
       onSuccess: () => {
@@ -42,10 +39,6 @@ export const Events = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
   }
 
   const onModifyClicked = (id: number) => {
