@@ -1,5 +1,5 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { parse } from "date-fns";
 import { Controller, useFieldArray } from "react-hook-form";
@@ -34,7 +34,7 @@ export const Days = () => {
                       console.log(`new date ${value}`);
                       onChange(value);
                     }}
-                    renderInput={(params) => <TextField {...params} />}
+                    slotProps={{ textField: { variant: "outlined" } }}
                   />
                 )}
               />
