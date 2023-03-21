@@ -28,7 +28,7 @@ export const Events = () => {
   const queryClient = useQueryClient();
   const deleteMutation = useMutation(
     async (id: number) => {
-      await deleteEvent(auth, id.toString());
+      await deleteEvent(auth, id);
     },
     {
       onSuccess: () => {

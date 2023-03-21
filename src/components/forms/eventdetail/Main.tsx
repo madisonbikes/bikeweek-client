@@ -18,10 +18,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EventFormData, FormSchema } from "./schema";
 
 export const Form = () => {
-  const { id } = useParams();
-  if (id === undefined) {
+  const { idAsString } = useParams();
+  if (idAsString === undefined) {
     throw new Error("requires id param");
   }
+  const id = parseInt(idAsString);
 
   const navigate = useNavigate();
   const auth = useAuth();
