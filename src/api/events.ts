@@ -10,7 +10,7 @@ export const getAllEvents = async (auth: AuthContextType) => {
   return bikeWeekEventSchema.array().parse(result.body);
 };
 
-export const getEvent = async (auth: AuthContextType, id: string) => {
+export const getEvent = async (auth: AuthContextType, id: number) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
   }
@@ -22,7 +22,7 @@ export type UpdateEventRequest = Partial<MutateBikeWeekEvent>;
 
 export const updateEvent = async (
   auth: AuthContextType,
-  id: string,
+  id: number,
   data: UpdateEventRequest
 ) => {
   if (!auth.state.authenticated) {
@@ -33,7 +33,7 @@ export const updateEvent = async (
   return bikeWeekEventSchema.parse(result.body);
 };
 
-export const deleteEvent = async (auth: AuthContextType, id: string) => {
+export const deleteEvent = async (auth: AuthContextType, id: number) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
   }
