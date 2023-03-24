@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { FallbackProps } from "react-error-boundary";
 
 export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
@@ -5,7 +6,7 @@ export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     <div role="alert">
       <p>Something went wrong: {error.message}</p>
       <pre>{error.stack}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
+      <Button onClick={resetErrorBoundary}>Try again</Button>
     </div>
   );
 };
