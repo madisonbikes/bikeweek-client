@@ -18,17 +18,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EventFormData, FormSchema } from "./schema";
 
 export const Form = () => {
-  const { idAsString } = useParams();
-  if (idAsString === undefined) {
+  const { id } = useParams();
+  if (id === undefined) {
     throw new Error("requires id param");
   }
-  const id = parseInt(idAsString);
+  const idAsInt = parseInt(id);
 
   const navigate = useNavigate();
   const auth = useAuth();
   const queryClient = useQueryClient();
   const eventQuery = useQuery(["events", id], async () => {
-    return FormSchema.cast(await getEvent(auth, id));
+    return FormSchema.cast(await getEvent(auth, idAsInt));
   });
   const { data, isSuccess: querySuccess } = eventQuery;
 
@@ -36,7 +36,7 @@ export const Form = () => {
 
   const eventMutation = useMutation(
     async (data: EventFormData) => {
-      await updateEvent(auth, id, data);
+      await updateEvent(auth, idAsInt, data);
     },
     {
       onSuccess: () => {
