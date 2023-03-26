@@ -50,7 +50,7 @@ export const Days = () => {
         ))}
       </ul>
       <Button
-        type="button"
+        variant="outlined"
         onClick={() => append(parse(FIRST_DAY, "MM/dd/yyyy", new Date()))}
       >
         Add Day
