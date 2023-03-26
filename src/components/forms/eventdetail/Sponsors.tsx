@@ -37,7 +37,7 @@ export const Sponsors = () => {
           </IconButton>
         </Box>
       ))}
-      <Button type="button" onClick={() => append({ name: "", url: "" })}>
+      <Button variant="outlined" onClick={() => append({ name: "", url: "" })}>
         Add Sponsor
       </Button>
     </>

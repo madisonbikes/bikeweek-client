@@ -34,7 +34,7 @@ export const Types = () => {
           </li>
         ))}
       </ul>
-      <Button type="button" onClick={() => append("")}>
+      <Button variant="outlined" onClick={() => append("")}>
         Add Type
       </Button>
     </>

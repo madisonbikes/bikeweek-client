@@ -10,7 +10,7 @@
     <!-- CSP for tinymce cloud editor and google fonts -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; frame-src 'self' https://accounts.google.com/gsi/; script-src 'self' https://accounts.google.com/gsi/client *.tinymce.com *.tiny.cloud; connect-src 'self' *.tinymce.com *.tiny.cloud blob:; img-src 'self' *.tinymce.com *.tiny.cloud data: blob:; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style *.tinymce.com *.tiny.cloud https://fonts.googleapis.com/; font-src 'self' *.tinymce.com *.tiny.cloud https://fonts.gstatic.com/;"
+      content="default-src 'self'; frame-src 'self' https://accounts.google.com/gsi/; script-src 'self' https://accounts.google.com/gsi/client *.tinymce.com *.tiny.cloud; connect-src 'self' *.tinymce.com *.tiny.cloud blob:; img-src 'self' *.tinymce.com *.tiny.cloud *.tile.openstreetmap.org https://unpkg.com data: blob:; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style *.tinymce.com *.tiny.cloud https://fonts.googleapis.com/ https://unpkg.com/leaflet@1.9.3/dist/leaflet.css; font-src 'self' *.tinymce.com *.tiny.cloud https://fonts.gstatic.com/;"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -26,6 +26,13 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
     />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.

@@ -48,7 +48,7 @@ export const Times = () => {
           </li>
         ))}
       </ul>
-      <Button type="button" onClick={() => append({ start: "", end: "" })}>
+      <Button variant="outlined" onClick={() => append({ start: "", end: "" })}>
         Add Time
       </Button>
     </>
