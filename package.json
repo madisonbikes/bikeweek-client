@@ -70,5 +70,10 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "react-scripts": "5.0.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!\\@react-leaflet|react-leaflet)"
+    ]
   }
 }
