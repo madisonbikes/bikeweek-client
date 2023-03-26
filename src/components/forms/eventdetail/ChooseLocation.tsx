@@ -69,7 +69,7 @@ const Map = ({ initialLocation, onLocation }: MapProps) => {
   return (
     <MapContainer
       center={initialLocation}
-      zoom={12}
+      zoom={17}
       scrollWheelZoom={false}
       style={{ height: "400px", width: "500px", margin: "0 auto" }}
     >
