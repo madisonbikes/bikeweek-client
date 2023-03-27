@@ -10,6 +10,7 @@ export const GoogleLogin = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation({ mutationFn: federatedLogin });
   const { isSuccess: loginSuccess, data: loginData } = loginMutation;
+
   useEffect(() => {
     if (loginSuccess && loginData.authenticated) {
       console.log("set auth");
@@ -18,19 +19,27 @@ export const GoogleLogin = () => {
     }
   }, [loginSuccess, loginData, auth, navigate]);
 
+  let loginStatus = <></>;
+  if (loginSuccess && !loginData.authenticated) {
+    loginStatus = <div>{loginData.failureString}</div>;
+  }
+
   return (
-    <GL
-      theme="filled_black"
-      width="200"
-      onSuccess={(credentialResponse) => {
-        loginMutation.mutate({
-          provider: "google",
-          token: credentialResponse.credential ?? "",
-        });
-      }}
-      onError={() => {
-        console.log("Login Failed");
-      }}
-    />
+    <>
+      {loginStatus}
+      <GL
+        theme="filled_black"
+        width="200"
+        onSuccess={(credentialResponse) => {
+          loginMutation.mutate({
+            provider: "google",
+            token: credentialResponse.credential ?? "",
+          });
+        }}
+        onError={() => {
+          console.log("Login Failed");
+        }}
+      />
+    </>
   );
 };
