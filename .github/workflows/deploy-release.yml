@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
-        env:
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "build/"
