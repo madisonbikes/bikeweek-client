@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
-import { FallbackProps } from "react-error-boundary";
+import { FallbackProps, useErrorBoundary } from "react-error-boundary";
 
-export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+export const ErrorFallback = ({ error }: FallbackProps) => {
+  const { resetBoundary } = useErrorBoundary();
+
   return (
     <div role="alert">
       <p>Something went wrong: {error.message}</p>
       <pre>{error.stack}</pre>
-      <Button onClick={resetErrorBoundary}>Try again</Button>
+      <Button onClick={resetBoundary}>Try again</Button>
     </div>
   );
 };
