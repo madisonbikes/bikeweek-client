@@ -10,7 +10,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.16",
     "@mui/x-data-grid": "^6.0.3",
-    "@mui/x-date-pickers": "^6.0.3",
+    "@mui/x-date-pickers": "^6.1.0",
     "@react-oauth/google": "^0.8.0",
     "@tinymce/tinymce-react": "^4.3.0",
     "@tsconfig/node18": "^1.0.1",
