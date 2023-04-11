@@ -1,19 +1,5 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
-
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "module": "esnext",
-    "moduleResolution": "node"
-  },
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "compilerOptions": {},
   "include": ["src"]
 }
