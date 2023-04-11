@@ -24,6 +24,13 @@ export const changePassword = async (data: ChangePassword) => {
 };
 
 export const getSelf = async () => {
-  const response = await Users.get_self();
-  return userSchema.parse(response.body);
+  const response = await Users.get_self().ok(
+    (res) =>
+      res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+  );
+  if (response.statusCode === StatusCodes.UNAUTHORIZED) {
+    return undefined;
+  } else {
+    return userSchema.parse(response.body);
+  }
 };

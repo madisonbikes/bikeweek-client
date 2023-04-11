@@ -34,8 +34,8 @@ export const AuthProvider = (props: Props) => {
         authenticated: si.authenticated,
         id: si.id,
         username: si.username,
-        roles: self.roles,
-        federated: self.federated,
+        roles: self?.roles,
+        federated: self?.federated,
       };
       return retval;
     },
