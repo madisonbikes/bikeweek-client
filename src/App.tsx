@@ -5,24 +5,20 @@ import { Form as EventDetail } from "./components/forms/eventdetail";
 import { Login } from "./components/forms/Login";
 import { Profile } from "./components/Profile";
 import "./styles.css";
-import { ErrorFallback } from "./common/error";
-import { ErrorBoundary } from "react-error-boundary";
 
 export const App = () => {
   return (
     <BrowserRouter>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Routes>
-          <Route path="/" element={<Main />}>
-            <Route path="events" element={<Outlet />}>
-              <Route index element={<Events />} />
-              <Route path=":id" element={<EventDetail />} />
-            </Route>
-            <Route path="login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route path="events" element={<Outlet />}>
+            <Route index element={<Events />} />
+            <Route path=":id" element={<EventDetail />} />
           </Route>
-        </Routes>
-      </ErrorBoundary>
+          <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 };

@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme, AuthProvider } from "./common";
+import { theme, AuthProvider, ErrorFallback } from "./common";
 import { CssBaseline } from "@mui/material";
 import { App } from "./App";
+import { ErrorBoundary } from "react-error-boundary";
 
 // for date pickers
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -31,14 +32,16 @@ root.render(
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <App />
-            </LocalizationProvider>
-          </AuthProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <App />
+              </LocalizationProvider>
+            </AuthProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </ErrorBoundary>
       </React.StrictMode>
     </ThemeProvider>
   </GoogleOAuthProvider>
