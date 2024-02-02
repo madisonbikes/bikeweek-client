@@ -22,7 +22,7 @@
     "react-leaflet": "^4.2.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.22.0",
-    "superagent": "^8.0.9",
+    "superagent": "^8.1.2",
     "typescript": "~4.9.5",
     "yup": "^1.3.3",
     "zod": "^3.22.4"
@@ -60,7 +60,7 @@
     "@types/node": "^18.16.17",
     "@types/react": "^18.2.6",
     "@types/react-router-dom": "^5.3.3",
-    "@types/superagent": "^4.1.18",
+    "@types/superagent": "^8.1.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.5.5",
