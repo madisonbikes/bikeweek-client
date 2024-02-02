@@ -58,7 +58,7 @@
     "@types/jest": "^29.5.12",
     "@types/leaflet": "^1.9.3",
     "@types/node": "^18.16.17",
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.2.51",
     "@types/react-router-dom": "^5.3.3",
     "@types/superagent": "^8.1.3",
     "eslint": "^8.56.0",
