@@ -68,7 +68,7 @@
     "eslint-plugin-no-autofix": "^1.2.3",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.10",
     "prettier": "^3.2.4",
     "react-scripts": "5.0.1"
   },
