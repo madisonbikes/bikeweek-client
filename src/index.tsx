@@ -9,7 +9,7 @@ import { App } from "./App";
 import { ErrorBoundary } from "react-error-boundary";
 
 // for date pickers
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -25,10 +25,10 @@ const queryClient = new QueryClient({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID ?? ""}>
+  <GoogleOAuthProvider clientId={process.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
@@ -44,5 +44,5 @@ root.render(
         </ErrorBoundary>
       </React.StrictMode>
     </ThemeProvider>
-  </GoogleOAuthProvider>
+  </GoogleOAuthProvider>,
 );

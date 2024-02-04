@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { App } from "./App";
+import { vi } from "vitest";
 
-jest.mock("./common", () => ({
+vi.mock("./common", () => ({
   useAuth: () => {
     return {
       state: { authenticated: true },
@@ -14,13 +15,14 @@ jest.mock("./common", () => ({
 }));
 
 const queryClient = new QueryClient();
-
-test("renders Bike Week Admin text", async () => {
-  render(
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  );
-  const matched = await screen.findByText(/Bike Week Administration/);
-  expect(matched).toBeInTheDocument();
+describe("App", () => {
+  it("renders Bike Week Admin text", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+    );
+    const matched = await screen.findByText(/Bike Week Administration/);
+    expect(matched).toBeInTheDocument();
+  });
 });

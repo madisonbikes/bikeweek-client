@@ -42,7 +42,7 @@ const FormEditor = forwardRef(
           onChange(newValue);
         }}
         ref={ref}
-        apiKey={process.env.REACT_APP_TINYMCE_KEY}
+        apiKey={process.env.VITE_APP_TINYMCE_KEY}
         value={value}
         init={{
           content_css: "dark",
@@ -57,6 +57,6 @@ const FormEditor = forwardRef(
         }}
       />
     );
-  }
+  },
 );
 FormEditor.displayName = "CustomFormEditor";

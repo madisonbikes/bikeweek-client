@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
+      VITE_APP_GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
 
     steps:
       - uses: actions/checkout@v4
