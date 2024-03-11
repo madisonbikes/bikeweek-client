@@ -11,8 +11,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:import/recommended",
     "plugin:import/typescript",
     "prettier",
@@ -39,7 +38,16 @@ module.exports = {
     "func-style": ["warn"],
     "require-await": ["error"],
     "@typescript-eslint/no-floating-promises": "error",
-    "import/no-default-export": 2,
+    "import/no-default-export": "warn",
     "@typescript-eslint/strict-boolean-expressions": "warn",
+
+    // these are difficult to use w/react + forms unfortunately
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+
+    // not useful with use of HttpStatus error codes
+    "@typescript-eslint/no-unsafe-enum-comparison": "off",
   },
 };
