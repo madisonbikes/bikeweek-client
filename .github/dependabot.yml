@@ -1,14 +1,11 @@
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
       interval: "monthly"
     target-branch: "develop"
-    
-    # temporarily disabled until 2024
     open-pull-requests-limit: 25
-
     commit-message:
       prefix: "fix"
       prefix-development: "chore"
@@ -17,10 +14,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    
-    # temporarily disabled until 2024
+    target-branch: "main"
+
     open-pull-requests-limit: 5
-    
+
     commit-message:
       prefix: "ci"
