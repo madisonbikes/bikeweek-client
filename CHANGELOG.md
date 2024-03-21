@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.0...bikeweek-client-v0.4.1) (2024-03-21)
+
+
+### Bug Fixes
+
+* deploy now uses dist instead of deploy ([8cf9ad4](https://github.com/madisonbikes/bikeweek-client/commit/8cf9ad4463e93b9cf29a3ab74bfa8cd698c0e1d0))
+
 ## [0.4.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.3.0...bikeweek-client-v0.4.0) (2024-03-21)
 
 
