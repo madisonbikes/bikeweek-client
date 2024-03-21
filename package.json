@@ -1,6 +1,6 @@
 {
   "name": "bikeweek-client",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
