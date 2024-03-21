@@ -1,1 +1,2 @@
-export * from "./Main";
+import { Form } from "./Main";
+export { Form };

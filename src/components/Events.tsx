@@ -34,7 +34,7 @@ export const Events = () => {
       onSuccess: () => {
         return queryClient.invalidateQueries(["events"]);
       },
-    }
+    },
   );
 
   if (isLoading) {
