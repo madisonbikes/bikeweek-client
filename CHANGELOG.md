@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.3](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.2...bikeweek-client-v0.4.3) (2024-03-21)
+
+
+### Bug Fixes
+
+* add app version to footer ([b52d5e3](https://github.com/madisonbikes/bikeweek-client/commit/b52d5e356747d9fe9b776f87332238c3878d3a98))
+* don't use date-fns/parse ([56bb284](https://github.com/madisonbikes/bikeweek-client/commit/56bb284425d4dc286a9785c927188916a1deed59))
+* set first and last day thresholds for calendar ([9c7ca1a](https://github.com/madisonbikes/bikeweek-client/commit/9c7ca1ab7f008990dc1d346a6a0095525466d050))
+
 ## [0.4.2](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.1...bikeweek-client-v0.4.2) (2024-03-21)
 
 
