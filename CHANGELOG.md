@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.1...bikeweek-client-v0.4.2) (2024-03-21)
+
+
+### Bug Fixes
+
+* update config for 2024 ([b3a9904](https://github.com/madisonbikes/bikeweek-client/commit/b3a990486fa610db1e70742b373e570d49166a62))
+
 ## [0.4.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.0...bikeweek-client-v0.4.1) (2024-03-21)
 
 
