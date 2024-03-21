@@ -28,7 +28,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <GoogleOAuthProvider clientId={process.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}>
+  <GoogleOAuthProvider
+    clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}
+  >
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
