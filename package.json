@@ -1,6 +1,6 @@
 {
   "name": "bikeweek-client",
-  "version": "v2024",
+  "version": "0.3.0",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
@@ -36,7 +36,7 @@
     "test": "vitest",
     "check-package-updates": "npx npm-check-updates",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "browserslist": {
     "production": [
