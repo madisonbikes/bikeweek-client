@@ -1,7 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/session";
 import { LoginBody } from "../../api/contract/types";
@@ -39,7 +39,7 @@ export const Login = () => {
     form.reset(formData);
   };
 
-  if (loginMutation.isLoading) {
+  if (loginMutation.isPending) {
     return <div>Logging in...</div>;
   }
 

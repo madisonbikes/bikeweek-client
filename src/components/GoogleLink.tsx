@@ -1,5 +1,5 @@
 import { GoogleLogin as GL } from "@react-oauth/google";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getGoogleFederatedId, linkFederatedId } from "../api/federated";
 import { useAuth } from "../common";
 
@@ -10,7 +10,7 @@ export const GoogleLink = () => {
   const linkMutation = useMutation({
     mutationFn: linkFederatedId,
     onSuccess: () => {
-      return queryClient.invalidateQueries(["session"]);
+      return queryClient.invalidateQueries({ queryKey: ["session"] });
     },
   });
 

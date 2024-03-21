@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { LoginResponse, sessionInfo } from "../api/session";
 import { getSelf } from "../api/users";
 

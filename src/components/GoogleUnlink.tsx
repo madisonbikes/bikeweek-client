@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getGoogleFederatedId, unlinkFederatedId } from "../api/federated";
 import { useAuth } from "../common";
 
@@ -9,7 +9,7 @@ export const GoogleUnlink = () => {
   const unlinkMutation = useMutation({
     mutationFn: unlinkFederatedId,
     onSuccess: () => {
-      return queryClient.invalidateQueries(["session"]);
+      return queryClient.invalidateQueries({ queryKey: ["session"] });
     },
   });
 

@@ -1,7 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { changePassword } from "../../api/users";
 import { FormTextField } from "../input/FormTextField";
 
@@ -41,7 +41,7 @@ export const ChangePassword = () => {
             type: "custom",
             message: "Current password invalid.",
           },
-          { shouldFocus: true }
+          { shouldFocus: true },
         );
       }
     }
@@ -62,7 +62,7 @@ export const ChangePassword = () => {
     form.reset(formData);
   };
 
-  if (changePasswordMutation.isLoading) {
+  if (changePasswordMutation.isPending) {
     return <div>Changing password...</div>;
   }
   return (

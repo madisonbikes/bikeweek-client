@@ -1,7 +1,7 @@
 import { AppBar, Button, Divider, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEvent, updateEvent } from "../../../api/events";
 import { FormTextField } from "../../input/FormTextField";
@@ -27,23 +27,24 @@ export const Form = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const queryClient = useQueryClient();
-  const eventQuery = useQuery(["events", id], async () => {
-    return FormSchema.cast(await getEvent(auth, idAsInt));
+  const eventQuery = useQuery({
+    queryKey: ["events", id],
+    queryFn: async () => {
+      return FormSchema.cast(await getEvent(auth, idAsInt));
+    },
   });
   const { data, isSuccess: querySuccess } = eventQuery;
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
-  const eventMutation = useMutation(
-    async (data: EventFormData) => {
+  const eventMutation = useMutation({
+    mutationFn: async (data: EventFormData) => {
       await updateEvent(auth, idAsInt, data);
     },
-    {
-      onSuccess: () => {
-        return queryClient.invalidateQueries(["events"]);
-      },
-    }
-  );
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ["events"] });
+    },
+  });
   const { isSuccess: mutationSuccess } = eventMutation;
 
   const form = useForm({
@@ -72,7 +73,7 @@ export const Form = () => {
     return <div>Loading...</div>;
   }
 
-  if (isSubmitting || eventMutation.isLoading) {
+  if (isSubmitting || eventMutation.isPending) {
     return <div>Updating event...</div>;
   }
 
