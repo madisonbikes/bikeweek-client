@@ -1,4 +1,4 @@
-import { parse } from "date-fns/parse";
+import { parse } from "date-fns";
 
 // TODO someday pull these from the backend, it already knows this stuff
 export const FIRST_DAY = parse("06/01/2024", "MM/dd/yyyy", new Date());
