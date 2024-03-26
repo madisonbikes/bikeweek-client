@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.3...bikeweek-client-v1.0.0) (2024-03-26)
+
+
+### Features
+
+* release 1.0 ([d7f5a93](https://github.com/madisonbikes/bikeweek-client/commit/d7f5a9334ff74a89b7e8d73495b498c7f0eb8117))
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([2653b09](https://github.com/madisonbikes/bikeweek-client/commit/2653b097fff2300cb2275516d035f47eab900969))
+
 ## [0.4.3](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.2...bikeweek-client-v0.4.3) (2024-03-21)
 
 
