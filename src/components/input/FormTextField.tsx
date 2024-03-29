@@ -9,8 +9,7 @@ import {
 
 type Props<T extends FieldValues> = Omit<TextFieldProps, "name"> & {
   name: Path<T>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control?: Control<T, any>;
+  control?: Control<T, unknown>;
   validate?: (value: T) => ValidateResult | Promise<ValidateResult>;
 };
 
