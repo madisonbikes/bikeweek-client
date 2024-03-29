@@ -40,8 +40,6 @@ module.exports = {
     "@typescript-eslint/no-floating-promises": "error",
     "import/no-default-export": "warn",
     "@typescript-eslint/strict-boolean-expressions": "warn",
-
-    // these are difficult to use w/react + forms unfortunately
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
