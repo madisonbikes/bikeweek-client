@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useEffect } from "react";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../api/session";
 import { useAuth } from "../common";
@@ -9,13 +9,15 @@ export const Logout = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const logoutMutation = useMutation(() => {
-    console.log("clearing authentication");
-    auth.setState({ authenticated: false });
-    return logout();
+  const logoutMutation = useMutation({
+    mutationFn: () => {
+      console.log("clearing authentication");
+      auth.setState({ authenticated: false });
+      return logout();
+    },
   });
 
-  const { isSuccess, isLoading } = logoutMutation;
+  const { isSuccess, isPending } = logoutMutation;
 
   useEffect(() => {
     if (isSuccess) {
@@ -27,7 +29,7 @@ export const Logout = () => {
     return null;
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <div>Logging out...</div>;
   }
 

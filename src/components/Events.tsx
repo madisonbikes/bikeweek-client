@@ -1,5 +1,5 @@
 import { IconButton } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../api/contract/types";
 import { useNavigate } from "react-router-dom";
@@ -21,21 +21,22 @@ export const Events = () => {
   const [activeRowId, setActiveRowId] = useState(0);
 
   const navigate = useNavigate();
-  const { isLoading, data } = useQuery(["events"], () => {
-    return getAllEvents(auth);
+  const { isLoading, data } = useQuery({
+    queryKey: ["events"],
+    queryFn: () => {
+      return getAllEvents(auth);
+    },
   });
 
   const queryClient = useQueryClient();
-  const deleteMutation = useMutation(
-    async (id: number) => {
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
       await deleteEvent(auth, id);
     },
-    {
-      onSuccess: () => {
-        return queryClient.invalidateQueries(["events"]);
-      },
-    }
-  );
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ["events"] });
+    },
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;

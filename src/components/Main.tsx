@@ -1,7 +1,7 @@
 import { Link, SvgIcon } from "@mui/material";
 import { Outlet, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../common";
-import { Copyright } from "./Copyright";
+import { Footer } from "./Footer";
 import { ArrowCircleUp } from "@mui/icons-material";
 import { GF_FORM_ID, SCHED_URI } from "../common/config";
 
@@ -67,7 +67,7 @@ export const Main = () => {
         <Outlet />
       </main>
       <footer>
-        <Copyright />
+        <Footer />
       </footer>
     </>
   );

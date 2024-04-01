@@ -1,7 +1,10 @@
-export const FIRST_DAY = "06/03/2023";
-export const LAST_DAY = "06/11/2023";
-export const SCHED_URI = "https://madisonbikeweek2023.sched.com";
-export const GF_FORM_ID = 8;
+import { parse } from "date-fns";
+
+// TODO someday pull these from the backend, it already knows this stuff
+export const FIRST_DAY = parse("06/01/2024", "MM/dd/yyyy", new Date());
+export const LAST_DAY = parse("06/09/2024", "MM/dd/yyyy", new Date());
+export const SCHED_URI = "https://madisonbikeweek2024.sched.com";
+export const GF_FORM_ID = 11;
 export const googleLoginEnabled = Boolean(
-  process.env.VITE_APP_GOOGLE_CLIENT_ID ?? "",
+  import.meta.env.VITE_APP_GOOGLE_CLIENT_ID ?? "",
 );

@@ -1,9 +1,8 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { parse } from "date-fns";
 import { Controller, useFieldArray } from "react-hook-form";
-import { FIRST_DAY } from "../../../common/config";
+import { FIRST_DAY, LAST_DAY } from "../../../common/config";
 
 export const Days = () => {
   const { fields, append, remove } = useFieldArray({
@@ -30,6 +29,8 @@ export const Days = () => {
                     {...fieldProps}
                     inputRef={ref}
                     value={value}
+                    minDate={FIRST_DAY}
+                    maxDate={LAST_DAY}
                     onChange={(value) => {
                       console.log(`new date ${value}`);
                       onChange(value);
@@ -49,10 +50,7 @@ export const Days = () => {
           </li>
         ))}
       </ul>
-      <Button
-        variant="outlined"
-        onClick={() => append(parse(FIRST_DAY, "MM/dd/yyyy", new Date()))}
-      >
+      <Button variant="outlined" onClick={() => append(FIRST_DAY)}>
         Add Day
       </Button>
     </>

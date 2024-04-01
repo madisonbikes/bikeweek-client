@@ -1,6 +1,6 @@
 import { GoogleLogin as GL } from "@react-oauth/google";
 import { useEffect } from "react";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { federatedLogin } from "../api/session";
 import { useAuth } from "../common";

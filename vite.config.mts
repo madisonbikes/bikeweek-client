@@ -4,7 +4,12 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
+  build: {
+    chunkSizeWarningLimit: 2048,
+  },
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+  },
   plugins: [react()],
   server: {
     proxy: {

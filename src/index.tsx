@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme, AuthProvider, ErrorFallback } from "./common";
 import { CssBaseline } from "@mui/material";
@@ -16,10 +16,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      useErrorBoundary: true,
+      throwOnError: true,
     },
     mutations: {
-      useErrorBoundary: true,
+      throwOnError: true,
     },
   },
 });
@@ -28,7 +28,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <GoogleOAuthProvider clientId={process.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}>
+  <GoogleOAuthProvider
+    clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}
+  >
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <React.StrictMode>
