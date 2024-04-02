@@ -32,7 +32,6 @@ module.exports = {
   },
   reportUnusedDisableDirectives: true,
   rules: {
-    "prefer-const": "off",
     "no-autofix/prefer-const": "error",
     eqeqeq: ["warn", "smart"],
     "func-style": ["warn"],
@@ -48,9 +47,6 @@ module.exports = {
         },
       },
     ],
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-unsafe-member-access": "off",
-    "@typescript-eslint/no-unsafe-argument": "off",
 
     // not useful with use of HttpStatus error codes
     "@typescript-eslint/no-unsafe-enum-comparison": "off",

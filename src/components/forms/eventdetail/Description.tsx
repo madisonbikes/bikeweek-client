@@ -17,7 +17,7 @@ export const Description = () => {
               minRows={5}
               maxRows={10}
               ref={ref}
-              value={value}
+              value={value as unknown}
               onChange={onChange}
               onBlur={onBlur}
             />
@@ -42,7 +42,7 @@ const FormEditor = forwardRef(
           onChange(newValue);
         }}
         ref={ref}
-        apiKey={import.meta.env.VITE_APP_TINYMCE_KEY}
+        apiKey={import.meta.env.VITE_APP_TINYMCE_KEY as string | undefined}
         value={value}
         init={{
           content_css: "dark",

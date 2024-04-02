@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FormTextField } from "../../input/FormTextField";
 import { ChooseLocation, LocationType } from "./ChooseLocation";
+import { FormType } from "./schema";
 
 const MADISON_LOCATION: LocationType = [43.0730517, -89.40123019999999];
 
 export const Location = () => {
-  const { setValue, watch } = useFormContext();
+  const { setValue, watch } = useFormContext<FormType>();
 
   const [showChooseLocation, setShowChooseLocation] = useState(false);
   const locationQuery = watch("location.maps_query");

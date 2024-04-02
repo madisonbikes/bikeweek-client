@@ -29,7 +29,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <GoogleOAuthProvider
-    clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID ?? ""}
+    clientId={(import.meta.env.VITE_APP_GOOGLE_CLIENT_ID as string) ?? ""}
   >
     <ThemeProvider theme={theme}>
       <CssBaseline />

@@ -28,11 +28,10 @@ export const Days = () => {
                   <DatePicker
                     {...fieldProps}
                     inputRef={ref}
-                    value={value}
+                    value={value as Date}
                     minDate={FIRST_DAY}
                     maxDate={LAST_DAY}
                     onChange={(value) => {
-                      console.log(`new date ${value}`);
                       onChange(value);
                     }}
                     slotProps={{ textField: { variant: "outlined" } }}

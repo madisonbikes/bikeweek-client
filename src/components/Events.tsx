@@ -8,6 +8,7 @@ import {
   DataGrid,
   GridColDef,
   GridRenderCellParams,
+  GridRowClassNameParams,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
 import { format } from "date-fns";
@@ -120,7 +121,9 @@ export const Events = () => {
           initialState={{
             sorting: { sortModel: [{ field: "createDate", sort: "desc" }] },
           }}
-          getRowClassName={(params) => `event-row-${params.row.status}`}
+          getRowClassName={(params: GridRowClassNameParams<BikeWeekEvent>) =>
+            `event-row-${params.row.status}`
+          }
         />
       </div>
       <ConfirmEventDelete

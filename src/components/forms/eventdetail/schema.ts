@@ -39,7 +39,7 @@ export const FormSchema = yup.object({
       yup.object({
         name: yup.string().required().ensure().label("Sponsor Name").trim(),
         url: yup.string().ensure().url().trim(),
-      })
+      }),
     )
     .required()
     .default([]),
@@ -74,14 +74,22 @@ export const FormSchema = yup.object({
           .matches(amPmTimeRegex, timeRegexOptions)
           .default("")
           .trim(),
-      })
+      }),
     )
     .required()
     .default([]),
   eventTypes: yup
     .array(
-      yup.string().lowercase().min(1).required().trim().label("Event Type Name")
+      yup
+        .string()
+        .lowercase()
+        .min(1)
+        .required()
+        .trim()
+        .label("Event Type Name"),
     )
     .required()
     .default([]),
 });
+
+export type FormType = yup.InferType<typeof FormSchema>;
