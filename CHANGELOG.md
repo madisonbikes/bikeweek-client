@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.0.0...bikeweek-client-v1.0.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* bump @emotion/styled from 11.11.0 to 11.11.5 ([5747e07](https://github.com/madisonbikes/bikeweek-client/commit/5747e0727bc60766bf83c477965539e2d821bdc6))
+* bump @mui/x-data-grid from 6.19.6 to 7.1.0 ([f13cce0](https://github.com/madisonbikes/bikeweek-client/commit/f13cce0d12fca10f55acbec8dafbcef5718b9e8d))
+* bump @mui/x-date-pickers from 6.19.7 to 7.1.0 ([69fe7ec](https://github.com/madisonbikes/bikeweek-client/commit/69fe7ec4a790ca64de33022ee95b94b5ece1200e))
+* bump @tinymce/tinymce-react from 4.3.2 to 5.0.0 ([10baefb](https://github.com/madisonbikes/bikeweek-client/commit/10baefb936e86250540c7c55db70dd57122b9c81))
+* bump react-hook-form from 7.51.1 to 7.51.2 ([32155fe](https://github.com/madisonbikes/bikeweek-client/commit/32155fe88e00e28c51900ebd32c116a9bddc85d8))
+* bump vite from 5.1.6 to 5.2.7 ([ca558d1](https://github.com/madisonbikes/bikeweek-client/commit/ca558d11a466810c484b08a09480ab513d55833e))
+* clean up vite config ([5a8114d](https://github.com/madisonbikes/bikeweek-client/commit/5a8114db09b40e2431b8441334b8c2f3dd42b5ad))
+* lint issues ([23d3a0e](https://github.com/madisonbikes/bikeweek-client/commit/23d3a0e110adb0f4cb6de7a99426906dcbd02131))
+* lost tanstack ([6187a22](https://github.com/madisonbikes/bikeweek-client/commit/6187a224da5988761f1356be17360f2b8fa9e9f5))
+* use enhanced eslint type checking and fix warnings ([45085f7](https://github.com/madisonbikes/bikeweek-client/commit/45085f753d94914c49f23d07364c18a9e24da4f0))
+
 ## [1.0.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v0.4.3...bikeweek-client-v1.0.0) (2024-03-26)
 
 
