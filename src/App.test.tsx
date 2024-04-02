@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { App } from "./App";
-import { vi } from "vitest";
 
-vi.mock("./common", () => ({
+vitest.mock("./common", () => ({
   useAuth: () => {
     return {
       state: { authenticated: true },
