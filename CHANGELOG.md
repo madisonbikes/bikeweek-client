@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.0.1...bikeweek-client-v1.1.0) (2024-04-04)
+
+
+### Features
+
+* add about dialog/version info to ui ([53235cf](https://github.com/madisonbikes/bikeweek-client/commit/53235cf112679f6c651d49e407dbc140d8e0aca8))
+
+
+### Bug Fixes
+
+* force release ([7cd28ee](https://github.com/madisonbikes/bikeweek-client/commit/7cd28eeb7f02f77bf65574125c7a32b395911fd2))
+
 ## [1.0.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.0.0...bikeweek-client-v1.0.1) (2024-04-02)
 
 
