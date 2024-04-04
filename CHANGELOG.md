@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.0...bikeweek-client-v1.1.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* rendering error on event list ([fb0527f](https://github.com/madisonbikes/bikeweek-client/commit/fb0527ff548afa7093592ec7ef948082b84b25a0))
+
 ## [1.1.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.0.1...bikeweek-client-v1.1.0) (2024-04-04)
 
 
