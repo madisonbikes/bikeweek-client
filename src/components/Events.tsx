@@ -9,7 +9,6 @@ import {
   GridColDef,
   GridRenderCellParams,
   GridRowClassNameParams,
-  GridValueFormatterParams,
 } from "@mui/x-data-grid";
 import { format } from "date-fns";
 import { DeleteForever, Edit } from "@mui/icons-material";
@@ -54,9 +53,9 @@ export const Events = () => {
     {
       field: "eventDays",
       headerName: "Event Dates",
-      valueFormatter: (params: GridValueFormatterParams<Date[]>) => {
+      valueFormatter: (value: Date[]) => {
         let retval = "";
-        for (const d of params.value) {
+        for (const d of value) {
           if (retval.length > 0) {
             retval += "\n";
           }
@@ -78,8 +77,8 @@ export const Events = () => {
       field: "createDate",
       headerName: "Date Submitted",
       width: 150,
-      valueFormatter: (params: GridValueFormatterParams<Date>) => {
-        return format(params.value, "MM/dd/yyyy");
+      valueFormatter: (value: Date) => {
+        return format(value, "MM/dd/yyyy");
       },
     },
     {
