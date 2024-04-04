@@ -38,6 +38,10 @@ export const Main = () => {
           Profile
         </Link>
         &nbsp;|&nbsp;
+        <Link component={RouterLink} to="/about">
+          About
+        </Link>
+        &nbsp;|&nbsp;
         <Link rel="noreferrer noopener" href={gfFormUri} target="_blank">
           Gravity Forms
           <SvgIcon fontSize="inherit">

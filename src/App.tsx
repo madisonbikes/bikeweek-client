@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Main, Events, Profile } from "./components";
+import { Main, Events, Profile, About } from "./components";
 import { EventDetailForm, Login } from "./components/forms";
 import "./styles.css";
 
@@ -14,6 +14,7 @@ export const App = () => {
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="about" element={<About />} />
         </Route>
       </Routes>
     </BrowserRouter>
