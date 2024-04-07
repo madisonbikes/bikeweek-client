@@ -5,7 +5,9 @@ module.exports = {
     es6: true,
     browser: true,
     jest: true,
+    "vitest-globals/env": true,
   },
+  extends: [],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -14,6 +16,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:vitest-globals/recommended",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -35,9 +38,11 @@ module.exports = {
     "no-autofix/prefer-const": "error",
     eqeqeq: ["warn", "smart"],
     "func-style": ["warn"],
-    "require-await": ["error"],
+    // Note: you must disable the base rule as it can report incorrect errors
+    "require-await": "off",
+    "@typescript-eslint/require-await": "error",
+
     "@typescript-eslint/no-floating-promises": "error",
-    "import/no-default-export": "warn",
     "@typescript-eslint/strict-boolean-expressions": "warn",
     "@typescript-eslint/no-misused-promises": [
       "error",

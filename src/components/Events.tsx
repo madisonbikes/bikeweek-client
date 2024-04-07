@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../api/contract/types";
 import { useNavigate } from "react-router-dom";
-import { deleteEvent, getAllEvents } from "../api/events";
+import events from "../api/events";
 import {
   DataGrid,
   GridColDef,
@@ -24,14 +24,14 @@ export const Events = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["events"],
     queryFn: () => {
-      return getAllEvents(auth);
+      return events.getAllEvents(auth);
     },
   });
 
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      await deleteEvent(auth, id);
+      await events.deleteEvent(auth, id);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: ["events"] });

@@ -2,7 +2,7 @@ import superagent from "superagent";
 import { bikeWeekEventSchema, MutateBikeWeekEvent } from "./contract/types";
 import { AuthContextType } from "../common";
 
-export const getAllEvents = async (auth: AuthContextType) => {
+const getAllEvents = async (auth: AuthContextType) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
   }
@@ -10,7 +10,7 @@ export const getAllEvents = async (auth: AuthContextType) => {
   return bikeWeekEventSchema.array().parse(result.body);
 };
 
-export const getEvent = async (auth: AuthContextType, id: number) => {
+const getEvent = async (auth: AuthContextType, id: number) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
   }
@@ -18,12 +18,12 @@ export const getEvent = async (auth: AuthContextType, id: number) => {
   return bikeWeekEventSchema.parse(result.body);
 };
 
-export type UpdateEventRequest = Partial<MutateBikeWeekEvent>;
+type UpdateEventRequest = Partial<MutateBikeWeekEvent>;
 
-export const updateEvent = async (
+const updateEvent = async (
   auth: AuthContextType,
   id: number,
-  data: UpdateEventRequest
+  data: UpdateEventRequest,
 ) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
@@ -33,9 +33,11 @@ export const updateEvent = async (
   return bikeWeekEventSchema.parse(result.body);
 };
 
-export const deleteEvent = async (auth: AuthContextType, id: number) => {
+const deleteEvent = async (auth: AuthContextType, id: number) => {
   if (!auth.state.authenticated) {
     throw new Error("unauthenticated");
   }
   await superagent.delete(`/api/v1/events/${id}`);
 };
+
+export default { getAllEvents, getEvent, updateEvent, deleteEvent };

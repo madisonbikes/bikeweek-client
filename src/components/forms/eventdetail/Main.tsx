@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getEvent, updateEvent } from "../../../api/events";
+import events from "../../../api/events";
 import { FormTextField } from "../../input/FormTextField";
 import { useAuth } from "../../../common";
 import { Sponsors } from "./Sponsors";
@@ -30,7 +30,7 @@ export const Form = () => {
   const eventQuery = useQuery({
     queryKey: ["events", id],
     queryFn: async () => {
-      return FormSchema.cast(await getEvent(auth, idAsInt));
+      return FormSchema.cast(await events.getEvent(auth, idAsInt));
     },
   });
   const { data, isSuccess: querySuccess } = eventQuery;
@@ -39,7 +39,7 @@ export const Form = () => {
 
   const eventMutation = useMutation({
     mutationFn: async (data: EventFormData) => {
-      await updateEvent(auth, idAsInt, data);
+      await events.updateEvent(auth, idAsInt, data);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: ["events"] });

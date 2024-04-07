@@ -61,6 +61,7 @@
     "@types/node": "^20.12.2",
     "@types/react": "^18.2.73",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-test-renderer": "^18.0.7",
     "@types/superagent": "^8.1.6",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -69,8 +70,10 @@
     "eslint-plugin-no-autofix": "^1.2.3",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-vitest-globals": "^1.5.0",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
+    "react-test-renderer": "^18.2.0",
     "typescript": "^5.4.3",
     "typescript-eslint": "^7.4.0",
     "vitest": "^1.4.0"
