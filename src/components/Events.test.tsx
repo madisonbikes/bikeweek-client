@@ -52,5 +52,8 @@ describe("App", () => {
     );
     const matched = await screen.findByText(/Test Event/);
     expect(matched).toBeInTheDocument();
+
+    const grid = await screen.findByRole("grid");
+    expect(grid).toMatchSnapshot();
   });
 });
