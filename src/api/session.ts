@@ -27,7 +27,8 @@ export const sessionInfo = async (): Promise<SessionInfoResponse> => {
   const response = await Session.info()
     .ok(
       (res) =>
-        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+        res.status === StatusCodes.OK ||
+        res.status === StatusCodes.UNAUTHORIZED,
     )
     .send();
 
@@ -46,7 +47,8 @@ export const login = async (request: LoginBody): Promise<LoginResponse> => {
     .send(parsed)
     .ok(
       (res) =>
-        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+        res.status === StatusCodes.OK ||
+        res.status === StatusCodes.UNAUTHORIZED,
     );
 
   if (response.status === StatusCodes.OK) {
@@ -61,7 +63,7 @@ export const login = async (request: LoginBody): Promise<LoginResponse> => {
 };
 
 export const federatedLogin = async (
-  request: FederatedLoginBody
+  request: FederatedLoginBody,
 ): Promise<LoginResponse> => {
   // don't leak any extra data
   const parsed = federatedLoginBodySchema.parse(request);
@@ -69,7 +71,8 @@ export const federatedLogin = async (
     .send(parsed)
     .ok(
       (res) =>
-        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+        res.status === StatusCodes.OK ||
+        res.status === StatusCodes.UNAUTHORIZED,
     );
 
   if (response.status === StatusCodes.OK) {
@@ -87,7 +90,8 @@ export const logout = async (): Promise<LogoutResponse> => {
   const response = await Session.logout()
     .ok(
       (res) =>
-        res.status === StatusCodes.OK || res.status === StatusCodes.UNAUTHORIZED
+        res.status === StatusCodes.OK ||
+        res.status === StatusCodes.UNAUTHORIZED,
     )
     .send();
 
