@@ -4,6 +4,7 @@ import { Events } from ".";
 import { AuthProvider } from "../common";
 import { MemoryRouter } from "react-router-dom";
 import { BikeWeekEvent } from "../api/contract";
+import { parseJSON } from "date-fns";
 
 vi.mock("./common", () => ({
   useAuth: () => {
@@ -29,8 +30,8 @@ vi.mock("../api/events", () => {
             eventTypes: [],
             eventDays: [],
             eventTimes: [],
-            modifyDate: new Date(),
-            createDate: new Date(),
+            modifyDate: parseJSON("2024-04-08T12:00:00"),
+            createDate: parseJSON("2024-04-08T12:00:00"),
           },
         ];
       },
