@@ -76,6 +76,6 @@
     "react-test-renderer": "^18.2.0",
     "typescript": "^5.4.3",
     "typescript-eslint": "^7.8.0",
-    "vitest": "^1.4.0"
+    "vitest": "^1.5.3"
   }
 }
