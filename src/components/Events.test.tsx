@@ -5,6 +5,7 @@ import { AuthProvider } from "../common";
 import { MemoryRouter } from "react-router-dom";
 import { BikeWeekEvent } from "../api/contract";
 import { parseJSON } from "date-fns";
+import { vi, describe, it } from "vitest";
 
 vi.mock("./common", () => ({
   useAuth: () => {
