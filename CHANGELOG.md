@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.2](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.1...bikeweek-client-v1.1.2) (2024-05-20)
+
+
+### Bug Fixes
+
+* bump @mui/icons-material from 5.15.14 to 5.15.16 ([9ea11c6](https://github.com/madisonbikes/bikeweek-client/commit/9ea11c663ba1d8606d44add7ee0888b24a9465a7))
+* bump @mui/material from 5.15.14 to 5.15.16 ([82fcc03](https://github.com/madisonbikes/bikeweek-client/commit/82fcc037950874eec30760296cccc30d2deac519))
+* bump @mui/x-data-grid from 7.1.0 to 7.5.0 ([f0aaaf3](https://github.com/madisonbikes/bikeweek-client/commit/f0aaaf307ec8663c7fa338a56c5526904cb4252e))
+* bump @mui/x-date-pickers from 7.1.0 to 7.5.0 ([5b7082c](https://github.com/madisonbikes/bikeweek-client/commit/5b7082c69bb761cac49256f6e4612ca2d5ee5475))
+* bump @tanstack/react-query from 5.28.9 to 5.32.1 ([260f26f](https://github.com/madisonbikes/bikeweek-client/commit/260f26f4c6701e9b3aa8405eb5cacec9b85c9b7c))
+* bump @tanstack/react-query-devtools from 5.28.10 to 5.34.1 ([1f2d328](https://github.com/madisonbikes/bikeweek-client/commit/1f2d32891d590d2033e9ea2da2366dc78211bf8e))
+* bump @tinymce/tinymce-react from 5.0.0 to 5.0.1 ([c49dbe7](https://github.com/madisonbikes/bikeweek-client/commit/c49dbe7e1eddc7a2e13b83c1900e68610822c9d3))
+* bump react-hook-form from 7.51.2 to 7.51.3 ([2a5d5e6](https://github.com/madisonbikes/bikeweek-client/commit/2a5d5e667fc127b6bd2f43c651af2a8b84c1c8e1))
+* bump react-router-dom from 6.22.3 to 6.23.0 ([dfee767](https://github.com/madisonbikes/bikeweek-client/commit/dfee76764e78d4379a31f166b62517a1f44b38c6))
+* bump superagent from 8.1.2 to 9.0.2 ([357e3e0](https://github.com/madisonbikes/bikeweek-client/commit/357e3e0ecf89b7544a01f34c7b010a3948247e7a))
+* bump vite from 5.2.7 to 5.2.10 ([0cdedfa](https://github.com/madisonbikes/bikeweek-client/commit/0cdedfa2e575a5f7b25356d2a7213d382f59c894))
+* bump zod from 3.22.4 to 3.23.6 ([3f41a72](https://github.com/madisonbikes/bikeweek-client/commit/3f41a72559c19daa60cbcec2517376f43c7c7ff5))
+* location can be blank ([248bac8](https://github.com/madisonbikes/bikeweek-client/commit/248bac80a6c067405bdc1ecc908e954ee7c4d2b5))
+* tests were failing now that day advanced ([6c305a8](https://github.com/madisonbikes/bikeweek-client/commit/6c305a8cb508b3737f2e25c33fa001ac4f979b30))
+
 ## [1.1.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.0...bikeweek-client-v1.1.1) (2024-04-04)
 
 
