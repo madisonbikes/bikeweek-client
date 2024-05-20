@@ -37,7 +37,6 @@ export const Location = () => {
       <FormTextField
         name="location.name"
         fullWidth
-        required
         margin="normal"
         label="Name"
       />
@@ -117,7 +116,6 @@ const locationRegex = /^\s*([-+\d.]+)\s*,\s*([-+\d.]+)\s*$/;
 const extractLocationTuple = (locationString: string) => {
   const matched = locationString.match(locationRegex);
   const retval = MADISON_LOCATION;
-  console.log(JSON.stringify(matched));
   if (matched != null && matched.length === 3) {
     retval[0] = parseFloat(matched[1]);
     retval[1] = parseFloat(matched[2]);

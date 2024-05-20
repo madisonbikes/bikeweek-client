@@ -53,7 +53,7 @@ export const FormSchema = yup.object({
   eventGraphicUrl: yup.string().ensure().url().trim(),
   eventDays: yup.array().required().of(yup.date().required()).default([]),
   location: yup.object({
-    name: yup.string().min(5).ensure().required().trim(),
+    name: yup.string().ensure().trim(),
     sched_address: yup.string().ensure(),
     maps_query: yup.string().ensure(),
     maps_placeid: yup.string().ensure(),
