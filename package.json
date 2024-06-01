@@ -62,7 +62,7 @@
     "@types/react": "^18.2.73",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.3.0",
-    "@types/superagent": "^8.1.6",
+    "@types/superagent": "^8.1.7",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
