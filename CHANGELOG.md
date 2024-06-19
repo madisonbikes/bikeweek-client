@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.3](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.2...bikeweek-client-v1.1.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* bump @hookform/resolvers from 3.3.4 to 3.4.2 ([2e91238](https://github.com/madisonbikes/bikeweek-client/commit/2e9123845f06adb971cd5d65febf534e3e875b53))
+* bump @mui/icons-material from 5.15.16 to 5.15.19 ([17fb850](https://github.com/madisonbikes/bikeweek-client/commit/17fb850c4ff9caba750bba01ce2b10616b8fd83d))
+* bump @mui/material from 5.15.16 to 5.15.19 ([bbfdf9a](https://github.com/madisonbikes/bikeweek-client/commit/bbfdf9a4050cbcb913c60e8e1e8f2cd6995699b6))
+* bump @mui/x-data-grid from 7.5.0 to 7.6.1 ([15748cf](https://github.com/madisonbikes/bikeweek-client/commit/15748cfab7c934a0cb00684021731e2d6cb32fa2))
+* bump @mui/x-date-pickers from 7.5.0 to 7.6.1 ([96f90b6](https://github.com/madisonbikes/bikeweek-client/commit/96f90b68278d60cf3399b73326e8e973db61a33a))
+* bump @tanstack/react-query-devtools from 5.34.1 to 5.40.0 ([29d763e](https://github.com/madisonbikes/bikeweek-client/commit/29d763ec74e1eb3db2e6d30f2e667ac5443aab40))
+* bump @vitejs/plugin-react from 4.2.1 to 4.3.0 ([1094d3a](https://github.com/madisonbikes/bikeweek-client/commit/1094d3ae4ed9b2592cd0ba6b124834a354f21f5d))
+* bump react-hook-form from 7.51.3 to 7.51.5 ([9f9dfad](https://github.com/madisonbikes/bikeweek-client/commit/9f9dfade9fcdeb4e57157d905afc4e65df0c240c))
+* bump react-router-dom from 6.23.0 to 6.23.1 ([d82802b](https://github.com/madisonbikes/bikeweek-client/commit/d82802bfe1826552a380ebbdccdf3b77693bde17))
+* bump vite from 5.2.10 to 5.2.12 ([c772f03](https://github.com/madisonbikes/bikeweek-client/commit/c772f0385861046d19176d067471e440344ae1ba))
+* bump zod from 3.23.6 to 3.23.8 ([5c096b7](https://github.com/madisonbikes/bikeweek-client/commit/5c096b7b81136cfad0b99bd721cd09aab673b39f))
+
 ## [1.1.2](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.1...bikeweek-client-v1.1.2) (2024-05-20)
 
 
