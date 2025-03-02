@@ -44,7 +44,7 @@
     "react-hook-form": "^7.51.5",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.23.1",
-    "superagent": "^9.0.2",
+    "superagent": "^10.1.1",
     "vite": "^5.2.12",
     "vite-tsconfig-paths": "^4.3.2",
     "yup": "^1.4.0",
