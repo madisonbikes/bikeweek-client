@@ -36,7 +36,7 @@
     "@tanstack/react-query-devtools": "^5.66.11",
     "@tinymce/tinymce-react": "^6.0.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "http-status-codes": "^2.3.0",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
