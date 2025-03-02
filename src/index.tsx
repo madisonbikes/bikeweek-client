@@ -1,6 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ReactDOM from "react-dom/client";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme, AuthProvider, ErrorFallback } from "./common";
@@ -12,6 +11,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { StrictMode } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +33,7 @@ root.render(
   >
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <React.StrictMode>
+      <StrictMode>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
@@ -44,7 +44,7 @@ root.render(
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </ErrorBoundary>
-      </React.StrictMode>
+      </StrictMode>
     </ThemeProvider>
   </GoogleOAuthProvider>,
 );

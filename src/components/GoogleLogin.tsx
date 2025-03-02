@@ -15,7 +15,7 @@ export const GoogleLogin = () => {
     if (loginSuccess && loginData.authenticated) {
       console.log("set auth");
       auth.setState(loginData);
-      navigate("/events");
+      void navigate("/events");
     }
   }, [loginSuccess, loginData, auth, navigate]);
 
