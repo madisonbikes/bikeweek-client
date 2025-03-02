@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useQuery } from "@tanstack/react-query";
 import { LoginResponse, sessionInfo } from "../api/session";
 import { getSelf } from "../api/users";
@@ -20,11 +25,7 @@ export const useAuth = (): AuthContextType => {
   return retval;
 };
 
-type Props = {
-  children: JSX.Element;
-};
-
-export const AuthProvider = (props: Props) => {
+export const AuthProvider = (props: PropsWithChildren) => {
   const [state, setState] = useState<AuthState>({ authenticated: false });
   const { data } = useQuery({
     queryKey: ["session"],

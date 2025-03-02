@@ -1,11 +1,11 @@
 import { TextField, TextFieldProps } from "@mui/material";
+import { PropsWithChildren } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
 type Props<T extends FieldValues> = Omit<TextFieldProps, "name"> & {
   name: Path<T>;
-  children: React.ReactNode;
   control?: Control<T, unknown>;
-};
+} & PropsWithChildren;
 
 /** MUI + react-hook-form component */
 export const FormSelect = <T extends FieldValues>({

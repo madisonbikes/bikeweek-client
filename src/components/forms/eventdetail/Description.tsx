@@ -1,7 +1,7 @@
 import { SyntheticEvent, forwardRef, ForwardedRef } from "react";
 import { Controller } from "react-hook-form";
-import { Editor } from "@tinymce/tinymce-react";
 import { TextField } from "@mui/material";
+import { Editor } from "@tinymce/tinymce-react";
 
 export const Description = () => {
   return (

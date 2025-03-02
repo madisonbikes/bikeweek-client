@@ -21,7 +21,7 @@ export const Logout = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/");
+      void navigate("/");
     }
   }, [navigate, isSuccess]);
 

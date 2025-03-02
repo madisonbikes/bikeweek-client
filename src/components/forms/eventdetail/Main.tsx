@@ -58,7 +58,7 @@ export const Form = () => {
 
   useEffect(() => {
     if (mutationSuccess) {
-      navigate("/events");
+      void navigate("/events");
     }
   }, [mutationSuccess, navigate]);
 
@@ -89,7 +89,7 @@ export const Form = () => {
           setShowConfirmCancel(false);
         }}
         onConfirm={() => {
-          navigate("/events");
+          void navigate("/events");
         }}
       />
       <AppBar>
@@ -115,7 +115,7 @@ export const Form = () => {
             disabled={isSubmitting}
             onClick={() => {
               if (!isDirty) {
-                navigate("/events");
+                void navigate("/events");
               } else {
                 setShowConfirmCancel(true);
               }

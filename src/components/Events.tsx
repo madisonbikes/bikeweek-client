@@ -42,8 +42,8 @@ export const Events = () => {
     return <div>Loading...</div>;
   }
 
-  const onModifyClicked = (id: number) => {
-    navigate(`/events/${id}`);
+  const onModifyClicked = async (id: number) => {
+    return navigate(`/events/${id}`);
   };
 
   const columns: GridColDef[] = [
