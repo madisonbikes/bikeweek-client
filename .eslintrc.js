@@ -55,5 +55,14 @@ module.exports = {
 
     // not useful with use of HttpStatus error codes
     "@typescript-eslint/no-unsafe-enum-comparison": "off",
+
+    "@typescript-eslint/no-unused-vars": [
+      "warn", // or error
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      },
+    ],
   },
 };
