@@ -10,18 +10,16 @@ import {
 import { z } from "zod";
 import { StatusCodes } from "http-status-codes";
 
-const authenticationResultSchema = z.object({
+const _authenticationResultSchema = z.object({
   authenticated: z.boolean(),
   failureString: z.string().optional(),
 });
-type AuthenticationResult = z.infer<typeof authenticationResultSchema>;
+type AuthenticationResult = z.infer<typeof _authenticationResultSchema>;
 export type LoginResponse = Partial<AuthenticatedUser> & AuthenticationResult;
 
 export type SessionInfoResponse = LoginResponse;
 
-export type LogoutResponse = {
-  success: boolean;
-};
+export type LogoutResponse = { success: boolean };
 
 export const sessionInfo = async (): Promise<SessionInfoResponse> => {
   const response = await Session.info()
@@ -55,10 +53,7 @@ export const login = async (request: LoginBody): Promise<LoginResponse> => {
     const result = authenticatedUserSchema.parse(response.body);
     return { authenticated: true, ...result };
   } else {
-    return {
-      authenticated: false,
-      failureString: response.text,
-    };
+    return { authenticated: false, failureString: response.text };
   }
 };
 
@@ -79,10 +74,7 @@ export const federatedLogin = async (
     const result = authenticatedUserSchema.parse(response.body);
     return { authenticated: true, ...result };
   } else {
-    return {
-      authenticated: false,
-      failureString: response.text,
-    };
+    return { authenticated: false, failureString: response.text };
   }
 };
 
