@@ -14,7 +14,7 @@ export const linkFederatedId = async (data: AddFederatedId) => {
     .send(data)
     .ok(
       (res) =>
-        res.status === StatusCodes.OK || res.status === StatusCodes.FORBIDDEN
+        res.status === StatusCodes.OK || res.status === StatusCodes.FORBIDDEN,
     );
   if (response.statusCode === StatusCodes.FORBIDDEN) {
     return false;
@@ -26,7 +26,7 @@ export const linkFederatedId = async (data: AddFederatedId) => {
 export const unlinkFederatedId = async (provider: FederatedProvider) => {
   const response = await Federated.delete_self_federated(provider).ok(
     (res) =>
-      res.status === StatusCodes.OK || res.status === StatusCodes.FORBIDDEN
+      res.status === StatusCodes.OK || res.status === StatusCodes.FORBIDDEN,
   );
   if (response.statusCode === StatusCodes.FORBIDDEN) {
     return false;

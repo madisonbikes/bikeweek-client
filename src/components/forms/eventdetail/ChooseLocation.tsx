@@ -100,7 +100,7 @@ const DraggableMarker = ({ onLocation, initialLocation }: MapProps) => {
         }
       },
     }),
-    [onLocation]
+    [onLocation],
   );
 
   //const toggleDraggable = useCallback(() => {
