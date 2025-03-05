@@ -12,7 +12,7 @@ import {
 } from "@mui/x-data-grid";
 import { format } from "date-fns";
 import { DeleteForever, Edit } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConfirmEventDelete } from "./ConfirmEventDelete";
 
 export const Events = () => {
@@ -22,22 +22,27 @@ export const Events = () => {
 
   const navigate = useNavigate();
   const { isLoading, data } = useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ["events"],
     queryFn: () => {
-      return events.getAllEvents(auth);
+      return events.getAllEvents();
     },
   });
 
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      await events.deleteEvent(auth, id);
+      await events.deleteEvent(id);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: ["events"] });
     },
   });
+
+  useEffect(() => {
+    if (!auth.state.authenticated) {
+      void navigate("/login");
+    }
+  }, [auth, navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;

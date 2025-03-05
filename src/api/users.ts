@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
 import { userSchema } from "./contract";
 import { Users } from "./contract/Users";
+import { StatusCodes } from "../common";
 
 const _changePasswordSchema = z.object({
   old_password: z.string(),

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
-import { Button, Grid } from "@mui/material";
+import { Button, Grid2 as Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -85,7 +84,7 @@ export const ChangePassword = () => {
           rowSpacing={2}
           alignItems="flex-start"
         >
-          <Grid item>
+          <Grid>
             <FormTextField
               name="old_password"
               label="Current Password"
@@ -95,7 +94,7 @@ export const ChangePassword = () => {
               control={control}
             />
           </Grid>
-          <Grid item>
+          <Grid>
             <FormTextField
               control={control}
               name="new_password"
@@ -105,7 +104,7 @@ export const ChangePassword = () => {
               type="password"
             />
           </Grid>
-          <Grid item>
+          <Grid>
             <FormTextField
               control={control}
               name="new_password_duplicate"
@@ -115,13 +114,13 @@ export const ChangePassword = () => {
               type="password"
             />
           </Grid>
-          <Grid item className="passwordError">
+          <Grid className="passwordError">
             {errors.root?.password_error.type !== undefined ? (
               <>{errors.root.password_error.message}</>
             ) : null}
             {errors.old_password ? <>{errors.old_password.message}</> : null}
           </Grid>
-          <Grid item>
+          <Grid>
             <Button
               disabled={isSubmitting}
               onClick={handleSubmit(onSubmit)}

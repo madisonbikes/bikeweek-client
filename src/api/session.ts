@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+import { StatusCodes } from "../common";
 import {
   authenticatedUserSchema,
   Session,
@@ -9,7 +9,6 @@ import {
   federatedLoginBodySchema,
 } from "./contract";
 import { z } from "zod";
-import { StatusCodes } from "http-status-codes";
 
 const _authenticationResultSchema = z.object({
   authenticated: z.boolean(),

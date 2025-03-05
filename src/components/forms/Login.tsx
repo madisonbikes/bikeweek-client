@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
-import { Button, Grid } from "@mui/material";
+import { Button, Grid2 as Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -63,7 +62,7 @@ export const Login = () => {
           rowSpacing={2}
           alignItems="flex-start"
         >
-          <Grid item>
+          <Grid>
             <FormTextField
               control={control}
               name="username"
@@ -72,7 +71,7 @@ export const Login = () => {
               autoComplete="username"
             />
           </Grid>
-          <Grid item>
+          <Grid>
             <FormTextField
               control={control}
               name="password"
@@ -82,7 +81,7 @@ export const Login = () => {
               autoComplete="current-password"
             />
           </Grid>
-          <Grid item>
+          <Grid>
             <Button
               disabled={isSubmitting}
               onClick={handleSubmit(onSubmit)}
