@@ -31,13 +31,20 @@ export const Sponsors = () => {
           <IconButton
             aria-label="delete"
             sx={{ marginLeft: 0.5 }}
-            onClick={() => remove(index)}
+            onClick={() => {
+              remove(index);
+            }}
           >
             <Delete />
           </IconButton>
         </Box>
       ))}
-      <Button variant="outlined" onClick={() => append({ name: "", url: "" })}>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          append({ name: "", url: "" });
+        }}
+      >
         Add Sponsor
       </Button>
     </>

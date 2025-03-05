@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { Button, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -115,8 +116,8 @@ export const ChangePassword = () => {
             />
           </Grid>
           <Grid item className="passwordError">
-            {errors.root?.password_error?.type !== undefined ? (
-              <>{errors.root?.password_error?.message}</>
+            {errors.root?.password_error.type !== undefined ? (
+              <>{errors.root.password_error.message}</>
             ) : null}
             {errors.old_password ? <>{errors.old_password.message}</> : null}
           </Grid>

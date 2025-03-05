@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
 import { userSchema } from "./contract";

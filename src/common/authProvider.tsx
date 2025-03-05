@@ -1,29 +1,8 @@
-import React, {
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { LoginResponse, sessionInfo } from "../api/session";
+import { sessionInfo } from "../api/session";
 import { getSelf } from "../api/users";
-
-export type AuthState = LoginResponse;
-
-export type AuthContextType = {
-  state: AuthState;
-  setState: (newState: AuthState) => void;
-};
-
-const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = (): AuthContextType => {
-  const retval = useContext(AuthContext);
-  if (!retval) {
-    throw new Error("useAuth outside of AuthProvider");
-  }
-  return retval;
-};
+import { AuthContext, AuthState } from "./auth";
 
 export const AuthProvider = (props: PropsWithChildren) => {
   const [state, setState] = useState<AuthState>({ authenticated: false });

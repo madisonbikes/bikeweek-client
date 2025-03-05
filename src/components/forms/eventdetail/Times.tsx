@@ -40,7 +40,9 @@ export const Times = () => {
               <IconButton
                 aria-label="delete"
                 sx={{ marginLeft: 0.5 }}
-                onClick={() => remove(index)}
+                onClick={() => {
+                  remove(index);
+                }}
               >
                 <Delete />
               </IconButton>
@@ -48,7 +50,12 @@ export const Times = () => {
           </li>
         ))}
       </ul>
-      <Button variant="outlined" onClick={() => append({ start: "", end: "" })}>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          append({ start: "", end: "" });
+        }}
+      >
         Add Time
       </Button>
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { Button, Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -46,8 +47,8 @@ export const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      {loginData?.failureString !== null ? (
-        <div className="loginError">{loginData?.failureString}</div>
+      {loginData?.failureString != null ? (
+        <div className="loginError">{loginData.failureString}</div>
       ) : null}
       <form
         onKeyDown={async (e) => {

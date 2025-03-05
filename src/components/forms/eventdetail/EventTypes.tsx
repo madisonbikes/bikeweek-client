@@ -26,7 +26,9 @@ export const Types = () => {
               <IconButton
                 aria-label="delete"
                 sx={{ marginLeft: "0.5rem" }}
-                onClick={() => remove(index)}
+                onClick={() => {
+                  remove(index);
+                }}
               >
                 <Delete />
               </IconButton>
@@ -34,7 +36,12 @@ export const Types = () => {
           </li>
         ))}
       </ul>
-      <Button variant="outlined" onClick={() => append("")}>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          append("");
+        }}
+      >
         Add Type
       </Button>
     </>

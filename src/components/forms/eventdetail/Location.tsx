@@ -114,7 +114,7 @@ const locationRegex = /^\s*([-+\d.]+)\s*,\s*([-+\d.]+)\s*$/;
 
 /** attempts to extract location tuple (lat/lng), or defaults to Madison if can't be matched */
 const extractLocationTuple = (locationString: string) => {
-  const matched = locationString.match(locationRegex);
+  const matched = locationRegex.exec(locationString);
   const retval = MADISON_LOCATION;
   if (matched != null && matched.length === 3) {
     retval[0] = parseFloat(matched[1]);

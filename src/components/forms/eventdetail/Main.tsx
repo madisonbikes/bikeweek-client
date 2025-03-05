@@ -28,6 +28,7 @@ export const Form = () => {
   const auth = useAuth();
   const queryClient = useQueryClient();
   const eventQuery = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ["events", id],
     queryFn: async () => {
       return FormSchema.cast(await events.getEvent(auth, idAsInt));

@@ -41,7 +41,9 @@ export const Days = () => {
               <IconButton
                 aria-label="delete"
                 sx={{ marginLeft: "0.5rem" }}
-                onClick={() => remove(index)}
+                onClick={() => {
+                  remove(index);
+                }}
               >
                 <Delete />
               </IconButton>
@@ -49,7 +51,12 @@ export const Days = () => {
           </li>
         ))}
       </ul>
-      <Button variant="outlined" onClick={() => append(FIRST_DAY)}>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          append(FIRST_DAY);
+        }}
+      >
         Add Day
       </Button>
     </>

@@ -22,6 +22,7 @@ export const Events = () => {
 
   const navigate = useNavigate();
   const { isLoading, data } = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ["events"],
     queryFn: () => {
       return events.getAllEvents(auth);
@@ -127,8 +128,12 @@ export const Events = () => {
       </div>
       <ConfirmEventDelete
         open={showDeleteConfirmation}
-        onClose={() => setShowDeleteConfirmation(false)}
-        onConfirm={() => deleteMutation.mutate(activeRowId)}
+        onClose={() => {
+          setShowDeleteConfirmation(false);
+        }}
+        onConfirm={() => {
+          deleteMutation.mutate(activeRowId);
+        }}
       />
     </>
   );

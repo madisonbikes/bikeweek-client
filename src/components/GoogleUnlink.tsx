@@ -23,7 +23,9 @@ export const GoogleUnlink = () => {
       <h4>Linked Google account: {federatedId}</h4>
       <Button
         variant="contained"
-        onClick={() => unlinkMutation.mutate("google")}
+        onClick={() => {
+          unlinkMutation.mutate("google");
+        }}
       >
         Unlink
       </Button>

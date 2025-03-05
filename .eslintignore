@@ -1,7 +1,0 @@
-**/*.css
-**/*.svg
-build
-node_modules
-dist
-.eslintrc.js
-vite.config.mts

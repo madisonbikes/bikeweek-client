@@ -2,5 +2,12 @@
   "extends": "@tsconfig/vite-react/tsconfig.json",
   "compilerOptions": {
     "types": ["vite/client", "vitest/globals"]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    ".commitlintrc.ts",
+    "vite.config.mts"
+  ]
 }
