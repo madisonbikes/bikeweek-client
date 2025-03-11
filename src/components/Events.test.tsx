@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Events } from ".";
 import { AuthProvider } from "../common/authProvider";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 import { BikeWeekEvent } from "../api/contract";
 import { parseJSON } from "date-fns";
 import { vi, describe, it } from "vitest";

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { Main, Events, Profile, About } from "./components";
 import { EventDetailForm, Login } from "./components/forms";
 import "./styles.css";

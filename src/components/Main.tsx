@@ -1,5 +1,5 @@
 import { Link, SvgIcon } from "@mui/material";
-import { Outlet, Link as RouterLink } from "react-router-dom";
+import { Outlet, Link as RouterLink } from "react-router";
 import { useAuth } from "../common";
 import { Footer } from "./Footer";
 import { ArrowCircleUp } from "@mui/icons-material";

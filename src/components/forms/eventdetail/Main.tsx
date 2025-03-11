@@ -2,7 +2,7 @@ import { AppBar, Button, Divider, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import events from "../../../api/events";
 import { FormTextField } from "../../input/FormTextField";
 import { Sponsors } from "./Sponsors";

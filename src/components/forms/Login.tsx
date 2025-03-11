@@ -2,7 +2,7 @@ import { Button, Grid2 as Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { login } from "../../api/session";
 import { LoginBody } from "../../api/contract/types";
 import { useAuth } from "../../common";

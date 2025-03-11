@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../common";
 import { BikeWeekEvent } from "../api/contract/types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import events from "../api/events";
 import {
   DataGrid,
