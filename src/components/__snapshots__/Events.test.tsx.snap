@@ -20,7 +20,7 @@ exports[`App > renders events list 1`] = `
     style="overflow-x: hidden;"
   >
     <div
-      class="MuiDataGrid-topContainer MuiDataGrid-container--top css-9dbfce"
+      class="MuiDataGrid-topContainer MuiDataGrid-container--top css-b1wygl"
       role="presentation"
     >
       <div
@@ -95,7 +95,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="ID column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":r7:"
@@ -195,7 +195,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="Name column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":rd:"
@@ -295,7 +295,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="Status column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":rj:"
@@ -395,7 +395,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="Event Dates column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":rp:"
@@ -495,7 +495,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="Date Submitted column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":rv:"
@@ -595,7 +595,7 @@ exports[`App > renders events list 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  aria-label="Menu"
+                  aria-label="Ops column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
                   id=":r15:"
@@ -793,13 +793,13 @@ exports[`App > renders events list 1`] = `
       </div>
     </div>
     <div
-      class="MuiDataGrid-bottomContainer MuiDataGrid-container--bottom css-kkb6k7"
+      class="MuiDataGrid-bottomContainer MuiDataGrid-container--bottom css-gzxaox"
       role="presentation"
     />
   </div>
   <div
     aria-hidden="true"
-    class="MuiDataGrid-scrollbar MuiDataGrid-scrollbar--horizontal css-16z8vpz"
+    class="MuiDataGrid-scrollbar MuiDataGrid-scrollbar--horizontal css-2n9dey"
     tabindex="-1"
   >
     <div
@@ -808,7 +808,7 @@ exports[`App > renders events list 1`] = `
   </div>
   <div
     aria-hidden="true"
-    class="MuiDataGrid-scrollbar MuiDataGrid-scrollbar--vertical css-tewekw"
+    class="MuiDataGrid-scrollbar MuiDataGrid-scrollbar--vertical css-1ir2opr"
     tabindex="-1"
   >
     <div
