@@ -98,7 +98,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="ID column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":r7:"
+                  id="«r7»"
                   tabindex="-1"
                   type="button"
                 >
@@ -198,7 +198,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="Name column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":rd:"
+                  id="«rd»"
                   tabindex="-1"
                   type="button"
                 >
@@ -298,7 +298,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="Status column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":rj:"
+                  id="«rj»"
                   tabindex="-1"
                   type="button"
                 >
@@ -398,7 +398,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="Event Dates column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":rp:"
+                  id="«rp»"
                   tabindex="-1"
                   type="button"
                 >
@@ -498,7 +498,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="Date Submitted column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":rv:"
+                  id="«rv»"
                   tabindex="-1"
                   type="button"
                 >
@@ -598,7 +598,7 @@ exports[`App > renders events list 1`] = `
                   aria-label="Ops column menu"
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  id=":r15:"
+                  id="«r15»"
                   tabindex="-1"
                   type="button"
                 >
