@@ -35,7 +35,7 @@
     "@mui/x-data-grid": "^7.28.2",
     "@mui/x-date-pickers": "^7.28.2",
     "@react-oauth/google": "^0.12.1",
-    "@tanstack/react-query": "^5.67.1",
+    "@tanstack/react-query": "^5.72.0",
     "@tanstack/react-query-devtools": "^5.71.1",
     "@tinymce/tinymce-react": "^6.1.0",
     "date-fns": "^4.1.0",
