@@ -7,8 +7,7 @@ import { CssBaseline } from "@mui/material";
 import { App } from "./App";
 import { ErrorBoundary } from "react-error-boundary";
 
-// for date pickers
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { StrictMode } from "react";
