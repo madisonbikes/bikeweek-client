@@ -31,6 +31,7 @@ exports[`App > renders events list 1`] = `
           aria-rowindex="1"
           class="MuiDataGrid-row--borderBottom css-yseucu-MuiDataGrid-columnHeaderRow"
           role="row"
+          style="height: 56px;"
         >
           <div
             role="presentation"
@@ -42,7 +43,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
             data-field="id"
             role="columnheader"
-            style="height: 56px; width: 75px;"
+            style="width: 75px;"
             tabindex="0"
           >
             <div
@@ -69,7 +70,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="id"
                     tabindex="-1"
                     title="Sort"
@@ -142,7 +143,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
             data-field="name"
             role="columnheader"
-            style="height: 56px; width: 300px;"
+            style="width: 300px;"
             tabindex="-1"
           >
             <div
@@ -169,7 +170,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="name"
                     tabindex="-1"
                     title="Sort"
@@ -242,7 +243,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
             data-field="status"
             role="columnheader"
-            style="height: 56px; width: 100px;"
+            style="width: 100px;"
             tabindex="-1"
           >
             <div
@@ -269,7 +270,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="status"
                     tabindex="-1"
                     title="Sort"
@@ -342,7 +343,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor"
             data-field="eventDays"
             role="columnheader"
-            style="height: 56px; width: 100px;"
+            style="width: 100px;"
             tabindex="-1"
           >
             <div
@@ -369,7 +370,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="eventDays"
                     tabindex="-1"
                     title="Sort"
@@ -442,7 +443,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-columnHeader--sorted MuiDataGrid-withBorderColor"
             data-field="createDate"
             role="columnheader"
-            style="height: 56px; width: 150px;"
+            style="width: 150px;"
             tabindex="-1"
           >
             <div
@@ -469,7 +470,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="createDate"
                     tabindex="-1"
                     title="Sort"
@@ -542,7 +543,7 @@ exports[`App > renders events list 1`] = `
             class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor MuiDataGrid-columnHeader--lastUnpinned MuiDataGrid-columnHeader--last"
             data-field="buttons"
             role="columnheader"
-            style="height: 56px; width: 100px;"
+            style="width: 100px;"
             tabindex="-1"
           >
             <div
@@ -569,7 +570,7 @@ exports[`App > renders events list 1`] = `
                 >
                   <button
                     aria-label="Sort"
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-155wbr6-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-sortButton css-1vkrt00-MuiButtonBase-root-MuiIconButton-root-MuiDataGrid-sortButton"
                     field="buttons"
                     tabindex="-1"
                     title="Sort"
