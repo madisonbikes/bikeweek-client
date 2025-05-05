@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.2.0...bikeweek-client-v1.2.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* force build ([d90472e](https://github.com/madisonbikes/bikeweek-client/commit/d90472ec06a4b9c373dd4754baa17ea6cf569b3d))
+* workaround bug in react-hook-form ([9ef1045](https://github.com/madisonbikes/bikeweek-client/commit/9ef10454c11f4d06ac0a2a52cfba31341a4bd3df))
+
 ## [1.2.0](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.1.2...bikeweek-client-v1.2.0) (2025-05-02)
 
 
