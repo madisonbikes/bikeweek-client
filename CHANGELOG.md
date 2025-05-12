@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.2.2](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.2.1...bikeweek-client-v1.2.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* bump @mui/icons-material from 7.0.2 to 7.1.0 ([494fd45](https://github.com/madisonbikes/bikeweek-client/commit/494fd456301a16240bf78f70ab63b8385e5df445))
+* bump @mui/icons-material from 7.0.2 to 7.1.0 ([a0d9368](https://github.com/madisonbikes/bikeweek-client/commit/a0d9368317d2f796d69192e811c21bb45c839782))
+* bump @mui/x-data-grid from 8.1.0 to 8.2.0 ([e3f6ec6](https://github.com/madisonbikes/bikeweek-client/commit/e3f6ec6dd5f0f79171e9802778cf123e52689909))
+* bump @mui/x-data-grid from 8.1.0 to 8.2.0 ([582afda](https://github.com/madisonbikes/bikeweek-client/commit/582afdac2357eebe1a01cc2ab4a0b595ea0547fb))
+* bump @mui/x-data-grid from 8.2.0 to 8.3.0 ([5f9339e](https://github.com/madisonbikes/bikeweek-client/commit/5f9339ecc3a796820922eb15f8d858c9bc1764ea))
+* bump @mui/x-data-grid from 8.2.0 to 8.3.0 ([2ee5dda](https://github.com/madisonbikes/bikeweek-client/commit/2ee5dda668f59d324ccda4556e1e20a43f835b33))
+* bump @mui/x-date-pickers from 8.1.0 to 8.2.0 ([3dcac35](https://github.com/madisonbikes/bikeweek-client/commit/3dcac355b321cc6dab3ef304da4bc53da983caf5))
+* bump @mui/x-date-pickers from 8.1.0 to 8.2.0 ([d45a133](https://github.com/madisonbikes/bikeweek-client/commit/d45a13343cbb70901796519197d0887423fc7b80))
+* bump @mui/x-date-pickers from 8.2.0 to 8.3.0 ([07548b5](https://github.com/madisonbikes/bikeweek-client/commit/07548b59b271344c32fe40ec24012eefe24e1e46))
+* bump @mui/x-date-pickers from 8.2.0 to 8.3.0 ([05be069](https://github.com/madisonbikes/bikeweek-client/commit/05be0693d5f47252de2290b16947508125cab8b1))
+* bump @react-oauth/google from 0.12.1 to 0.12.2 ([c97dcf5](https://github.com/madisonbikes/bikeweek-client/commit/c97dcf5a89c0be9c52ea16271d632b709b5a6d5d))
+* bump @react-oauth/google from 0.12.1 to 0.12.2 ([2eed398](https://github.com/madisonbikes/bikeweek-client/commit/2eed398cb6ed712b1326c16f626b695fd973187d))
+* bump @tanstack/react-query from 5.75.2 to 5.76.0 ([ec378bf](https://github.com/madisonbikes/bikeweek-client/commit/ec378bfe5595069012c094b4b5ba254ed86d3dc4))
+* bump @tanstack/react-query from 5.75.2 to 5.76.0 ([ff34908](https://github.com/madisonbikes/bikeweek-client/commit/ff34908c5323cc869950b81936997a1a9b5856de))
+* bump @tanstack/react-query-devtools from 5.74.9 to 5.75.2 ([de98b99](https://github.com/madisonbikes/bikeweek-client/commit/de98b99f30c705f3b05eb6bd14394e8d595eb8b5))
+* bump @tanstack/react-query-devtools from 5.74.9 to 5.75.2 ([6473967](https://github.com/madisonbikes/bikeweek-client/commit/647396740d48388bb8c12b4d1a2acca7b047512f))
+* bump @tanstack/react-query-devtools from 5.75.2 to 5.76.0 ([0a80b2b](https://github.com/madisonbikes/bikeweek-client/commit/0a80b2b112817183f84bfcaa9a974365fa38361d))
+* bump @tanstack/react-query-devtools from 5.75.2 to 5.76.0 ([97fa052](https://github.com/madisonbikes/bikeweek-client/commit/97fa052cb722ac051033dca63631de5ed8e26d40))
+* bump react-error-boundary from 5.0.0 to 6.0.0 ([9ac13a0](https://github.com/madisonbikes/bikeweek-client/commit/9ac13a0d220fdb42d4b59f0fe1734e4f58974215))
+* bump react-error-boundary from 5.0.0 to 6.0.0 ([dd3d424](https://github.com/madisonbikes/bikeweek-client/commit/dd3d42465e43260d5802d52bdd3466173e201a85))
+* bump react-router from 7.5.2 to 7.5.3 ([02c7a24](https://github.com/madisonbikes/bikeweek-client/commit/02c7a2450aed9e540a2395a3c4c4d6535a9b5cef))
+* bump react-router from 7.5.2 to 7.5.3 ([8fba096](https://github.com/madisonbikes/bikeweek-client/commit/8fba096f73b1ee203a1810cc3065689706c0074e))
+* bump react-router from 7.5.3 to 7.6.0 ([7140e89](https://github.com/madisonbikes/bikeweek-client/commit/7140e89835d22fefddae091d905109bc499d114b))
+* bump react-router from 7.5.3 to 7.6.0 ([ff42873](https://github.com/madisonbikes/bikeweek-client/commit/ff428731bca5f9880c7eb2f5e241fdb384b79503))
+* bump superagent from 10.2.0 to 10.2.1 ([ad7a36f](https://github.com/madisonbikes/bikeweek-client/commit/ad7a36f709d5f9f375e9b48c1cb512e48a39f3f7))
+* bump superagent from 10.2.0 to 10.2.1 ([b92e86d](https://github.com/madisonbikes/bikeweek-client/commit/b92e86d007135b47df961c9485586e31f00f4252))
+* bump vite from 6.3.4 to 6.3.5 ([25b4db4](https://github.com/madisonbikes/bikeweek-client/commit/25b4db42d01dce64cec0bf4dcd4efd95c9560e80))
+* bump vite from 6.3.4 to 6.3.5 ([a53dbfa](https://github.com/madisonbikes/bikeweek-client/commit/a53dbfa4a87a2ec22d44498b1cf10b2186371d91))
+* bump zod from 3.24.3 to 3.24.4 ([dd649e0](https://github.com/madisonbikes/bikeweek-client/commit/dd649e05dcb197946f20c47f6bf896801c8cd983))
+* bump zod from 3.24.3 to 3.24.4 ([c601737](https://github.com/madisonbikes/bikeweek-client/commit/c60173795a03d41ff4ce703527db595e123f8052))
+* force release ([1f5dac2](https://github.com/madisonbikes/bikeweek-client/commit/1f5dac2fa88b1af4e041f97a565b259c7d86401d))
+
 ## [1.2.1](https://github.com/madisonbikes/bikeweek-client/compare/bikeweek-client-v1.2.0...bikeweek-client-v1.2.1) (2025-05-05)
 
 
