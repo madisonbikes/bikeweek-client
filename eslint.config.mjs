@@ -36,6 +36,8 @@ export default tseslint.config(
       // never allow console.log to be committed
       //"no-console": "warn",
 
+      eqeqeq: ["warn", "smart"],
+
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         { allowNumber: true },
